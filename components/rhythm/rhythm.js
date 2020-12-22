@@ -3,9 +3,9 @@ import styles from '../../styles/Rhythm.module.css';
 import Occurrence from './occurrence';
 
 function Rhythm({ action, frequency, reason }) {
-  const [didHitChance, setHitChance] = useState(false);
-  const takeChance = () => setHitChance(true);
-  const chanceStatus = didHitChance ? 'chance-hit' : 'chance';
+  const [opportunityTaken, setOpportunity] = useState(false);
+  const toggleOpportunityTaken = () => setOpportunity(!opportunityTaken);
+  const opportunityStatus = opportunityTaken ? 'opportunity-taken' : 'opportunity';
 
   return (
     <div className={styles.rhythm}>
@@ -32,7 +32,7 @@ function Rhythm({ action, frequency, reason }) {
         <Occurrence status="hit"/>
         <Occurrence status="miss"/>
         <Occurrence status="hit"/>
-        <Occurrence onClick={takeChance} status={chanceStatus} />
+        <Occurrence onClick={toggleOpportunityTaken} status={opportunityStatus} />
       </div>
     </div>
   );

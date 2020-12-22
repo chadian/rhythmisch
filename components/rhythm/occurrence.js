@@ -1,7 +1,7 @@
 import styles from '../../styles/Occurrence.module.css';
 
 export default function Occurrence({ status, onClick }) {
-  if (status?.includes('chance')) {
+  if (status?.includes('opportunity')) {
     return (
       <button
         onClick={onClick}
