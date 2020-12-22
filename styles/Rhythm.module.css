@@ -1,0 +1,33 @@
+.rhythm {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.action {
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.frequency {
+  margin-top: 0.2rem;
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+.reason {
+  margin-top: 0.5rem;
+  color: #808080;
+  font-weight: 200;
+  font-size: 1.85rem;
+}
+
+.occurrences {
+  margin-top: 1.5rem;
+}
+
+.occurrences *:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.occurrences :last-child {
+  margin-left: 1.5rem;
+}
