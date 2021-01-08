@@ -1,14 +1,47 @@
 import { useState } from "react";
 import styles from "../styles/RhythmEdit.module.css";
+import { denominatorTerm } from "../utils/denominator-term";
+import { numeratorTerm } from '../utils/numerator-term';
 
-export default function RhythmEdit({ rhythm, onClose, onUpdate }) {
+const generateNumeratorSelect = (selected, onChange) => {
+  const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
+    return <option key={number} value={number}>{ numeratorTerm(number) }</option>;
+  });
+
+  return <select onChange={onChange} aria-label="Rhythm action count" value={selected}>{
+    options
+  }</select>;
+};
+
+const generateDenominatorSelect = (selected, onChange) => {
+  const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((number) => {
+    return <option key={number} value={number}>{ denominatorTerm(number) }</option>;
+  });
+
+  return <select onChange={onChange} aria-label="Rhythm action count time span" value={selected}>
+    { options }
+  </select>;
+};
+
+export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
   const [rhythmAction, setRhythmAction] = useState(rhythm.action);
   const [rhythmFrequency, setRhythmFrequency] = useState(rhythm.frequency);
+  const [rhythmNumerator, rhythmDenominator] = rhythmFrequency;
   const [rhythmReason, setRhythmReason] = useState(rhythm.reason);
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    onSubmit({
+      action: rhythmAction,
+      reason: rhythmReason,
+      frequency: rhythmFrequency,
+    });
+  };
+
   return (
-    <div className={styles["rhythm-edit"]}>
-      <button onClick={() => onClose()} className={styles.close}>
+    <form className={styles["rhythm-edit"]} onSubmit={submitHandler}>
+      <button type="button" onClick={() => onClose()} className={styles.close}>
         Close
       </button>
       <div className={styles.action}>
@@ -21,25 +54,13 @@ export default function RhythmEdit({ rhythm, onClose, onUpdate }) {
         />
       </div>
       <div className={styles.frequency}>
-        <select aria-label="Rhythm action count">
-          <option>once</option>
-          <option>twice</option>
-          <option>thrice</option>
-          <option>four times</option>
-          <option>five times</option>
-          <option>six times</option>
-          <option>seven times</option>
-        </select>
+        {generateNumeratorSelect(rhythmNumerator, (e) =>
+          setRhythmFrequency([Number(e.target.value), rhythmDenominator])
+        )}
         <span className={styles.every}>every</span>
-        <select aria-label="Rhythm action count time span">
-          <option>day</option>
-          <option>two days</option>
-          <option>three days</option>
-          <option>four days</option>
-          <option>five days</option>
-          <option>six days</option>
-          <option>seven days</option>
-        </select>
+        {generateDenominatorSelect(rhythmDenominator, (e) =>
+          setRhythmFrequency([rhythmNumerator, Number(e.target.value)])
+        )}
       </div>
       <div className="styles.reason">
         <div className={styles.action}>
@@ -52,7 +73,7 @@ export default function RhythmEdit({ rhythm, onClose, onUpdate }) {
           />
         </div>
       </div>
-      <button onClick={() => onUpdate({ action: rhythmAction, reason: rhythmReason, frequency: rhythm.frequency })}>Update Rhythm</button>
-    </div>
+      <button type="submit">Update Rhythm</button>
+    </form>
   );
 }

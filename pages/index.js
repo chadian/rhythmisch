@@ -11,8 +11,8 @@ export default function Home() {
   const [rhythmToEdit, setRhythmToEdit] = useState();
   const [rhythm, setRhythm] = useState({
     action: "Drink water every 8 hours",
-    frequency: "once every day",
-    reason: "because my body needs it",
+    frequency: [1, 1],
+    reason: "my body needs it",
   });
 
   return (
@@ -27,7 +27,7 @@ export default function Home() {
           <RhythmEdit
             rhythm={rhythmToEdit}
             onClose={() => setModal(false)}
-            onUpdate={(rhythm) => {
+            onSubmit={(rhythm) => {
               setModal(false);
               setRhythmToEdit(null);
               setRhythm(rhythm);
