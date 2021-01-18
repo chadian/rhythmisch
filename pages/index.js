@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Rhythmisch</title>
         <link rel="icon" href="/favicon.ico" />
@@ -56,17 +56,26 @@ export default function Home() {
         </Modal>
       ) : null}
 
-      <main className={styles.main}>
-        <Rhythm
-          rhythm={rhythm}
-          onTodaysOccurrenceToggle={setTodaysHit}
-          onEdit={(rhythm) => {
-            setModal(true);
-            setRhythmToEdit(rhythm);
-          }}
-        />
-        <Stripe />
-      </main>
-    </div>
+      <div className={styles.stage}>
+        <div className={styles.container}>
+          <header className={styles["header"]}>
+            <div className={styles["banner-text"]}>Rhythmisch</div>
+            <button>Add Rhythm</button>
+          </header>
+
+          <main className={styles["rhythms"]}>
+            <Rhythm
+              rhythm={rhythm}
+              onTodaysOccurrenceToggle={setTodaysHit}
+              onEdit={(rhythm) => {
+                setModal(true);
+                setRhythmToEdit(rhythm);
+              }}
+            />
+          </main>
+          <Stripe />
+        </div>
+      </div>
+    </>
   );
 }

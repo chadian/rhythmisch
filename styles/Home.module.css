@@ -1,14 +1,28 @@
-.container {
+.stage {
   min-height: 100vh;
   padding: 0 0.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
-.main {
-  padding: 5rem 0;
+.container {
+  position: relative;
+}
+
+.header {
+  margin: 2rem 0;
+}
+
+.banner-text {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.rhythms {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem 0;
   flex: 1;
   display: flex;
   position: relative;
