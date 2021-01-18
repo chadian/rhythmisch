@@ -1,0 +1,8 @@
+.button-tiny {
+  font-size: 0.9rem;
+  background: transparent;
+  border: 2px solid #D0021B;
+  color: #D0021B;
+  border-radius: 0.4em;
+  padding: 0.3em 0.5em;
+}

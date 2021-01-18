@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import styles from '../../styles/Rhythm.module.css';
+import buttonStyles from '../../styles/buttons.module.css';
 import Occurrence from './occurrence';
 import { numeratorTerm } from '../../utils/numerator-term';
 import { denominatorTerm } from '../../utils/denominator-term';
@@ -36,7 +36,7 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
 
   return (
     <div className={styles.rhythm}>
-      <button onClick={() => onEdit(rhythm)}>Edit</button>
+      <button className={buttonStyles['button-tiny']} onClick={() => onEdit(rhythm)}>Edit</button>
       <div className={styles.action}>{rhythm.action}</div>
       <div className={styles.frequency}>
         {numeratorTerm(frequencyNumerator)} every{" "}

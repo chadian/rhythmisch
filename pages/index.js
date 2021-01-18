@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { startOfDay, endOfDay, isWithinInterval } from "date-fns";
 import styles from "../styles/Home.module.css";
+import buttonStyles from "../styles/buttons.module.css";
 import Rhythm from "../components/rhythm/rhythm";
 import RhythmEdit from "../components/rhythm-edit";
 import Stripe from "../components/stripe";
@@ -60,7 +61,7 @@ export default function Home() {
         <div className={styles.container}>
           <header className={styles["header"]}>
             <div className={styles["banner-text"]}>Rhythmisch</div>
-            <button>Add Rhythm</button>
+            <button className={buttonStyles['button-tiny']}>Add</button>
           </header>
 
           <main className={styles["rhythms"]}>
