@@ -13,13 +13,23 @@ export default function Occurrence({ hit, onClick, open, date }) {
   const classNames = classKeys.map((key) => styles[key]).join(" ");
 
   const formattedDate = format(date, "MMMM do, yyyy");
-  const ariaLabel = hit
-    ? `Hit target on ${formattedDate}`
-    : `Missed target on ${formattedDate}`;
+
 
   if (open) {
-    return <button onClick={onClick} className={classNames}></button>;
+    const ariaLabel = hit ? `Mark as missed on ${formattedDate}` : `Mark as hit on ${formattedDate}`;
+
+    return (
+      <button
+        role="button"
+        aria-label={ariaLabel}
+        onClick={onClick}
+        className={classNames}
+      ></button>
+    );
   } else {
+    const ariaLabel = hit
+      ? `Hit target on ${formattedDate}`
+      : `Missed target on ${formattedDate}`;
     return <div role="img" aria-label={ariaLabel} className={classNames}></div>;
   }
 }

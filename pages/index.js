@@ -59,7 +59,7 @@ export default function Home() {
       <main className={styles.main}>
         <Rhythm
           rhythm={rhythm}
-          onTodaysHit={setTodaysHit}
+          onTodaysOccurrenceToggle={setTodaysHit}
           onEdit={(rhythm) => {
             setModal(true);
             setRhythmToEdit(rhythm);

@@ -5,7 +5,7 @@ import { numeratorTerm } from '../../utils/numerator-term';
 import { denominatorTerm } from '../../utils/denominator-term';
 import { subDays, startOfDay, endOfDay, isWithinInterval } from "date-fns";
 
-function Rhythm({ rhythm, onEdit, onTodaysHit }) {
+function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
   const [frequencyNumerator, frequencyDenominator] = rhythm.frequency;
 
   const hitToday = Boolean(rhythm.hits.find(hit => {
@@ -15,7 +15,7 @@ function Rhythm({ rhythm, onEdit, onTodaysHit }) {
     });
   }));
 
-  const toggleHit = () => onTodaysHit(!hitToday);
+  const toggleHit = () => onTodaysOccurrenceToggle(!hitToday);
 
   const occurrences = new Array(14).fill().map((_, daysAgo) => {
     const dateToCheck = subDays(new Date(), daysAgo);
