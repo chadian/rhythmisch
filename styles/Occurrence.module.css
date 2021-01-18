@@ -13,13 +13,13 @@
   background-color: #F5F5F5;
 }
 
-.occurrence.opportunity {
+.occurrence.open-hit {
+  border: none;
+  background-color: #fff;
+}
+
+.occurrence.open-miss {
   border: none;
   background-color: #fff;
   filter: blur(0.35rem);
-}
-
-.occurrence.opportunity-taken {
-  border: none;
-  background-color: #fff;
 }

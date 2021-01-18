@@ -33,11 +33,20 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
     e.preventDefault();
 
     onSubmit({
+      ...rhythm,
       action: rhythmAction,
       reason: rhythmReason,
       frequency: rhythmFrequency,
     });
   };
+
+  const numeratorSelect = generateNumeratorSelect(rhythmNumerator, (e) =>
+    setRhythmFrequency([Number(e.target.value), rhythmDenominator])
+  );
+
+  const denominatorSelect = generateDenominatorSelect(rhythmDenominator, (e) =>
+    setRhythmFrequency([rhythmNumerator, Number(e.target.value)])
+  );
 
   return (
     <form className={styles["rhythm-edit"]} onSubmit={submitHandler}>
@@ -54,13 +63,9 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
         />
       </div>
       <div className={styles.frequency}>
-        {generateNumeratorSelect(rhythmNumerator, (e) =>
-          setRhythmFrequency([Number(e.target.value), rhythmDenominator])
-        )}
+        {numeratorSelect}
         <span className={styles.every}>every</span>
-        {generateDenominatorSelect(rhythmDenominator, (e) =>
-          setRhythmFrequency([rhythmNumerator, Number(e.target.value)])
-        )}
+        {denominatorSelect}
       </div>
       <div className="styles.reason">
         <div className={styles.action}>

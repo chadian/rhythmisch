@@ -1,10 +1,9 @@
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom/extend-expect";
 import RhythmEdit from './rhythm-edit';
+import "@testing-library/jest-dom/extend-expect";
 
 describe('with an existing rhythm object', () => {
-  let rendered;
   let rhythm;
   let actionInput;
   let numeratorSelect;
@@ -22,7 +21,7 @@ describe('with an existing rhythm object', () => {
 
     onSubmitCallback = jest.fn();
 
-    rendered = render(
+    const rendered = render(
       <RhythmEdit rhythm={rhythm} onSubmit={onSubmitCallback}/>
     );
 

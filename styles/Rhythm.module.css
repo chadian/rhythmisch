@@ -21,13 +21,18 @@
 }
 
 .occurrences {
+  display: flex;
   margin-top: 1.5rem;
+  margin-left: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.occurrences *:not(:last-child) {
+.occurrences > *:not(:last-child) {
   margin-right: 1.5rem;
+  /* display: inline-block; */
 }
 
-.occurrences :last-child {
-  margin-left: 1.5rem;
+.occurrences > *:last-child {
+  margin-left: 5rem;
 }
