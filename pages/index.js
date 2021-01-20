@@ -60,8 +60,8 @@ export default function Home() {
       <div className={styles.stage}>
         <div className={styles.container}>
           <header className={styles["header"]}>
-            <div className={styles["banner-text"]}>Rhythmisch</div>
-            <button className={buttonStyles['button-tiny']}>Add</button>
+            <div className="text-7xl font-bold">Rhythmisch</div>
+            <button className={buttonStyles["button-tiny"]}>Add</button>
           </header>
 
           <main className={styles["rhythms"]}>

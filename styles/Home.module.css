@@ -14,11 +14,6 @@
   margin: 2rem 0;
 }
 
-.banner-text {
-  font-size: 5rem;
-  font-weight: bold;
-}
-
 .rhythms {
   display: flex;
   flex-direction: column;

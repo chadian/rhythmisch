@@ -36,16 +36,21 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
 
   return (
     <div className={styles.rhythm}>
-      <button className={buttonStyles['button-tiny']} onClick={() => onEdit(rhythm)}>Edit</button>
-      <div className={styles.action}>{rhythm.action}</div>
-      <div className={styles.frequency}>
+      <button
+        className={buttonStyles["button-tiny"]}
+        onClick={() => onEdit(rhythm)}
+      >
+        Edit
+      </button>
+      <div className="text-5xl font-bold text-gray-800">{rhythm.action}</div>
+      <div className="text-5xl text-gray-800 mt-2">
         {numeratorTerm(frequencyNumerator)} every{" "}
         {denominatorTerm(frequencyDenominator)}
       </div>
-      <div className={styles.reason}>because {rhythm.reason}</div>
-      <ul className={styles.occurrences}>
-        {occurrences}
-      </ul>
+      <div className="text-3xl font-normal text-gray-600 mt-3">
+        because {rhythm.reason}
+      </div>
+      <ul className={styles.occurrences}>{occurrences}</ul>
     </div>
   );
 }
