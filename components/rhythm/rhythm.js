@@ -1,4 +1,3 @@
-import styles from '../../styles/Rhythm.module.css';
 import buttonStyles from '../../styles/buttons.module.css';
 import Occurrence from './occurrence';
 import { numeratorTerm } from '../../utils/numerator-term';
@@ -35,7 +34,7 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
   }).reverse();
 
   return (
-    <div className={styles.rhythm}>
+    <div>
       <button
         className={buttonStyles["button-tiny"]}
         onClick={() => onEdit(rhythm)}
@@ -43,14 +42,14 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
         Edit
       </button>
       <div className="text-5xl font-bold text-gray-800">{rhythm.action}</div>
-      <div className="text-5xl text-gray-800 mt-2">
+      <div className="text-4xl text-gray-800 mt-1">
         {numeratorTerm(frequencyNumerator)} every{" "}
         {denominatorTerm(frequencyDenominator)}
       </div>
-      <div className="text-3xl font-normal text-gray-600 mt-3">
+      <div className="text-4xl font-normal text-gray-600 mt-1">
         because {rhythm.reason}
       </div>
-      <ul className={styles.occurrences}>{occurrences}</ul>
+      <ul className="flex space-x-5 mt-4">{occurrences}</ul>
     </div>
   );
 }

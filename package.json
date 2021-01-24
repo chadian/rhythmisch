@@ -17,10 +17,12 @@
     "jest": "^26.6.3",
     "jest-transform-css": "^2.1.0",
     "mockdate": "^3.0.2",
+    "nanoid": "^3.1.20",
     "next": "10.0.3",
     "postcss": "^8.2.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-focus-lock": "^2.5.0",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {

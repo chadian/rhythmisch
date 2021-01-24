@@ -23,7 +23,7 @@ const generateDenominatorSelect = (selected, onChange) => {
   </select>;
 };
 
-export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
+export default function RhythmEdit({ rhythm, onClose, onSubmit, isNew }) {
   const [rhythmAction, setRhythmAction] = useState(rhythm.action);
   const [rhythmFrequency, setRhythmFrequency] = useState(rhythm.frequency);
   const [rhythmNumerator, rhythmDenominator] = rhythmFrequency;
@@ -57,7 +57,7 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
         <span className={styles["i-want-to"]}>I want to</span>
         <input
           aria-label="Rhythm action description"
-          placeholder="do something small"
+          placeholder="get into a rhythm"
           value={rhythmAction}
           onChange={(event) => setRhythmAction(event.target.value)}
         />
@@ -71,8 +71,8 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
         <div className={styles.action}>
           <span className={styles.because}>because</span>
           <input
-            aria-label="Rhythm action description"
-            placeholder="every bit counts"
+            aria-label="Rhythm reason description"
+            placeholder="it will bring positive change"
             value={rhythmReason}
             onChange={(event) => setRhythmReason(event.target.value)}
           />
