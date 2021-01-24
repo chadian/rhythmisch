@@ -95,26 +95,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {
-        modalIsOpen ? (
-          <Modal>
-            <RhythmEdit
-              rhythm={rhythmToEdit}
-              onClose={() => setModal(false)}
-              onSubmit={(rhythm) => {
-                setModal(false);
-                setRhythmToEdit(null);
+      {modalIsOpen ? (
+        <Modal>
+          <RhythmEdit
+            rhythm={rhythmToEdit}
+            onClose={() => setModal(false)}
+            onSubmit={(rhythm) => {
+              setModal(false);
+              setRhythmToEdit(null);
 
-                if (!rhythm.id) {
-                  addRhythm(rhythm);
-                } else {
-                  updateRhythm(rhythm.id, rhythm);
-                }
-              }}
-            />
-          </Modal>
-        ) : null
-      }
+              if (!rhythm.id) {
+                addRhythm(rhythm);
+              } else {
+                updateRhythm(rhythm.id, rhythm);
+              }
+            }}
+          />
+        </Modal>
+      ) : null}
 
       <div className={styles.stage}>
         <div className={styles.container}>
@@ -130,23 +128,24 @@ export default function Home() {
               Add
             </button>
           </header>
-
+          <Stripe />
           <main className={styles["rhythms"]}>
-            {
-              rhythms.map(rhythm => {
-                return <Rhythm
+            {rhythms.map((rhythm) => {
+              return (
+                <Rhythm
                   key={rhythm.id}
                   rhythm={rhythm}
-                  onTodaysOccurrenceToggle={(wasHit) => setTodaysHit(rhythm, wasHit)}
+                  onTodaysOccurrenceToggle={(wasHit) =>
+                    setTodaysHit(rhythm, wasHit)
+                  }
                   onEdit={(rhythm) => {
                     setModal(true);
                     setRhythmToEdit(rhythm);
                   }}
-                />;
-              })
-            }
+                />
+              );
+            })}
           </main>
-          <Stripe />
         </div>
       </div>
     </>
