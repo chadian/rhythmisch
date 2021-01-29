@@ -117,32 +117,45 @@ export default function Home() {
       <div className={styles.stage}>
         <div className={styles.container}>
           <header className={styles["header"]}>
-            <div className="text-7xl font-bold">Rhythmisch</div>
-            <button
-              className={buttonStyles["button-tiny"]}
-              onClick={() => {
-                setModal(true);
-                setRhythmToEdit(newRhythm());
-              }}
-            >
-              Add
-            </button>
+            <div className="flex">
+              <div className="mr-20">
+                <button
+                  className={buttonStyles["button-tiny"]}
+                  onClick={() => {
+                    setModal(true);
+                    setRhythmToEdit(newRhythm());
+                  }}
+                >
+                  Add
+                </button>
+              </div>
+              <h1 className="text-7xl font-bold">Rhythmisch</h1>
+            </div>
           </header>
           <Stripe />
           <main className={styles["rhythms"]}>
             {rhythms.map((rhythm) => {
               return (
-                <Rhythm
-                  key={rhythm.id}
-                  rhythm={rhythm}
-                  onTodaysOccurrenceToggle={(wasHit) =>
-                    setTodaysHit(rhythm, wasHit)
-                  }
-                  onEdit={(rhythm) => {
-                    setModal(true);
-                    setRhythmToEdit(rhythm);
-                  }}
-                />
+                <div className="flex">
+                  <div className="mr-20">
+                    <button
+                      className={buttonStyles["button-tiny"]}
+                      onClick={() => {
+                        setModal(true);
+                        setRhythmToEdit(rhythm);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <Rhythm
+                    key={rhythm.id}
+                    rhythm={rhythm}
+                    onTodaysOccurrenceToggle={(wasHit) =>
+                      setTodaysHit(rhythm, wasHit)
+                    }
+                  />
+                </div>
               );
             })}
           </main>

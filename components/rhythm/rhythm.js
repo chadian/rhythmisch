@@ -47,19 +47,13 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
 
   return (
     <div className="box-border pr-3 max-w-2xl mr-3">
-      <button
-        className={buttonStyles["button-tiny"]}
-        onClick={() => onEdit(rhythm)}
-      >
-        Edit
-      </button>
       <div className="box-border">
         <div className="text-5xl font-bold text-gray-800">{rhythm.action}</div>
-        <div className="text-4xl text-gray-800 mt-1">
+        <div className="text-4xl text-gray-800 mt-3">
           {numeratorTerm(frequencyNumerator)} every{" "}
           {denominatorTerm(frequencyDenominator)}
         </div>
-        <div className="text-4xl font-normal text-gray-600 mt-1">
+        <div className="text-4xl font-normal text-gray-600 mt-3">
           because {rhythm.reason}
         </div>
       </div>
