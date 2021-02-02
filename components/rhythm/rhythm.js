@@ -17,6 +17,8 @@ function wasDateHit(hits, dateToCheck) {
 
 function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
   const [frequencyNumerator, frequencyDenominator] = rhythm.frequency;
+  const [actionFirstLetter, ...actionRest] = rhythm.action.split('');
+  const action = [actionFirstLetter.toUpperCase(), ...actionRest].join('')
 
   const hitToday = wasDateHit(rhythm.hits, new Date());
   const toggleHit = () => onTodaysOccurrenceToggle(!hitToday);
@@ -29,11 +31,8 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
       const date = subDays(new Date(), daysAgo);
       const hitOnDateToCheck = wasDateHit(rhythm.hits, date);
 
-      const isLast = daysAgo === 0;
-      const className = isLast ? "relative" : "";
-
       return (
-        <li key={daysAgo} className={className}>
+        <li key={daysAgo} className="mr-auto">
           <Occurrence
             hit={hitOnDateToCheck}
             open={false}
@@ -46,18 +45,20 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
     .reverse();
 
   return (
-    <div className="box-border pr-3 max-w-2xl mr-3">
-      <div className="box-border">
-        <div className="text-5xl font-bold text-gray-800">{rhythm.action}</div>
-        <div className="text-4xl text-gray-800 mt-3">
+    <div>
+      <div className="w-10/12">
+        <div className="capitalize text-5xl font-bold text-gray-800">
+          {action}
+        </div>
+        <div className="text-4xl text-gray-800 mt-2">
           {numeratorTerm(frequencyNumerator)} every{" "}
           {denominatorTerm(frequencyDenominator)}
         </div>
-        <div className="text-4xl font-normal text-gray-600 mt-3">
+        <div className="text-4xl font-normal text-gray-600 mt-2">
           because {rhythm.reason}
         </div>
       </div>
-      <ul className="flex mt-4 place-content-between">{occurrences}</ul>
+      <ul className="flex mt-5">{occurrences}</ul>
       <div className="absolute -right-9 -mt-8">
         <Occurrence
           hit={hitToday}

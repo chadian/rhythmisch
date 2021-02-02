@@ -31,7 +31,7 @@ describe('with an existing rhythm object', () => {
       "Rhythm action count time span"
     );
     reasonInput = rendered.getByDisplayValue("I want to train for a marathon");
-    submit = rendered.getByRole("button", { name: "Update Rhythm" });
+    submit = rendered.getByRole("button", { name: "Update" });
   });
 
   test("it renders the rhythm's editable properties", () => {

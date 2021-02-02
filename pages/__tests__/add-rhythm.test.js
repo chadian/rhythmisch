@@ -17,7 +17,7 @@ it("can add a new rhythm", () => {
   const numeratorFrequency = screen.getByLabelText('Rhythm action count');
   const denomenatorFrequency = screen.getByLabelText('Rhythm action count time span');
   const reason = screen.getByLabelText('Rhythm reason description');
-  const submit = screen.getByRole('button', { name: 'Update Rhythm' });
+  const submit = screen.getByRole('button', { name: 'Update' });
 
   userEvent.type(action, 'read every day');
   userEvent.selectOptions(numeratorFrequency, 'thrice');
@@ -27,7 +27,7 @@ it("can add a new rhythm", () => {
 
   expect(modal).not.toBeInTheDocument();
 
-  expect(screen.getByText('read every day')).toBeInTheDocument();
+  expect(screen.getByText('Read every day')).toBeInTheDocument();
   expect(screen.getByText('thrice every week')).toBeInTheDocument();
   expect(screen.getByText('because there is much I would like to learn')).toBeInTheDocument();
 });

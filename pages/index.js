@@ -1,13 +1,12 @@
 import Head from "next/head";
 import { useState } from "react";
 import { startOfDay, endOfDay, isWithinInterval } from "date-fns";
-import styles from "../styles/Home.module.css";
 import buttonStyles from "../styles/buttons.module.css";
 import Rhythm from "../components/rhythm/rhythm";
 import RhythmEdit from "../components/rhythm-edit";
 import Stripe from "../components/stripe";
 import Modal from "../components/modal";
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 
 function newRhythm(id = undefined) {
   return {
@@ -16,38 +15,37 @@ function newRhythm(id = undefined) {
     frequency: [1, 1],
     reason: "",
     hits: [],
-  }
+  };
 }
 
 export default function Home() {
   const [modalIsOpen, setModal] = useState(false);
   const [rhythmToEdit, setRhythmToEdit] = useState();
-  const [rhythms, setRhythms] = useState([{
-    id: nanoid(),
-    action: "Use Rhythmisch",
-    frequency: [1, 1],
-    reason: "I want to get into the rhythm!",
-    hits: [new Date('January 6, 2021')],
-  }]);
+  const [rhythms, setRhythms] = useState([
+    {
+      id: nanoid(),
+      action: "Use Rhythmisch",
+      frequency: [1, 1],
+      reason: "I want to get into the rhythm",
+      hits: [new Date("January 6, 2021")],
+    },
+  ]);
 
   function addRhythm(rhythm) {
     if (!rhythm.id) {
       rhythm = {
         ...rhythm,
         id: nanoid(),
-      }
+      };
     }
 
-    const updatedRhythms = [
-      ...rhythms,
-      rhythm
-    ];
+    const updatedRhythms = [...rhythms, rhythm];
 
     setRhythms(updatedRhythms);
   }
 
   function updateRhythm(id, rhythmPartial) {
-    const foundRhythm = rhythms.find(rhythm => rhythm.id === id);
+    const foundRhythm = rhythms.find((rhythm) => rhythm.id === id);
 
     if (!foundRhythm) {
       throw new Error(`Unable to find rhythm with id ${id}`);
@@ -79,12 +77,12 @@ export default function Home() {
       });
     });
 
-    if (hasHit){
+    if (hasHit) {
       hits.push(new Date());
     }
 
     updateRhythm(rhythm.id, {
-      hits
+      hits,
     });
   };
 
@@ -114,50 +112,52 @@ export default function Home() {
         </Modal>
       ) : null}
 
-      <div className={styles.stage}>
-        <div className={styles.container}>
-          <header className={styles["header"]}>
-            <div className="flex">
-              <div className="mr-20">
-                <button
-                  className={buttonStyles["button-tiny"]}
-                  onClick={() => {
-                    setModal(true);
-                    setRhythmToEdit(newRhythm());
-                  }}
-                >
-                  Add
-                </button>
-              </div>
-              <h1 className="text-7xl font-bold">Rhythmisch</h1>
-            </div>
+      <div className="container m-auto">
+        <div className="relative">
+          <header className="pt-12">
+            <h1 className="max-w-2xl text-7xl font-bold ">Rhythmisch</h1>
           </header>
           <Stripe />
-          <main className={styles["rhythms"]}>
-            {rhythms.map((rhythm) => {
-              return (
-                <div className="flex">
-                  <div className="mr-20">
-                    <button
-                      className={buttonStyles["button-tiny"]}
-                      onClick={() => {
-                        setModal(true);
-                        setRhythmToEdit(rhythm);
-                      }}
-                    >
-                      Edit
-                    </button>
+          <main>
+            <div className="my-8">
+              <button
+                className={`${buttonStyles["button-tiny"]} text-xl`}
+                onClick={() => {
+                  setModal(true);
+                  setRhythmToEdit(newRhythm());
+                }}
+              >
+                Add
+              </button>
+            </div>
+            <div className="space-y-16">
+              {rhythms.map((rhythm) => {
+                return (
+                  <div key={rhythm.id}>
+                    <Rhythm
+                      rhythm={rhythm}
+                      onTodaysOccurrenceToggle={(wasHit) =>
+                        setTodaysHit(rhythm, wasHit)
+                      }
+                    />
+                    <div className="mt-3 space-x-5">
+                      <button
+                        className={`${buttonStyles["button-tiny"]}`}
+                        onClick={() => {
+                          setModal(true);
+                          setRhythmToEdit(rhythm);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button className={buttonStyles["button-tiny"]}>
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                  <Rhythm
-                    key={rhythm.id}
-                    rhythm={rhythm}
-                    onTodaysOccurrenceToggle={(wasHit) =>
-                      setTodaysHit(rhythm, wasHit)
-                    }
-                  />
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </main>
         </div>
       </div>

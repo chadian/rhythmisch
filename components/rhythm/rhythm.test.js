@@ -65,15 +65,6 @@ it("renders", () => {
   expect(missedTargetLabels).toContain("Missed target on January 19th, 2021");
 });
 
-it('works with the onEdit handler', () => {
-  const onEditHandler = jest.fn();
-  const rendered = render(
-    <Rhythm rhythm={rhythmModel} onEdit={onEditHandler} />
-  );
-  userEvent.click(rendered.getByRole('button', { name: /Edit/ }));
-  expect(onEditHandler).toHaveBeenCalledWith(rhythmModel);
-});
-
 describe("todays occurrence", () => {
   it("receives toggled todays occurrence", () => {
     const toggleTodaysOccurrence = jest.fn();

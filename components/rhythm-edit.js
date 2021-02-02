@@ -78,7 +78,7 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit, isNew }) {
           />
         </div>
       </div>
-      <button type="submit">Update Rhythm</button>
+      <button type="submit">Update</button>
     </form>
   );
 }

@@ -26,7 +26,7 @@ describe('defaults' , () => {
     const frequency = rendered.getByText('once every day');
     expect(frequency).toBeInTheDocument();
 
-    const reason = rendered.getByText('because I want to get into the rhythm!');
+    const reason = rendered.getByText('because I want to get into the rhythm');
     expect(reason).toBeInTheDocument();
 
     const historicalOccurrences = rendered.getAllByLabelText(/Missed target on /);

@@ -1,14 +1,7 @@
 .button-tiny {
-  font-size: 1rem;
   background: transparent;
-  border: 2px solid #D0021B;
+  display: inline-block;
   color: #D0021B;
-  padding: 0.2rem 2rem;
+  padding: 0.3rem 0;
   font-weight: 500;
-}
-
-.button-tiny:active {
-  position: relative;
-  top: 0.1rem;
-  left: 0.1rem;
 }
