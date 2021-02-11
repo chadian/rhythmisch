@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from '../components/button';
 import styles from "../styles/RhythmEdit.module.css";
 import { denominatorTerm } from "../utils/denominator-term";
 import { numeratorTerm } from '../utils/numerator-term';
@@ -50,9 +51,9 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit, isNew }) {
 
   return (
     <form className={styles["rhythm-edit"]} onSubmit={submitHandler}>
-      <button type="button" onClick={() => onClose()} className={styles.close}>
+      <Button onClick={() => onClose()} attrs={{ className: "absolute top-8 right-8" }}>
         Close
-      </button>
+      </Button>
       <div className={styles.action}>
         <span className={styles["i-want-to"]}>I want to</span>
         <input
@@ -60,6 +61,7 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit, isNew }) {
           placeholder="get into a rhythm"
           value={rhythmAction}
           onChange={(event) => setRhythmAction(event.target.value)}
+          autoFocus
         />
       </div>
       <div className={styles.frequency}>
@@ -78,7 +80,7 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit, isNew }) {
           />
         </div>
       </div>
-      <button type="submit">Update</button>
+      <Button attrs={{type: "submit"}} >Update</Button>
     </form>
   );
 }

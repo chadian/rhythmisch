@@ -4,12 +4,6 @@
   font-weight: 400;
 }
 
-.close {
-  position: absolute;
-  right: 2rem;
-  top: 2rem;
-}
-
 .rhythm-edit * {
   font-size: 1.5rem;
 }

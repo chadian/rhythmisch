@@ -6,6 +6,7 @@ import Rhythm from "../components/rhythm/rhythm";
 import RhythmEdit from "../components/rhythm-edit";
 import Stripe from "../components/stripe";
 import Modal from "../components/modal";
+import Button from '../components/button';
 import { nanoid } from "nanoid";
 
 function newRhythm(id = undefined) {
@@ -119,16 +120,16 @@ export default function Home() {
           </header>
           <Stripe />
           <main>
-            <div className="my-8">
-              <button
-                className={`${buttonStyles["button-tiny"]} text-xl`}
+            <div className="my-6">
+              <Button
+                size="large"
                 onClick={() => {
                   setModal(true);
                   setRhythmToEdit(newRhythm());
                 }}
               >
                 Add
-              </button>
+              </Button>
             </div>
             <div className="space-y-16">
               {rhythms.map((rhythm) => {
@@ -141,18 +142,18 @@ export default function Home() {
                       }
                     />
                     <div className="mt-3 space-x-5">
-                      <button
-                        className={`${buttonStyles["button-tiny"]}`}
+                      <Button
+                        size="small"
                         onClick={() => {
                           setModal(true);
                           setRhythmToEdit(rhythm);
                         }}
                       >
                         Edit
-                      </button>
-                      <button className={buttonStyles["button-tiny"]}>
+                      </Button>
+                      <Button size="small">
                         Delete
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 );
