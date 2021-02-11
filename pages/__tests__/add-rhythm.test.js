@@ -17,7 +17,7 @@ it("can add a new rhythm", () => {
   const numeratorFrequency = screen.getByLabelText('Rhythm action count');
   const denomenatorFrequency = screen.getByLabelText('Rhythm action count time span');
   const reason = screen.getByLabelText('Rhythm reason description');
-  const submit = screen.getByRole('button', { name: 'Update' });
+  const submit = screen.getByRole('button', { name: 'Create' });
 
   userEvent.type(action, 'read every day');
   userEvent.selectOptions(numeratorFrequency, 'thrice');

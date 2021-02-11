@@ -1,6 +1,6 @@
 export default function Button({ children, onClick = () => {} , attrs = {}, size = "large" }) {
   const {
-    className,
+    className = '',
     type: buttonType,
     ...buttonAttrs
   } = attrs;

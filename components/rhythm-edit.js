@@ -24,7 +24,7 @@ const generateDenominatorSelect = (selected, onChange) => {
   </select>;
 };
 
-export default function RhythmEdit({ rhythm, onClose, onSubmit, isNew }) {
+export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
   const [rhythmAction, setRhythmAction] = useState(rhythm.action);
   const [rhythmFrequency, setRhythmFrequency] = useState(rhythm.frequency);
   const [rhythmNumerator, rhythmDenominator] = rhythmFrequency;
@@ -80,7 +80,7 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit, isNew }) {
           />
         </div>
       </div>
-      <Button attrs={{type: "submit"}} >Update</Button>
+      <Button attrs={{type: "submit"}} >{rhythm.id ? 'Update' : 'Create'}</Button>
     </form>
   );
 }
