@@ -70,6 +70,11 @@ export default function Home() {
     setRhythms(updatedRhythms);
   }
 
+  function deleteRhythm(rhythmIdToDelete) {
+    const updatedRhythms = rhythms.filter(rhythm => rhythm.id !== rhythmIdToDelete);
+    setRhythms(updatedRhythms);
+  }
+
   const setTodaysHit = (rhythm, hasHit) => {
     const hits = [...rhythm.hits].filter((hit) => {
       return !isWithinInterval(hit, {
@@ -151,8 +156,8 @@ export default function Home() {
                       >
                         Edit
                       </Button>
-                      <Button size="small">
-                        Delete
+                      <Button size="small" onClick={() => deleteRhythm(rhythm.id)}>
+                        Remove
                       </Button>
                     </div>
                   </div>
