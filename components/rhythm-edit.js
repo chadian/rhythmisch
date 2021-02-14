@@ -15,7 +15,7 @@ const generateNumeratorSelect = (selected, onChange) => {
 };
 
 const generateDenominatorSelect = (selected, onChange) => {
-  const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((number) => {
+  const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
     return <option key={number} value={number}>{ denominatorTerm(number) }</option>;
   });
 
