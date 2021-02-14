@@ -1,27 +1,66 @@
 import { useState } from "react";
-import Button from '../components/button';
-import styles from "../styles/RhythmEdit.module.css";
+import Button from "../components/button";
 import { denominatorTerm } from "../utils/denominator-term";
-import { numeratorTerm } from '../utils/numerator-term';
+import { numeratorTerm } from "../utils/numerator-term";
+
+const sharedSelectAndInputClassNames = [
+  "text-gray-800",
+  "text-3xl",
+  "font-bold",
+  "border-2",
+  "border-gray-300",
+];
+
+const inputClassNames = [
+  ...sharedSelectAndInputClassNames,
+  "py-2",
+  "px-3",
+  "w-96",
+  "placeholder-gray-300",
+].join(" ");
+
+const selectClassNames = [...sharedSelectAndInputClassNames, "p-2", "w-48"].join(' ');
 
 const generateNumeratorSelect = (selected, onChange) => {
   const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
-    return <option key={number} value={number}>{ numeratorTerm(number) }</option>;
+    return (
+      <option key={number} value={number}>
+        {numeratorTerm(number)}
+      </option>
+    );
   });
 
-  return <select onChange={onChange} aria-label="Rhythm action count" value={selected}>{
-    options
-  }</select>;
+  return (
+    <select
+      className={selectClassNames}
+      onChange={onChange}
+      aria-label="Rhythm action count"
+      value={selected}
+    >
+      {options}
+    </select>
+  );
 };
 
 const generateDenominatorSelect = (selected, onChange) => {
   const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
-    return <option key={number} value={number}>{ denominatorTerm(number) }</option>;
+    return (
+      <option key={number} value={number}>
+        {denominatorTerm(number)}
+      </option>
+    );
   });
 
-  return <select onChange={onChange} aria-label="Rhythm action count time span" value={selected}>
-    { options }
-  </select>;
+  return (
+    <select
+      className={selectClassNames}
+      onChange={onChange}
+      aria-label="Rhythm action count time span"
+      value={selected}
+    >
+      {options}
+    </select>
+  );
 };
 
 export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
@@ -50,37 +89,47 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
   );
 
   return (
-    <form className={styles["rhythm-edit"]} onSubmit={submitHandler}>
-      <Button onClick={() => onClose()} attrs={{ className: "absolute top-8 right-8" }}>
+    <form
+      className="text-2xl"
+      onSubmit={submitHandler}
+    >
+      <Button
+        onClick={() => onClose()}
+        attrs={{ className: "absolute top-8 right-8" }}
+      >
         Close
       </Button>
-      <div className={styles.action}>
-        <span className={styles["i-want-to"]}>I want to</span>
-        <input
-          aria-label="Rhythm action description"
-          placeholder="get into a rhythm"
-          value={rhythmAction}
-          onChange={(event) => setRhythmAction(event.target.value)}
-          autoFocus
-        />
-      </div>
-      <div className={styles.frequency}>
-        {numeratorSelect}
-        <span className={styles.every}>every</span>
-        {denominatorSelect}
-      </div>
-      <div className="styles.reason">
-        <div className={styles.action}>
-          <span className={styles.because}>because</span>
+      <div className="flex flex-col space-y-10">
+        <div className="flex items-baseline">
+          <span className="mr-4">I want to</span>
           <input
+            className={inputClassNames}
+            aria-label="Rhythm action description"
+            placeholder="get into a rhythm"
+            value={rhythmAction}
+            onChange={(event) => setRhythmAction(event.target.value)}
+            autoFocus
+          />
+        </div>
+        <div className="flex items-baseline">
+          {numeratorSelect}
+          <span className="mx-4">every</span>
+          {denominatorSelect}
+        </div>
+        <div className="flex items-baseline">
+          <span className="mr-4">because</span>
+          <input
+            className={`w-96 ${inputClassNames}`}
             aria-label="Rhythm reason description"
             placeholder="it will bring positive change"
             value={rhythmReason}
             onChange={(event) => setRhythmReason(event.target.value)}
           />
         </div>
+        <Button attrs={{ type: "submit", className: "" }}>
+          {rhythm.id ? "Update" : "Create"}
+        </Button>
       </div>
-      <Button attrs={{type: "submit"}} >{rhythm.id ? 'Update' : 'Create'}</Button>
     </form>
   );
 }
