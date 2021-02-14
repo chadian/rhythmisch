@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import RhythmischApp from "../index";
+import RhythmischApp from "../pages/index";
 import "@testing-library/jest-dom/extend-expect";
 
 let rendered;
@@ -8,7 +8,7 @@ beforeEach(() => {
   rendered = render(<RhythmischApp/>);
 })
 
-describe('defaults' , () => {
+describe('render' , () => {
   it("renders the Rhythmisch header text", () => {
     const headerText = rendered.getByText('Rhythmisch', { exact: true , selector: 'header > *' });
     expect(headerText).toBeInTheDocument();
