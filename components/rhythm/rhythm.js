@@ -15,7 +15,7 @@ function wasDateHit(hits, dateToCheck) {
   );
 }
 
-function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
+function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
   const [frequencyNumerator, frequencyDenominator] = rhythm.frequency;
   const [actionFirstLetter, ...actionRest] = rhythm.action.split('');
   const action = [actionFirstLetter.toUpperCase(), ...actionRest].join('')
@@ -47,7 +47,7 @@ function Rhythm({ rhythm, onEdit, onTodaysOccurrenceToggle }) {
   return (
     <div>
       <div className="w-10/12">
-        <div className="capitalize text-5xl font-bold text-gray-800">
+        <div className="text-5xl font-bold text-gray-800">
           {action}
         </div>
         <div className="text-4xl text-gray-800 mt-2">
