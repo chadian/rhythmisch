@@ -1,4 +1,3 @@
-import buttonStyles from '../../styles/buttons.module.css';
 import Occurrence from './occurrence';
 import { numeratorTerm } from '../../utils/numerator-term';
 import { denominatorTerm } from '../../utils/denominator-term';

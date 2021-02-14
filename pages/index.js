@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
 import { startOfDay, endOfDay, isWithinInterval } from "date-fns";
-import buttonStyles from "../styles/buttons.module.css";
 import Rhythm from "../components/rhythm/rhythm";
 import RhythmEdit from "../components/rhythm-edit";
 import Stripe from "../components/stripe";
