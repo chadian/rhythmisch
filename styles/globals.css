@@ -6,4 +6,8 @@
   .filter-blur-occurrence-miss {
     filter: blur(0.35rem);
   }
+
+  .bg-filter-blur-modal {
+    backdrop-filter: blur(5px);
+  }
 }
