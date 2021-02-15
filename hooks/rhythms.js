@@ -46,15 +46,22 @@ export const RhythmsProvider = ({ children }) => {
   // TODO: Turn off SSR for what ends up being the
   // app route
   if (typeof window !== 'undefined') {
-    const defaultRhythm = {
-      id: nanoid(),
-      action: "Use Rhythmisch",
-      frequency: [1, 1],
-      reason: "I want to get into the rhythm",
-      hits: [new Date("January 6, 2021")],
-    };
+    const localStorageRhythms = getLocalStorageRhythms();
 
-    rhythms = getLocalStorageRhythms() || [defaultRhythm];
+    if (localStorageRhythms) {
+      rhythms = localStorageRhythms;
+    } else {
+      const defaultRhythm = {
+        id: nanoid(),
+        action: "Use Rhythmisch",
+        frequency: [1, 1],
+        reason: "I want to get into the rhythm",
+        hits: [],
+      };
+
+      setLocalStorageRhythms([defaultRhythm]);
+      rhythms = getLocalStorageRhythms();
+    }
   }
 
   const [, setRhythmsState] = useState(rhythms);
