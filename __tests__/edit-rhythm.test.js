@@ -1,10 +1,15 @@
 import RhythmischApp from "../pages/index";
+import { RhythmsProvider } from "../hooks/rhythms";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
 
 beforeEach(() => {
-  render(<RhythmischApp />);
+  render(
+    <RhythmsProvider>
+      <RhythmischApp />
+    </RhythmsProvider>
+  );
 });
 
 it("can edit an existing rhythm", () => {

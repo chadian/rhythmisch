@@ -1,11 +1,16 @@
 import { render } from "@testing-library/react";
 import RhythmischApp from "../pages/index";
+import { RhythmsProvider } from '../hooks/rhythms';
 import "@testing-library/jest-dom/extend-expect";
 
 let rendered;
 
 beforeEach(() => {
-  rendered = render(<RhythmischApp/>);
+  rendered = render(
+    <RhythmsProvider>
+      <RhythmischApp />
+    </RhythmsProvider>
+  );
 })
 
 describe('render' , () => {

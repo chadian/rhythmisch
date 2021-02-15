@@ -1,4 +1,4 @@
-import { getByRole, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { parseISO, subHours } from "date-fns";
 import Rhythm from "./rhythm";
 import MockDate from "mockdate";
