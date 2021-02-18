@@ -111,12 +111,12 @@ export default function Home() {
         ) : null}
         <div className="container m-auto">
           <div className="relative">
-            <header className="pt-12">
+            <header className="py-16">
               <h1 className="max-w-2xl text-7xl font-bold ">Rhythmisch</h1>
             </header>
             <Stripe />
             <main>
-              <div className="my-6">
+              <div className="mb-8">
                 <Button
                   size="large"
                   onClick={() => {
