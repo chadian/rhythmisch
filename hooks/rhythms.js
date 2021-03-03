@@ -37,7 +37,6 @@ function setLocalStorageRhythms(rhythms) {
   );
 }
 
-
 export const RhythmsProvider = ({ children }) => {
   let rhythms = [];
 

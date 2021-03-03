@@ -6,7 +6,6 @@ import userEvent from "@testing-library/user-event";
 
 let mockNow;
 let rhythmModel;
-let toggleTodaysOccurrence;
 
 beforeEach(() => {
   mockNow = parseISO("2021-01-24T16:20:00");

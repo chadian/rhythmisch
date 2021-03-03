@@ -2,12 +2,12 @@ import Head from "next/head";
 import { useState } from "react";
 import { startOfDay, endOfDay, isWithinInterval } from "date-fns";
 import { nanoid } from "nanoid";
-import { useRhythms, RhythmsProvider } from '../hooks/rhythms';
+import { useRhythms, RhythmsProvider } from "../hooks/rhythms";
 import Rhythm from "../components/rhythm/rhythm";
 import RhythmEdit from "../components/rhythm-edit";
 import Stripe from "../components/stripe";
 import Modal from "../components/modal";
-import Button from '../components/button';
+import Button from "../components/button";
 
 function createRhythm(id = undefined) {
   return {
@@ -63,7 +63,9 @@ export default function Home() {
   }
 
   function deleteRhythm(rhythmIdToDelete) {
-    const updatedRhythms = rhythms.filter(rhythm => rhythm.id !== rhythmIdToDelete);
+    const updatedRhythms = rhythms.filter(
+      (rhythm) => rhythm.id !== rhythmIdToDelete
+    );
     setRhythms(updatedRhythms);
   }
 
@@ -109,57 +111,57 @@ export default function Home() {
             />
           </Modal>
         ) : null}
-        <div className="container m-auto">
-          <div className="relative">
-            <header className="py-16">
-              <h1 className="max-w-2xl text-7xl font-bold ">Rhythmisch</h1>
-            </header>
-            <Stripe />
-            <main>
-              <div className="mb-8">
-                <Button
-                  size="large"
-                  onClick={() => {
-                    setModal(true);
-                    setRhythmToEdit(createRhythm());
-                  }}
-                >
-                  Add
-                </Button>
-              </div>
-              <div className="space-y-16">
-                {rhythms.map((rhythm) => {
-                  return (
-                    <div key={rhythm.id}>
-                      <Rhythm
-                        rhythm={rhythm}
-                        onTodaysOccurrenceToggle={(wasHit) =>
-                          setTodaysHit(rhythm, wasHit)
-                        }
-                      />
-                      <div className="mt-3 space-x-5">
-                        <Button
-                          size="small"
-                          onClick={() => {
-                            setModal(true);
-                            setRhythmToEdit(rhythm);
-                          }}
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          size="small"
-                          onClick={() => deleteRhythm(rhythm.id)}
-                        >
-                          Remove
-                        </Button>
-                      </div>
+
+        <div className="container m-auto min-h relative pb-16">
+          <Stripe />
+          <header className="py-20">
+            <h1 className="max-w-2xl text-7xl font-bold ">Rhythmisch</h1>
+          </header>
+
+          <main>
+            <div className="mb-6">
+              <Button
+                size="large"
+                onClick={() => {
+                  setModal(true);
+                  setRhythmToEdit(createRhythm());
+                }}
+              >
+                Add
+              </Button>
+            </div>
+            <div className="space-y-20">
+              {rhythms.map((rhythm) => {
+                return (
+                  <div key={rhythm.id}>
+                    <Rhythm
+                      rhythm={rhythm}
+                      onTodaysOccurrenceToggle={(wasHit) =>
+                        setTodaysHit(rhythm, wasHit)
+                      }
+                    />
+                    <div className="mt-3 space-x-5">
+                      <Button
+                        size="small"
+                        onClick={() => {
+                          setModal(true);
+                          setRhythmToEdit(rhythm);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        size="small"
+                        onClick={() => deleteRhythm(rhythm.id)}
+                      >
+                        Remove
+                      </Button>
                     </div>
-                  );
-                })}
-              </div>
-            </main>
-          </div>
+                  </div>
+                );
+              })}
+            </div>
+          </main>
         </div>
       </RhythmsProvider>
     </>
