@@ -95,20 +95,22 @@ export default function Home() {
       <RhythmsProvider>
         {modalIsOpen ? (
           <Modal>
-            <RhythmEdit
-              rhythm={rhythmToEdit}
-              onClose={() => setModal(false)}
-              onSubmit={(rhythm) => {
-                setModal(false);
-                setRhythmToEdit(null);
+            <div style={{ marginTop: '-15%' }}>
+              <RhythmEdit
+                rhythm={rhythmToEdit}
+                onClose={() => setModal(false)}
+                onSubmit={(rhythm) => {
+                  setModal(false);
+                  setRhythmToEdit(null);
 
-                if (!rhythm.id) {
-                  addRhythm(rhythm);
-                } else {
-                  updateRhythm(rhythm.id, rhythm);
-                }
-              }}
-            />
+                  if (!rhythm.id) {
+                    addRhythm(rhythm);
+                  } else {
+                    updateRhythm(rhythm.id, rhythm);
+                  }
+                }}
+              />
+            </div>
           </Modal>
         ) : null}
 
