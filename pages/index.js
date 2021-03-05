@@ -1,17 +1,14 @@
 import Head from "next/head";
 import { useState } from "react";
-import { startOfDay, endOfDay, isWithinInterval } from "date-fns";
-import { nanoid } from "nanoid";
-import { useRhythms, RhythmsProvider } from "../hooks/rhythms";
+import { useRhythms, RhythmsProvider } from "../hooks/rhythms/index";
 import Rhythm from "../components/rhythm/rhythm";
 import RhythmEdit from "../components/rhythm-edit";
 import Stripe from "../components/stripe";
 import Modal from "../components/modal";
 import Button from "../components/button";
 
-function createRhythm(id = undefined) {
+function emptyRhythm() {
   return {
-    id,
     action: "",
     frequency: [1, 1],
     reason: "",
@@ -22,69 +19,7 @@ function createRhythm(id = undefined) {
 export default function Home() {
   const [modalIsOpen, setModal] = useState(false);
   const [rhythmToEdit, setRhythmToEdit] = useState();
-  const [rhythms, setRhythms] = useRhythms();
-
-  function addRhythm(rhythm) {
-    if (!rhythm.id) {
-      rhythm = {
-        ...rhythm,
-        id: nanoid(),
-      };
-    }
-
-    const updatedRhythms = [...rhythms, rhythm];
-
-    setRhythms(updatedRhythms);
-  }
-
-  function updateRhythm(id, rhythmPartial) {
-    const foundRhythm = rhythms.find((rhythm) => rhythm.id === id);
-
-    if (!foundRhythm) {
-      throw new Error(`Unable to find rhythm with id ${id}`);
-    }
-
-    const updatedRhythm = {
-      ...foundRhythm,
-      ...rhythmPartial,
-    };
-
-    const updatedRhythms = rhythms.reduce((rhythms, rhythm) => {
-      if (rhythm.id === updatedRhythm.id) {
-        rhythms.push(updatedRhythm);
-      } else {
-        rhythms.push(rhythm);
-      }
-
-      return rhythms;
-    }, []);
-
-    setRhythms(updatedRhythms);
-  }
-
-  function deleteRhythm(rhythmIdToDelete) {
-    const updatedRhythms = rhythms.filter(
-      (rhythm) => rhythm.id !== rhythmIdToDelete
-    );
-    setRhythms(updatedRhythms);
-  }
-
-  const setTodaysHit = (rhythm, hasHit) => {
-    const hits = [...rhythm.hits].filter((hit) => {
-      return !isWithinInterval(hit, {
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-      });
-    });
-
-    if (hasHit) {
-      hits.push(new Date());
-    }
-
-    updateRhythm(rhythm.id, {
-      hits,
-    });
-  };
+  const [rhythms, rhythmsDispatch] = useRhythms();
 
   return (
     <>
@@ -104,9 +39,9 @@ export default function Home() {
                   setRhythmToEdit(null);
 
                   if (!rhythm.id) {
-                    addRhythm(rhythm);
+                    rhythmsDispatch({ type: 'CREATE', payload: { rhythm } });
                   } else {
-                    updateRhythm(rhythm.id, rhythm);
+                    rhythmsDispatch({ type: "UPDATE", payload: { id: rhythm.id, partial: rhythm } });
                   }
                 }}
               />
@@ -114,7 +49,7 @@ export default function Home() {
           </Modal>
         ) : null}
 
-        <div className="container m-auto min-h relative pb-16">
+        <div className="container m-auto min-h-screen relative pb-16">
           <Stripe />
           <header className="py-20">
             <h1 className="max-w-2xl text-7xl font-bold ">Rhythmisch</h1>
@@ -126,7 +61,7 @@ export default function Home() {
                 size="large"
                 onClick={() => {
                   setModal(true);
-                  setRhythmToEdit(createRhythm());
+                  setRhythmToEdit(emptyRhythm());
                 }}
               >
                 Add
@@ -139,7 +74,10 @@ export default function Home() {
                     <Rhythm
                       rhythm={rhythm}
                       onTodaysOccurrenceToggle={(wasHit) =>
-                        setTodaysHit(rhythm, wasHit)
+                        rhythmsDispatch({
+                          type: "HIT_TODAY",
+                          payload: { id: rhythm.id, hitToday: wasHit },
+                        })
                       }
                     />
                     <div className="mt-3 space-x-5">
@@ -154,7 +92,12 @@ export default function Home() {
                       </Button>
                       <Button
                         size="small"
-                        onClick={() => deleteRhythm(rhythm.id)}
+                        onClick={() =>
+                          rhythmsDispatch({
+                            type: "DELETE",
+                            payload: { id: rhythm.id },
+                          })
+                        }
                       >
                         Remove
                       </Button>

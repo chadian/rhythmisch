@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { RhythmsProvider } from "../hooks/rhythms";
+import { RhythmsProvider } from "../hooks/rhythms/index";
 
 function MyApp({ Component, pageProps }) {
   return (
