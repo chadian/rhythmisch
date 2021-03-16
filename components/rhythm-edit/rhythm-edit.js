@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Button from "../components/button";
-import { denominatorTerm } from "../utils/denominator-term";
-import { numeratorTerm } from "../utils/numerator-term";
-import { ValidationWrapper } from './rhythm-edit/validated-wrapper';
+import Button from "../button";
+import { denominatorTerm } from "../../utils/denominator-term";
+import { numeratorTerm } from "../../utils/numerator-term";
+import { ValidationWrapper } from './validated-wrapper';
 
 const sharedSelectAndInputClassNames = [
   "text-gray-800",

@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
 import { useRhythms, RhythmsProvider } from "../hooks/rhythms/index";
-import Rhythm from "../components/rhythm/rhythm";
-import RhythmEdit from "../components/rhythm-edit";
+import RhythmEdit from "../components/rhythm-edit/rhythm-edit";
 import Stripe from "../components/stripe";
 import Modal from "../components/modal";
 import Button from "../components/button";
+import RhythmsList from '../components/rhythm-list';
 
 function emptyRhythm() {
   return {
@@ -19,7 +19,12 @@ function emptyRhythm() {
 export default function Home() {
   const [modalIsOpen, setModal] = useState(false);
   const [rhythmToEdit, setRhythmToEdit] = useState();
-  const [rhythms, rhythmsDispatch] = useRhythms();
+  const [, rhythmsDispatch] = useRhythms();
+
+  const onRhythmEdit = (rhythm) => {
+    setModal(true);
+    setRhythmToEdit(rhythm);
+  };
 
   return (
     <>
@@ -27,10 +32,10 @@ export default function Home() {
         <title>Rhythmisch</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <RhythmsProvider>
+
         {modalIsOpen ? (
           <Modal>
-            <div style={{ marginTop: '-15%' }}>
+            <div style={{ marginTop: "-15%" }}>
               <RhythmEdit
                 rhythm={rhythmToEdit}
                 onClose={() => setModal(false)}
@@ -39,9 +44,12 @@ export default function Home() {
                   setRhythmToEdit(null);
 
                   if (!rhythm.id) {
-                    rhythmsDispatch({ type: 'CREATE', payload: { rhythm } });
+                    rhythmsDispatch({ type: "CREATE", payload: { rhythm } });
                   } else {
-                    rhythmsDispatch({ type: "UPDATE", payload: { id: rhythm.id, partial: rhythm } });
+                    rhythmsDispatch({
+                      type: "UPDATE",
+                      payload: { id: rhythm.id, partial: rhythm },
+                    });
                   }
                 }}
               />
@@ -67,48 +75,9 @@ export default function Home() {
                 Add
               </Button>
             </div>
-            <div className="space-y-20">
-              {rhythms.map((rhythm) => {
-                return (
-                  <div key={rhythm.id}>
-                    <Rhythm
-                      rhythm={rhythm}
-                      onTodaysOccurrenceToggle={(wasHit) =>
-                        rhythmsDispatch({
-                          type: "HIT_TODAY",
-                          payload: { id: rhythm.id, hitToday: wasHit },
-                        })
-                      }
-                    />
-                    <div className="mt-3 space-x-5">
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          setModal(true);
-                          setRhythmToEdit(rhythm);
-                        }}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        size="small"
-                        onClick={() =>
-                          rhythmsDispatch({
-                            type: "DELETE",
-                            payload: { id: rhythm.id },
-                          })
-                        }
-                      >
-                        Remove
-                      </Button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <RhythmsList onEdit={onRhythmEdit}/>
           </main>
         </div>
-      </RhythmsProvider>
     </>
   );
 }
