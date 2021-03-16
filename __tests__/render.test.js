@@ -1,19 +1,24 @@
 import { render } from "@testing-library/react";
 import RhythmischApp from "../pages/index";
 import { RhythmsProvider } from '../hooks/rhythms';
+import { setLocalStorageRhythms } from '../hooks/rhythms/local-storage';
 import "@testing-library/jest-dom/extend-expect";
 
 let rendered;
 
-beforeEach(() => {
+function setup() {
   rendered = render(
     <RhythmsProvider>
       <RhythmischApp />
     </RhythmsProvider>
   );
-})
+};
 
 describe('render' , () => {
+  beforeEach(() => {
+    setup();
+  });
+
   it("renders the Rhythmisch header text", () => {
     const headerText = rendered.getByText('Rhythmisch', { exact: true , selector: 'header > *' });
     expect(headerText).toBeInTheDocument();
@@ -39,5 +44,17 @@ describe('render' , () => {
 
     const todaysOccurrence = rendered.getByLabelText(/Mark as /);
     expect(todaysOccurrence).toBeInTheDocument();
+  });
+
+  describe('with an empty list of rhythms', () => {
+    beforeEach(() => {
+      setLocalStorageRhythms([]);
+      setup();
+    });
+
+    it("renders an empty rhythm list message", () => {
+      const emptyRhythmsText = rendered.getByText("All out of rhythms, enjoy some fresh air 💜");
+      expect(emptyRhythmsText).toBeInTheDocument();
+    });
   });
 });

@@ -42,9 +42,15 @@ export default function RhythmList({ onEdit }) {
     );
   });
 
+  const emptyRhythms = (
+    <div className="bg-gray-100 text-gray-700 p-6 mr-10 text-xl ">
+      All out of rhythms, enjoy some fresh air 💜
+    </div>
+  );
+
   return (
     <div className="space-y-20">
-      {rhythmsList}
+      {rhythms.length === 0 ? emptyRhythms : rhythmsList}
     </div>
   );
 }
