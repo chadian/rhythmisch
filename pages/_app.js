@@ -1,12 +1,16 @@
-import '../styles/globals.css'
+import dynamic from "next/dynamic";
+import "../styles/globals.css";
 import { RhythmsProvider } from "../hooks/rhythms/index";
+import { ThemeProvider } from "../hooks/theme/index";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <RhythmsProvider>
-      <Component {...pageProps} />
-    </RhythmsProvider>
+    <ThemeProvider>
+      <RhythmsProvider>
+        <Component {...pageProps} />
+      </RhythmsProvider>
+    </ThemeProvider>
   );
 }
 
-export default MyApp
+export default MyApp;

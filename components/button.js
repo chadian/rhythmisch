@@ -1,4 +1,9 @@
+import { useTheme } from '../hooks/theme/index';
+
 export default function Button({ children, onClick = () => {} , attrs = {}, size = "large" }) {
+  const [ theme ] = useTheme();
+  const { buttonTextColor, buttonBgColor } = theme;
+
   const {
     className = '',
     type: buttonType,
@@ -6,20 +11,21 @@ export default function Button({ children, onClick = () => {} , attrs = {}, size
   } = attrs;
 
   const largeButtonClassNames = [
-    "bg-transparent",
+    buttonTextColor,
+    buttonBgColor,
     "inline-block",
-    "text-red-600",
     "font-medium",
     "py-1.5",
     "text-xl",
   ];
 
   const smallButtonClassNames = [
-    "bg-transparent",
+    buttonTextColor,
+    buttonBgColor,
     "inline-block",
     "text-red-600",
     "font-medium",
-    "py-1.5"
+    "py-1.5",
   ];
 
   const sizeClassName =

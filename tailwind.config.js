@@ -15,7 +15,26 @@ function customContainer({ addComponents, theme }) {
   });
 }
 
+function addColorCssProperties({ addComponents, config }) {
+  const colors = config(`theme.colors`, []);
+  const cssProperties = {};
 
+  for (const color in colors) {
+    const colorObj = colors[color];
+
+    for (colorKey in colorObj) {
+      const hexValue = colorObj[colorKey].toString();
+      const cssPropertyName = `--color-${color}-${colorKey}`.replace(
+        /-default$/,
+        ""
+      );
+
+      cssProperties[cssPropertyName] = hexValue;
+    }
+  }
+
+  addComponents({ ':root': cssProperties });
+}
 
 module.exports = {
   purge: ["./pages/**/*.js", "./components/**/*.js"],
@@ -29,5 +48,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [customContainer],
+  plugins: [customContainer, addColorCssProperties],
 };

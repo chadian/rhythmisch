@@ -1,6 +1,7 @@
+import dynamic from 'next/dynamic'
 import Head from "next/head";
 import { useState } from "react";
-import { useRhythms, RhythmsProvider } from "../hooks/rhythms/index";
+import { useRhythms } from "../hooks/rhythms/index";
 import RhythmEdit from "../components/rhythm-edit/rhythm-edit";
 import Stripe from "../components/stripe";
 import Modal from "../components/modal";
@@ -16,7 +17,7 @@ function emptyRhythm() {
   };
 }
 
-export default function Home() {
+function RhythmischApp() {
   const [modalIsOpen, setModal] = useState(false);
   const [rhythmToEdit, setRhythmToEdit] = useState();
   const [, rhythmsDispatch] = useRhythms();
@@ -81,3 +82,5 @@ export default function Home() {
     </>
   );
 }
+
+export default dynamic(() => Promise.resolve(RhythmischApp), { ssr: false });
