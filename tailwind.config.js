@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 function customContainer({ addComponents, theme }) {
   addComponents({
     ".container": {
@@ -33,20 +35,27 @@ function addColorCssProperties({ addComponents, config }) {
     }
   }
 
-  addComponents({ ':root': cssProperties });
+  addComponents({ ":root": cssProperties });
 }
 
 module.exports = {
   purge: ["./pages/**/*.js", "./components/**/*.js"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    colors: {
+      ...colors
+    },
     fontFamily: {
       sans: ["Helvetica", "Arial", "sans-serif"],
     },
-    extend: {},
+    underlineOffset: {
+      sm: "1px",
+      md: "2px",
+    },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [customContainer, addColorCssProperties],
+  plugins: [
+    customContainer,
+    addColorCssProperties,
+    require("tailwind-underline-utils"),
+  ],
 };

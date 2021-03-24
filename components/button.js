@@ -23,7 +23,6 @@ export default function Button({ children, onClick = () => {} , attrs = {}, size
     buttonTextColor,
     buttonBgColor,
     "inline-block",
-    "text-red-600",
     "font-medium",
     "py-1.5",
   ];
