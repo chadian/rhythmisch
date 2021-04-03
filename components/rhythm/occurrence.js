@@ -1,7 +1,21 @@
 import { useTheme } from '../../hooks/theme/index';
 import { format } from 'date-fns';
+import chroma from "chroma-js";
 
-export default function Occurrence({ hit, onClick, open, date }) {
+function pullBackgroundColor(backgroundClassName) {
+  const cssVariableName = backgroundClassName.replace('bg-', '--color-');
+  const backgroundColor = getComputedStyle(document.body).getPropertyValue(cssVariableName);
+  return backgroundColor.trim();
+}
+
+function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
+  const colorScaleStart = pullBackgroundColor(themeMissClass);
+  const colorScaleEnd = pullBackgroundColor(themeHitClass);
+  const scale = chroma.scale([colorScaleStart, colorScaleEnd]).mode("lab");
+  return { backgroundColor: scale(cooldown).hex() };
+}
+
+export default function Occurrence({ cooldown, onClick, open, date }) {
   const [theme] = useTheme();
   const {
     occurrenceOpenBgColor,
@@ -9,14 +23,17 @@ export default function Occurrence({ hit, onClick, open, date }) {
     occurrenceClosedMissBgColor,
   } = theme;
 
+  const occurrenceHit = cooldown === 1;
   const classNames = ["w-6", "h-6", "rounded-full", "inline-block"];
   const formattedDate = format(date, "MMMM do, yyyy");
 
   if (open) {
-    const ariaLabel = hit ? `Mark as missed on ${formattedDate}` : `Mark as hit on ${formattedDate}`;
+    const ariaLabel = occurrenceHit
+      ? `Mark as missed on ${formattedDate}`
+      : `Mark as hit on ${formattedDate}`;
     classNames.push(occurrenceOpenBgColor);
 
-    if (!hit) {
+    if (!occurrenceHit) {
       classNames.push("filter-blur-occurrence-miss");
     }
 
@@ -25,18 +42,23 @@ export default function Occurrence({ hit, onClick, open, date }) {
         role="button"
         aria-label={ariaLabel}
         onClick={onClick}
-        className={classNames.join(' ')}
+        className={classNames.join(" ")}
       ></button>
     );
   } else {
-    classNames.push(hit ? occurrenceClosedHitBgColor : occurrenceClosedMissBgColor);
+    const style = createCooldownStyle(cooldown, occurrenceClosedMissBgColor, occurrenceClosedHitBgColor);
 
-    const ariaLabel = hit
+    const ariaLabel = occurrenceHit
       ? `Hit target on ${formattedDate}`
       : `Missed target on ${formattedDate}`;
 
     return (
-      <div role="img" aria-label={ariaLabel} className={classNames.join(' ')}></div>
+      <div
+        role="img"
+        aria-label={ariaLabel}
+        style={style}
+        className={classNames.join(" ")}
+      ></div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import Occurrence from './occurrence';
 import { numeratorTerm } from '../../utils/numerator-term';
 import { denominatorTerm } from '../../utils/denominator-term';
-import { subDays, startOfDay, endOfDay, isWithinInterval } from "date-fns";
+import { subDays, startOfDay, endOfDay, isWithinInterval, differenceInDays } from "date-fns";
 
 function wasDateHit(hits, dateToCheck) {
   return Boolean(
@@ -14,6 +14,11 @@ function wasDateHit(hits, dateToCheck) {
   );
 }
 
+export function calculateCooldown(hitGoalInDays, daysSinceLastHit) {
+  const cooldown = (hitGoalInDays - daysSinceLastHit) / hitGoalInDays;
+  return cooldown >= 0 ? cooldown : 0;
+}
+
 function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
   const [frequencyNumerator, frequencyDenominator] = rhythm.frequency;
   const [actionFirstLetter, ...actionRest] = rhythm.action.split('');
@@ -22,26 +27,34 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
   const hitToday = wasDateHit(rhythm.hits, new Date());
   const toggleHit = () => onTodaysOccurrenceToggle(!hitToday);
 
+  let lastHitDate = null;
   const numberOfDays = 13;
   const occurrences = new Array(numberOfDays)
     .fill()
     .map((_, i) => {
-      const daysAgo = i + 1;
+      return numberOfDays - i;
+    })
+    .map(daysAgo => {
       const date = subDays(new Date(), daysAgo);
-      const hitOnDateToCheck = wasDateHit(rhythm.hits, date);
+      lastHitDate = wasDateHit(rhythm.hits, date) ? date : lastHitDate;
+
+      let cooldown = 0;
+      if (lastHitDate) {
+        const daysSinceLastHit = differenceInDays(date, lastHitDate);
+        cooldown = calculateCooldown(frequencyDenominator, daysSinceLastHit);
+      };
 
       return (
         <li key={daysAgo} className="mr-auto">
           <Occurrence
-            hit={hitOnDateToCheck}
             open={false}
             onClick={toggleHit}
             date={date}
+            cooldown={cooldown}
           />
         </li>
       );
     })
-    .reverse();
 
   return (
     <div>
@@ -60,7 +73,7 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
       <ul className="flex mt-5">{occurrences}</ul>
       <div className="absolute -right-9 -mt-8">
         <Occurrence
-          hit={hitToday}
+          cooldown={hitToday ? 1 : 0 }
           open={true}
           onClick={toggleHit}
           date={new Date()}
