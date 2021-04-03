@@ -11,7 +11,7 @@ function pullBackgroundColor(backgroundClassName) {
 function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
   const colorScaleStart = pullBackgroundColor(themeMissClass);
   const colorScaleEnd = pullBackgroundColor(themeHitClass);
-  const scale = chroma.scale([colorScaleStart, colorScaleEnd]).mode("lab");
+  const scale = chroma.scale([colorScaleStart, colorScaleEnd]).gamma(1.25).mode("lab");
   return { backgroundColor: scale(cooldown).hex() };
 }
 
