@@ -6,7 +6,7 @@ export default function Stripe() {
 
   return (
     <div
-      className={`absolute top-0 -right-12 ${stripeBgClass} w-12 h-full`}
+      className={`${stripeBgClass} absolute top-0 -right-12 w-12 h-full`}
     ></div>
   );
 }
