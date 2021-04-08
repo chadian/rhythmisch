@@ -10,6 +10,7 @@ function customContainer({ addComponents, theme }) {
       "@screen sm": {
         maxWidth: theme("screens.sm"),
       },
+
       "@screen md": {
         maxWidth: theme("screens.md"),
       },

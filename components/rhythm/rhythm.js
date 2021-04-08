@@ -59,9 +59,7 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
   return (
     <div>
       <div className="w-10/12">
-        <div className="text-5xl font-bold text-gray-800">
-          {action}
-        </div>
+        <div className="text-5xl font-bold text-gray-800">{action}</div>
         <div className="text-4xl text-gray-800 mt-2">
           {numeratorTerm(frequencyNumerator)} every{" "}
           {denominatorTerm(frequencyDenominator)}
@@ -71,9 +69,9 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
         </div>
       </div>
       <ul className="flex mt-5">{occurrences}</ul>
-      <div className="absolute -right-9 -mt-8">
+      <div className="absolute right-4 -mt-6 md:right-3 md:-mt-8">
         <Occurrence
-          cooldown={hitToday ? 1 : 0 }
+          cooldown={hitToday ? 1 : 0}
           open={true}
           onClick={toggleHit}
           date={new Date()}

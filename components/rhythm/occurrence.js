@@ -24,7 +24,14 @@ export default function Occurrence({ cooldown, onClick, open, date }) {
   } = theme;
 
   const occurrenceHit = cooldown === 1;
-  const classNames = ["w-6", "h-6", "rounded-full", "inline-block"];
+  const classNames = [
+    "w-4",
+    "h-4",
+    "md:w-6",
+    "md:h-6",
+    "rounded-full",
+    "inline-block",
+  ];
   const formattedDate = format(date, "MMMM do, yyyy");
 
   if (open) {

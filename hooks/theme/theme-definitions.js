@@ -1,5 +1,17 @@
-export const themeDefinitions = {
-  swiss: {
+export const themeDefinitions = [
+  {
+    themeName: "edmonton",
+    stripeBgClass: "bg-gray-300",
+    occurrenceClosedHitBgColor: "bg-gray-400",
+    occurrenceClosedMissBgColor: "bg-gray-100",
+    occurrenceOpenBgColor: "bg-white",
+    buttonTextColor: "text-gray-500",
+    buttonBgColor: "bg-transparent",
+    linkColor: "text-gray-500",
+  },
+
+  {
+    themeName: "swiss",
     stripeBgClass: "bg-red-600",
     occurrenceClosedHitBgColor: "bg-red-600",
     occurrenceClosedMissBgColor: "bg-gray-100",
@@ -9,17 +21,8 @@ export const themeDefinitions = {
     linkColor: "text-red-600",
   },
 
-  edmonton: {
-    stripeBgClass: "bg-gray-300",
-    occurrenceClosedHitBgColor: "bg-gray-400",
-    occurrenceClosedMissBgColor: "bg-gray-50",
-    occurrenceOpenBgColor: "bg-white",
-    buttonTextColor: "text-gray-500",
-    buttonBgColor: "bg-transparent",
-    linkColor: "text-gray-500",
-  },
-
-  portland: {
+  {
+    themeName: "portland",
     stripeBgClass: "bg-green-800",
     occurrenceClosedHitBgColor: "bg-green-800",
     occurrenceClosedMissBgColor: "bg-gray-100",
@@ -29,7 +32,8 @@ export const themeDefinitions = {
     linkColor: "text-green-900",
   },
 
-  ubahn: {
+  {
+    themeName: "ubahn",
     stripeBgClass: "bg-yellow-400",
     occurrenceClosedHitBgColor: "bg-yellow-400",
     occurrenceClosedMissBgColor: "bg-gray-100",
@@ -39,7 +43,8 @@ export const themeDefinitions = {
     linkColor: "text-yellow-600",
   },
 
-  webog: {
+  {
+    themeName: "webog",
     stripeBgClass: "bg-blue-700",
     occurrenceClosedHitBgColor: "bg-blue-700",
     occurrenceClosedMissBgColor: "bg-gray-100",
@@ -48,7 +53,7 @@ export const themeDefinitions = {
     buttonBgColor: "bg-transparent",
     linkColor: "text-blue-700",
   },
-};
+];
 
 export const DEFAULT_THEME = "webog";
-export const themeKeys = Object.keys(themeDefinitions);
+export const themeKeys = themeDefinitions.map(({ themeName }) => themeName);

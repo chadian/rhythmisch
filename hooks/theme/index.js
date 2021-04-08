@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext } from "react";
 import { getLocalStorageTheme, setLocalStorageTheme } from './local-storage';
 import { themeDefinitions, DEFAULT_THEME, themeKeys } from './theme-definitions';
+export { themeKeys, themeDefinitions };
 
 const ThemeContext = createContext();
 
@@ -16,8 +17,10 @@ export const ThemeProvider = ({ children }) => {
     }
   };
 
+  const themeDefinition = themeDefinitions.find(themeDefinition => themeDefinition.themeName === themeName);
+
   return (
-    <ThemeContext.Provider value={[themeDefinitions[themeName], saveTheme]}>
+    <ThemeContext.Provider value={[themeDefinition, saveTheme]}>
       {children}
     </ThemeContext.Provider>
   );
