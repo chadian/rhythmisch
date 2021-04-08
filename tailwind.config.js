@@ -40,7 +40,10 @@ function addColorCssProperties({ addComponents, config }) {
 }
 
 module.exports = {
-  purge: ["./pages/**/*.js", "./components/**/*.js"],
+  purge: {
+    enabled: false,
+    content: ["./pages/**/*.js", "./components/**/*.js"]
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
