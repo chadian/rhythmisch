@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider>
       <RhythmsProvider>
         <div className="container m-auto px-4 md:px-3">
-          <div className="pr-12 pb-16 min-h-screen relative">
+          <div className="pr-6 md:pr-12 pb-16 min-h-screen relative">
             <header className="pt-20 mb-5">
               <h1 className="max-w-2xl text-6xl md:text-7xl font-bold ">
                 Rhythmisch
