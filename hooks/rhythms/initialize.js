@@ -22,8 +22,7 @@ export function initializeRhythms() {
         hits: [],
       };
 
-      setLocalStorageRhythms([defaultRhythm]);
-      rhythms = getLocalStorageRhythms();
+      rhythms = [defaultRhythm];
     }
   }
 

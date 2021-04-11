@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
                   Home
                 </Link>
                 <Link
-                  href="/"
+                  href="/app"
                   underlineOffset="md"
                   attrs={{ className: "text-xl" }}
                 >
