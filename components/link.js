@@ -1,11 +1,19 @@
+import { default as NextLink } from "next/link";
 import { useTheme } from "../hooks/theme/index";
 
-export default function Link({ attrs, underline, underlineOffset, children }) {
-  const [ theme ] = useTheme();
+export default function Link({
+  attrs,
+  href,
+  underline,
+  underlineOffset,
+  children,
+}) {
+  const [theme] = useTheme();
 
   attrs = attrs ?? {};
   underline = underline ?? true;
-  underlineOffset = underlineOffset ?? 'sm';
+  underlineOffset = underlineOffset ?? "sm";
+  href = href ?? attrs.href;
 
   const classNames = (attrs.className ?? "").split(" ");
   classNames.push(theme.linkColor);
@@ -16,8 +24,8 @@ export default function Link({ attrs, underline, underlineOffset, children }) {
   const className = classNames.join(" ");
 
   return (
-    <a {...attrs} className={className}>
+    <NextLink {...attrs} href={href} className={className}>
       {children}
-    </a>
+    </NextLink>
   );
 }
