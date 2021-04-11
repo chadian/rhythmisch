@@ -3,6 +3,8 @@ import FocusLock from "react-focus-lock";
 export default function Modal({ children }) {
   const classNames = [
     "fixed",
+    "top-0",
+    "left-0",
     "w-screen",
     "h-screen",
     "bg-white",
