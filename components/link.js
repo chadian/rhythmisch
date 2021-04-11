@@ -16,16 +16,20 @@ export default function Link({
   href = href ?? attrs.href;
 
   const classNames = (attrs.className ?? "").split(" ");
-  classNames.push(theme.linkColor);
+  classNames.push('cursor-pointer', theme.linkColor);
+
   if (underline) {
     classNames.push("underline");
     classNames.push(`underline-offset-${underlineOffset}`);
   }
+
   const className = classNames.join(" ");
 
   return (
-    <NextLink {...attrs} href={href} className={className}>
-      {children}
+    <NextLink href={href}>
+      <span {...attrs} className={className}>
+        {children}
+      </span>
     </NextLink>
   );
 }
