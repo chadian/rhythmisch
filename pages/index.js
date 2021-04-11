@@ -67,7 +67,7 @@ function RhythmischApp() {
             <h1 className="max-w-2xl text-6xl md:text-7xl font-bold ">
               Rhythmisch
             </h1>
-            <div className="mt-3 flex space-x-6">
+            <div className="mt-5 flex space-x-6">
               <ThemeSelector />
             </div>
           </header>

@@ -40,14 +40,16 @@ function addColorCssProperties({ addComponents, config }) {
 }
 
 module.exports = {
-  purge: {
-    enabled: false,
-    content: ["./pages/**/*.js", "./components/**/*.js"]
-  },
+  purge: [
+    "./pages/**/*.js",
+    "./components/**/*.js",
+    "./hooks/**/*.js",
+    "./utils/**/*.js",
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      ...colors
+      ...colors,
     },
     fontFamily: {
       sans: ["Helvetica", "Arial", "sans-serif"],
@@ -55,6 +57,12 @@ module.exports = {
     underlineOffset: {
       sm: "1px",
       md: "2px",
+    },
+    extend: {
+      transitionProperty: {
+        width: "width",
+        height: "height",
+      },
     },
   },
   plugins: [

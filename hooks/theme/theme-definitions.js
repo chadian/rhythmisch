@@ -1,13 +1,13 @@
 export const themeDefinitions = [
   {
-    themeName: "edmonton",
-    stripeBgClass: "bg-gray-300",
-    occurrenceClosedHitBgColor: "bg-gray-400",
+    themeName: "webog",
+    stripeBgClass: "bg-blue-700",
+    occurrenceClosedHitBgColor: "bg-blue-700",
     occurrenceClosedMissBgColor: "bg-gray-100",
     occurrenceOpenBgColor: "bg-white",
-    buttonTextColor: "text-gray-500",
+    buttonTextColor: "text-blue-700",
     buttonBgColor: "bg-transparent",
-    linkColor: "text-gray-500",
+    linkColor: "text-blue-700",
   },
 
   {
@@ -19,6 +19,17 @@ export const themeDefinitions = [
     buttonTextColor: "text-red-600",
     buttonBgColor: "bg-transparent",
     linkColor: "text-red-600",
+  },
+
+  {
+    themeName: "edmonton",
+    stripeBgClass: "bg-gray-300",
+    occurrenceClosedHitBgColor: "bg-gray-400",
+    occurrenceClosedMissBgColor: "bg-gray-100",
+    occurrenceOpenBgColor: "bg-white",
+    buttonTextColor: "text-gray-500",
+    buttonBgColor: "bg-transparent",
+    linkColor: "text-gray-500",
   },
 
   {
@@ -41,17 +52,6 @@ export const themeDefinitions = [
     buttonTextColor: "text-yellow-600",
     buttonBgColor: "bg-transparent",
     linkColor: "text-yellow-600",
-  },
-
-  {
-    themeName: "webog",
-    stripeBgClass: "bg-blue-700",
-    occurrenceClosedHitBgColor: "bg-blue-700",
-    occurrenceClosedMissBgColor: "bg-gray-100",
-    occurrenceOpenBgColor: "bg-white",
-    buttonTextColor: "text-blue-700",
-    buttonBgColor: "bg-transparent",
-    linkColor: "text-blue-700",
   },
 ];
 

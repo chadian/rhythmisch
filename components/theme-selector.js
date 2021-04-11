@@ -3,21 +3,41 @@ import { useTheme, themeKeys, themeDefinitions } from '../hooks/theme/index';
 export default function ThemeSelector() {
   const [ currentThemeDefinition, saveTheme ] = useTheme();
 
-  const selectors = themeKeys.map(key => {
+  const themeSelectors = themeKeys.map(key => {
     const themeDefinition = themeDefinitions.find(themeDefinition => themeDefinition.themeName === key);
     const selectorColor = themeDefinition.stripeBgClass;
     const saveSelectedTheme = () => saveTheme(key);
-    const classNames = [selectorColor, "w-6", "h-6", "rounded-full", "border-4", "p-2"];
+    const classNames = [
+      selectorColor,
+      "rounded-full",
+      "p-2",
+      "transform",
+      "transition-all",
+      "duration-75",
+      "ease-in",
+      "w-4",
+      "h-4",
+      "md:w-6",
+      "md:h-6",
+    ];
 
     if (currentThemeDefinition.themeName === key) {
-      classNames.push(themeDefinition.stripeBgClass.replace('bg', 'border'));
-    } else {
-      classNames.push("border-white");
+      classNames.push("scale-150");
     }
 
     const className = classNames.join(' ');
-    return <button key={key} className={className} onClick={saveSelectedTheme}></button>;
+    return (
+      <button
+        key={key}
+        className={className}
+        onClick={saveSelectedTheme}
+      ></button>
+    );
   });
 
-  return <div className="flex space-x-4">{selectors}</div>;
+  return (
+    <div className="flex space-x-7 items-center">
+      {themeSelectors}
+    </div>
+  );
 }
