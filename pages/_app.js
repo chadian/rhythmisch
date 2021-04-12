@@ -31,6 +31,13 @@ function MyApp({ Component, pageProps }) {
                 >
                   App
                 </Link>
+                <Link
+                  href="/faq"
+                  underlineOffset="md"
+                  attrs={{ className: "text-xl" }}
+                >
+                  Faq
+                </Link>
               </div>
               <div className="text-gray-600">❤️ from Sozial</div>
             </footer>
