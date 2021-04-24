@@ -69,7 +69,7 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
         </div>
       </div>
       <ul className="flex mt-5">{occurrences}</ul>
-      <div className="absolute right-2 -mt-6 md:right-3 md:-mt-8">
+      <div className="absolute z-20 right-2 -mt-6 md:right-3 md:-mt-8">
         <Occurrence
           cooldown={hitToday ? 1 : 0}
           open={true}

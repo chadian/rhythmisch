@@ -7,15 +7,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <RhythmsProvider>
-        <div className="container m-auto px-4 md:px-3">
-          <div className="pr-6 md:pr-12 pb-16 min-h-screen relative">
+        <div className="container relative m-auto">
+          <div className="mx-4 md:mx-3 pr-6 pb-32 min-h-screen relative">
             <header className="pt-20 mb-5">
-              <h1 className="max-w-2xl text-6xl md:text-7xl font-bold ">
+              <h1 className="max-w-2xl text-6xl md:text-7xl font-bold">
                 Rhythmisch
               </h1>
             </header>
             <Component {...pageProps} />
-            <footer className="fixed bottom-0 mb-3">
+            <footer className="sticky container bottom-0 mt-12 py-3 border-t-4 bg-white">
               <div className="flex space-x-5 mb-3">
                 <Link
                   href="/home"

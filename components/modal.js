@@ -11,7 +11,7 @@ export default function Modal({ children }) {
     "flex",
     "items-center",
     "justify-center",
-    "z-10",
+    "z-30",
     "bg-filter-blur-modal",
   ];
 

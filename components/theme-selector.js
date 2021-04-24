@@ -35,9 +35,5 @@ export default function ThemeSelector() {
     );
   });
 
-  return (
-    <div className="flex space-x-7 items-center">
-      {themeSelectors}
-    </div>
-  );
+  return <div className="ml-2 flex space-x-7 items-center">{themeSelectors}</div>;
 }
