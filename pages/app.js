@@ -61,11 +61,11 @@ function RhythmischApp() {
 
       <Stripe />
 
-      <div className="mb-20 flex space-x-6">
+      <div className="mb-10 md:mb-20 flex space-x-6">
         <ThemeSelector />
       </div>
 
-      <main>
+      <main className="pb-20 md:pb-32">
         <div className="mb-6">
           <Button
             size="large"

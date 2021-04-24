@@ -19,7 +19,7 @@ export default function RhythmList({ onEdit }) {
           rhythm={rhythm}
           onTodaysOccurrenceToggle={(wasHit) => onTodayToggle(rhythm, wasHit)}
         />
-        <div className="mt-3 space-x-5">
+        <div className="mt-1 md:mt-3 space-x-5">
           <Button
             size="small"
             onClick={() => onEdit(rhythm)}
@@ -49,7 +49,7 @@ export default function RhythmList({ onEdit }) {
   );
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-10 md:space-y-20">
       {rhythms.length === 0 ? emptyRhythms : rhythmsList}
     </div>
   );

@@ -8,38 +8,40 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider>
       <RhythmsProvider>
         <div className="container relative m-auto">
-          <div className="mx-4 md:mx-3 pr-6 pb-32 min-h-screen relative">
+          <div className="mx-4 md:mx-3 pr-6 pb-2 min-h-screen relative">
             <header className="pt-20 mb-5">
-              <h1 className="max-w-2xl text-6xl md:text-7xl font-bold">
+              <h1 className="max-w-2xl text-5xl md:text-7xl font-bold">
                 Rhythmisch
               </h1>
             </header>
             <Component {...pageProps} />
-            <footer className="sticky container bottom-0 mt-12 py-3 border-t-4 bg-white">
-              <div className="flex space-x-5 mb-3">
+            <footer className="fixed z-20 container bottom-0 mt-6 py-1 md:py-3 border-t-4 bg-white">
+              <div className="flex space-x-5 mb-1 md:mb-3">
                 <Link
                   href="/home"
                   underlineOffset="md"
-                  attrs={{ className: "text-xl" }}
+                  attrs={{ className: "text-lg md:text-xl" }}
                 >
                   Home
                 </Link>
                 <Link
                   href="/app"
                   underlineOffset="md"
-                  attrs={{ className: "text-xl" }}
+                  attrs={{ className: "text-lg md:text-xl" }}
                 >
                   App
                 </Link>
                 <Link
                   href="/faq"
                   underlineOffset="md"
-                  attrs={{ className: "text-xl" }}
+                  attrs={{ className: "text-lg md:text-xl" }}
                 >
                   Faq
                 </Link>
               </div>
-              <div className="text-gray-600">❤️ from Sozial</div>
+              <div className="text-gray-600">
+                ❤️ <Link href="https://sticksnglue.com">sticksnglue</Link>
+              </div>
             </footer>
           </div>
         </div>

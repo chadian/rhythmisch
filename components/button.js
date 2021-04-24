@@ -16,7 +16,8 @@ export default function Button({ children, onClick = () => {} , attrs = {}, size
     "inline-block",
     "font-medium",
     "py-1.5",
-    "text-xl",
+    "text-lg",
+    "md:text-xl",
   ];
 
   const smallButtonClassNames = [
