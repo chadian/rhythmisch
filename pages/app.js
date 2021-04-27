@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic'
 import Head from "next/head";
 import { useState } from "react";
 import { useRhythms } from "../hooks/rhythms/index";
@@ -37,7 +36,10 @@ function RhythmischApp() {
 
       {modalIsOpen ? (
         <Modal>
-          <div style={{ marginTop: "-15%" }}>
+          <div
+            className="max-w-full container mx-4 md:mx-3"
+            style={{ marginTop: "-15%" }}
+          >
             <RhythmEdit
               rhythm={rhythmToEdit}
               onClose={() => setModal(false)}
@@ -83,4 +85,4 @@ function RhythmischApp() {
   );
 }
 
-export default dynamic(() => Promise.resolve(RhythmischApp), { ssr: false });
+export default RhythmischApp;

@@ -1,9 +1,10 @@
 import "../styles/globals.css";
+import dynamic from "next/dynamic";
 import { RhythmsProvider } from "../hooks/rhythms/index";
 import { ThemeProvider } from "../hooks/theme/index";
-import Link from '../components/link';
+import Link from "../components/link";
 
-function MyApp({ Component, pageProps }) {
+function NextApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <RhythmsProvider>
@@ -50,4 +51,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default dynamic(() => Promise.resolve(NextApp), { ssr: false });

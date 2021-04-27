@@ -10,16 +10,26 @@ export function ValidationWrapper({ hasSubmitted, error, children }) {
 
   const wrappedChildren = React.Children.map(children, child => {
     const isFormElement = ['select', 'input'].includes(child.type);
-    if (!isFormElement) {
+    if (!showError || !isFormElement) {
       return child;
     }
 
-    const updatedClassName = [child.props.className, showError ? 'border-red-700' : ''].join(' ');
+    console.log(child.props.className);
+
+    const classNames = child.props.className
+      .split(' ')
+      .filter((className) => !className.match(/border-.+-[0-9]+/))
+      .join(' ');
+
+    const updatedClassName = [
+      classNames,
+      showError ? "border-red-700" : "",
+    ].join(" ");
 
     return React.cloneElement(child, {
       className: updatedClassName,
-      ["aria-invalid"]: showError ? true : false,
-      ['aria-describedby']: showError ? errorId : null,
+      ["aria-invalid"]: true,
+      ['aria-describedby']: errorId,
     });
   });
 

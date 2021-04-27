@@ -6,21 +6,21 @@ import { ValidationWrapper } from './validated-wrapper';
 
 const sharedSelectAndInputClassNames = [
   "text-gray-800",
-  "text-3xl",
-  "font-bold",
+  "text-xl",
+  "md:text-3xl",
   "border-2",
   "border-gray-300",
+  "w-full"
 ];
 
 const inputClassNames = [
   ...sharedSelectAndInputClassNames,
-  "py-2",
-  "px-3",
-  "w-96",
+  "py-1",
+  "px-2",
   "placeholder-gray-300",
 ].join(" ");
 
-const selectClassNames = [...sharedSelectAndInputClassNames, "p-2", "w-48"].join(' ');
+const selectClassNames = [...sharedSelectAndInputClassNames, "p-1", "w-48"].join(' ');
 
 const generateNumeratorSelect = (selected, onChange) => {
   const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
@@ -150,16 +150,16 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
   });
 
   return (
-    <form className="text-2xl" onSubmit={submitHandler}>
+    <form onSubmit={submitHandler}>
       <Button
         onClick={() => onClose()}
         attrs={{ className: "absolute top-8 right-8" }}
       >
         Close
       </Button>
-      <div className="flex flex-col space-y-10">
-        <div className="flex items-baseline">
-          <span className="mr-4">I want to</span>
+      <div className="flex flex-col space-y-10 text-gray-500 md:text-2xl max-w-screen-md m-auto">
+        <div className="flex flex-col">
+          <label>I want to</label>
           <ValidationWrapper
             hasSubmitted={hasSubmitted}
             error={validationResult.errors.action}
@@ -175,24 +175,24 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
             />
           </ValidationWrapper>
         </div>
-        <div className="flex items-baseline">
+        <div className="flex flex-col">
           <ValidationWrapper
             hasSubmitted={hasSubmitted}
             error={validationResult.errors.frequency}
           >
             {numeratorSelect}
-            <span className="mx-4">every</span>
+            <div className="block py-2">every</div>
             {denominatorSelect}
           </ValidationWrapper>
         </div>
-        <div className="flex items-baseline">
-          <span className="mr-4">because</span>
+        <div className="flex flex-col">
+          <span>because</span>
           <ValidationWrapper
             hasSubmitted={hasSubmitted}
             error={validationResult.errors.reason}
           >
             <input
-              className={`w-96 ${inputClassNames}`}
+              className={inputClassNames}
               aria-label="Rhythm reason description"
               aria-required="true"
               placeholder="it will bring positive change"
