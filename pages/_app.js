@@ -16,7 +16,7 @@ function NextApp({ Component, pageProps }) {
               </h1>
             </header>
             <Component {...pageProps} />
-            <footer className="fixed z-20 container bottom-0 mt-6 py-1 md:py-3 border-t-4 bg-white">
+            <footer className="fixed -inset-x-0 flex md:flex-col items-baseline justify-between z-20 container bottom-0 px-3 py-1 md:py-3 border-t-4 bg-white">
               <div className="flex space-x-5 mb-1 md:mb-3">
                 <Link
                   href="/home"
@@ -41,7 +41,10 @@ function NextApp({ Component, pageProps }) {
                 </Link>
               </div>
               <div className="text-gray-600">
-                ❤️ <Link href="https://sticksnglue.com">sticksnglue</Link>
+                ❤️{" "}
+                <Link href="https://sticksnglue.com" underlineOffset="md">
+                  sticksnglue
+                </Link>
               </div>
             </footer>
           </div>
