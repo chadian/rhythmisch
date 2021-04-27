@@ -88,7 +88,7 @@ export function Home() {
                 )}
                 )
               </p>
-              <div className="z-10 absolute right-3 top-9">
+              <div className="z-30 absolute right-2 md:right-3 top-9">
                 <Occurrence
                   cooldown={cooldown}
                   onClick={() => setCooldown(cooldown === 0 ? 1 : 0)}
