@@ -3,21 +3,29 @@ import dynamic from "next/dynamic";
 import { RhythmsProvider } from "../hooks/rhythms/index";
 import { ThemeProvider } from "../hooks/theme/index";
 import Link from "../components/link";
+import { useEffect } from "react";
 
 function NextApp({ Component, pageProps }) {
+  useEffect(() => {
+    // This prevents a vertical shift of content when navigating
+    // between pages that show/hide the scrollbar
+    // https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/
+    document.body.style.marginLeft = "calc(100vw - 100%)";
+  });
+
+  const HARDCODED_FIXED_FOOTER_PADDING = "pb-16 md:pb-32";
+
   return (
     <ThemeProvider>
       <RhythmsProvider>
-        <div className="container relative m-auto">
-          <div className="mx-4 md:mx-3 pr-6 pb-2 min-h-screen relative">
-            <header className="pt-20 mb-5">
-              <h1 className="max-w-2xl text-5xl md:text-7xl font-bold">
-                Rhythmisch
-              </h1>
+        <div className="container m-auto">
+          <div className={`mx-4 md:mx-3 pr-6 min-h-screen relative ${HARDCODED_FIXED_FOOTER_PADDING}`}>
+            <header className="pt-12 mb-8">
+              <div className="text-5xl md:text-7xl font-bold">Rhythmisch</div>
             </header>
             <Component {...pageProps} />
-            <footer className="fixed -inset-x-0 flex md:flex-col items-baseline justify-between z-20 container bottom-0 px-3 py-1 md:py-3 border-t-4 bg-white">
-              <div className="flex space-x-5 mb-1 md:mb-3">
+            <footer className="md:h-24 fixed -inset-x-0 flex md:flex-col items-baseline justify-between z-20 container bottom-0 px-3 py-1 md:py-3 border-t-4 bg-white">
+              <div className="flex space-x-5">
                 <Link
                   href="/home"
                   underlineOffset="md"
@@ -37,7 +45,7 @@ function NextApp({ Component, pageProps }) {
                   underlineOffset="md"
                   attrs={{ className: "text-lg md:text-xl" }}
                 >
-                  Faq
+                  FAQ
                 </Link>
               </div>
               <div className="text-gray-600">
