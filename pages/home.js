@@ -53,12 +53,14 @@ export function Home() {
         <div className="relative flex h-24">
           <p className="my-auto text-lg text-gray-500 mr-16">
             <span className="font-bold">
-              For example, go ahead give it a click!
+              For example, go ahead give the circle in the stripe a click! 👉
             </span>
             <br />
             Current status:{" "}
             {cooldown === 1 ? (
-              <span className={theme.buttonTextColor}>You've done it</span>
+              <span className={theme.buttonTextColor}>
+                <strong>You've done it</strong>
+              </span>
             ) : (
               "Not yet done for today"
             )}
@@ -78,7 +80,8 @@ export function Home() {
       <section>
         <SectionHeading>Habits built on Rhythms</SectionHeading>
         <SectionParagraph>
-          A <em>rhythm</em> represents the habit you are trying to build. <Highlight>What, how often, and why.</Highlight>
+          A <em>rhythm</em> represents the habit you are trying to build.{" "}
+          <Highlight>What, how often, and why.</Highlight>
         </SectionParagraph>
         <div className="transform scale-50 px-2 my-2">
           <Rhythm
@@ -91,9 +94,9 @@ export function Home() {
           />
         </div>
         <SectionParagraph>
-          The 14 horizontal dots represent a two week window into your progress. A solid dot
-          represents a day where a habit has been completed, and the following
-          days represent the cooldown based on the rhythm frequency.
+          The 14 horizontal dots represent a two week window into your progress.
+          A solid dot represents a day where a habit has been completed, and the
+          following days represent the cooldown based on the rhythm frequency.
         </SectionParagraph>
       </section>
 
@@ -110,7 +113,7 @@ export function Home() {
         <SectionParagraph>
           Learn more about the app on the{" "}
           <Link href="https://github.com/chadian/rhythmisch">FAQ page</Link>.
-          Send any questions or comments to me on {" "}
+          Send any questions or comments to me on{" "}
           <Link href="https://twitter.com/chadian">twitter</Link>.
         </SectionParagraph>
       </section>
