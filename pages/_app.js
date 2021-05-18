@@ -13,7 +13,7 @@ function NextApp({ Component, pageProps }) {
     document.body.style.marginLeft = "calc(100vw - 100%)";
   });
 
-  const HARDCODED_FIXED_FOOTER_PADDING = "pb-16 md:pb-32";
+  const HARDCODED_FIXED_FOOTER_PADDING = "pb-32";
 
   return (
     <ThemeProvider>
@@ -24,7 +24,7 @@ function NextApp({ Component, pageProps }) {
               <div className="text-5xl md:text-7xl font-bold">Rhythmisch</div>
             </header>
             <Component {...pageProps} />
-            <footer className="md:h-24 fixed -inset-x-0 flex md:flex-col items-baseline justify-between z-20 container bottom-0 px-3 py-1 md:py-3 border-t-4 bg-white">
+            <footer className="h-24 fixed -inset-x-0 flex flex-col items-baseline justify-between z-20 container bottom-0 px-3 py-4 border-t-4 bg-white">
               <div className="flex space-x-5">
                 <Link
                   href="/home"
