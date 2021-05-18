@@ -16,7 +16,7 @@ export function initializeRhythms() {
     } else {
       const defaultRhythm = {
         id: nanoid(),
-        action: "Use Rhythmisch",
+        action: "Use Rhythmisch on this device",
         frequency: [1, 1],
         reason: "I want to get into the rhythm",
         hits: [],
