@@ -45,12 +45,9 @@ export default function Occurrence({ cooldown, onClick, open, date }) {
     }
 
     return (
-      <button
-        role="button"
-        aria-label={ariaLabel}
-        onClick={onClick}
-        className={classNames.join(" ")}
-      ></button>
+      <button role="button" aria-label={ariaLabel} onClick={onClick} className="flex p-4 -m-4">
+        <div className={classNames.join(" ")}></div>
+      </button>
     );
   } else {
     const style = createCooldownStyle(cooldown, occurrenceClosedMissBgColor, occurrenceClosedHitBgColor);
