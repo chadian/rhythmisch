@@ -53,6 +53,17 @@ export const themeDefinitions = [
     buttonBgColor: "bg-transparent",
     linkColor: "text-yellow-600",
   },
+
+  {
+    themeName: "heroku",
+    stripeBgClass: "bg-purple-600",
+    occurrenceClosedHitBgColor: "bg-purple-600",
+    occurrenceClosedMissBgColor: "bg-gray-100",
+    occurrenceOpenBgColor: "bg-white",
+    buttonTextColor: "text-purple-700",
+    buttonBgColor: "bg-transparent",
+    linkColor: "text-purple-700",
+  },
 ];
 
 export const DEFAULT_THEME = "webog";
