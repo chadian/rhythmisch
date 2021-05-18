@@ -10,7 +10,6 @@ export default function ThemeSelector() {
     const classNames = [
       selectorColor,
       "rounded-full",
-      "p-2",
       "transform",
       "transition-all",
       "duration-75",
@@ -27,13 +26,13 @@ export default function ThemeSelector() {
 
     const className = classNames.join(' ');
     return (
-      <button
-        key={key}
-        className={className}
-        onClick={saveSelectedTheme}
-      ></button>
+      <button key={key} onClick={saveSelectedTheme}>
+        <div className="p-3 -m-3">
+          <div className={className}></div>
+        </div>
+      </button>
     );
   });
 
-  return <div className="ml-2 flex space-x-7 items-center">{themeSelectors}</div>;
+  return <div className="ml-1 flex space-x-7 items-center">{themeSelectors}</div>;
 }
