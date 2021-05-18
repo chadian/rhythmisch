@@ -6,6 +6,7 @@ import Occurrence from "../components/rhythm/occurrence";
 import Rhythm from "../components/rhythm/rhythm";
 import Stripe from "../components/stripe";
 import { subDays } from "date-fns";
+import { SectionHeading, SectionParagraph } from '../components/content/section';
 
 
 function Highlight({ children }) {
@@ -16,50 +17,69 @@ function Highlight({ children }) {
   </span>;
 }
 
-function SectionHeading({ children }) {
-  return (
-    <h3 className="text-3xl text-gray-800 font-bold mb-4">
-      {children}
-    </h3>
-  );
-}
-
-function SectionParagraph({ children }) {
-  return (
-    <p className="text-2xl text-gray-700">
-      {children}
-    </p>
-  )
-}
-
 export function Home() {
   const [cooldown, setCooldown] = useState(0);
   const [theme] = useTheme();
 
   return (
-    <main className="flex flex-col space-y-20">
+    <main className="flex flex-col space-y-16">
       <section>
         <h2 className="text-5xl text-gray-800">Let's get rhythmical</h2>
         <p className="text-3xl text-gray-700 mt-5">
-          Rhythmisch is an app to help you build habits.
-          <br />
+          Rhythmisch is an app to help you build habits.{" "}
           <Link href="/app">Check out the app.</Link>
         </p>
       </section>
 
       <section>
-        <SectionHeading>🏗 Built for clarity</SectionHeading>
+        <SectionHeading>Keep it simple</SectionHeading>
         <SectionParagraph>
-          Building habits isn't about leaderboards, metrics, charts or beating
-          streaks. It's about{" "}
-          <Highlight>building a pattern of daily commitments.</Highlight> A{" "}
-          <em>Rhythm</em> at a glance tell you what you're aiming for, how
-          often, and why.
-          <br />
-          <br />
-          Here's an example of a rhythm
+          No accounts, streaks, leaderboards, metrics or anything else to get in
+          the way. It's ready for you to{" "}
+          <Link href="/app">get started now</Link>. Your data is stored on your
+          device and is never sent anywhere.
         </SectionParagraph>
+      </section>
 
+      <section>
+        <SectionHeading>Focus on today</SectionHeading>
+        <SectionParagraph>
+          Rhythmisch gives you{" "}
+          <Highlight>
+            <strong>one</strong> daily focus
+          </Highlight>{" "}
+          to track a completed habit.
+        </SectionParagraph>
+        <div className="relative flex h-24">
+          <p className="my-auto text-lg text-gray-500 mr-16">
+            <span className="font-bold">
+              For example, go ahead give it a click!
+            </span>
+            <br />
+            Current status:{" "}
+            {cooldown === 1 ? (
+              <span className={theme.buttonTextColor}>You've done it</span>
+            ) : (
+              "Not yet done for today"
+            )}
+          </p>
+          <div className="z-30 absolute right-2 md:right-3 top-9">
+            <Occurrence
+              cooldown={cooldown}
+              onClick={() => setCooldown(cooldown === 0 ? 1 : 0)}
+              open={true}
+              date={new Date()}
+            />
+          </div>
+          <Stripe />
+        </div>
+      </section>
+
+      <section>
+        <SectionHeading>Habits built on Rhythms</SectionHeading>
+        <SectionParagraph>
+          A <em>rhythm</em> represents the habit you are trying to build. <Highlight>What, how often, and why.</Highlight>
+        </SectionParagraph>
         <div className="transform scale-50 px-2 my-2">
           <Rhythm
             rhythm={{
@@ -70,76 +90,28 @@ export function Home() {
             }}
           />
         </div>
-
         <SectionParagraph>
-          Each cirlce represents a day giving you a window into the last two
-          weeks and how you're doing. Days you've hit will show up solid colored
-          circle with a slow cooldown based on the rhythm's frequency.
+          The 14 horizontal dots represent a two week window into your progress. A solid dot
+          represents a day where a habit has been completed, and the following
+          days represent the cooldown based on the rhythm frequency.
         </SectionParagraph>
       </section>
 
       <section>
-        <SectionHeading>🎯 Focus on today</SectionHeading>
+        <SectionHeading>Open & Free</SectionHeading>
         <SectionParagraph>
-          Do not miss your chance, today is all there is. Inside the stripe is a
-          marker each <em>Rhythm</em>: solid means you've done it for today,
-          blurry means it's still an open opportunity.
-        </SectionParagraph>
-
-        <div className="flex pt-4">
-          <div className="relative flex h-24 m-auto">
-            <p className="m-auto text-lg m-auto text-gray-500 mr-16">
-              <span className="font-bold">Go ahead, give it a click!</span>
-              <br />(
-              {cooldown === 1 ? (
-                <span className={theme.buttonTextColor}>You've done it</span>
-              ) : (
-                "Not yet done for today"
-              )}
-              )
-            </p>
-            <div className="z-30 absolute right-2 md:right-3 top-9">
-              <Occurrence
-                cooldown={cooldown}
-                onClick={() => setCooldown(cooldown === 0 ? 1 : 0)}
-                open={true}
-                date={new Date()}
-              />
-            </div>
-            <Stripe />
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <SectionHeading>🗑 Ephemeral by design</SectionHeading>
-        <SectionParagraph>
-          All Rhythms eventually go away. Haven't touched a rhythm in a few
-          weeks? Rhythmisch will automatically remove it for you. And if you've
-          built up the rhythm into a habit go ahead and delete it yourself,
-          congratulations!
+          Rhythmisch doesn't cost anything and the code is open source on{" "}
+          <Link href="https://github.com/chadian/rhythmisch">GitHub</Link>.
         </SectionParagraph>
       </section>
 
       <section>
-        <SectionHeading>📱 Your device, your data</SectionHeading>
+        <SectionHeading>Thoughts?</SectionHeading>
         <SectionParagraph>
-          This app uses a browser technology called local storage which means
-          all data is stored local to your device for that browser.{" "}
-          <Highlight>
-            None of your data is ever stored on a server or sent over the web.
-          </Highlight>
-        </SectionParagraph>
-      </section>
-
-      <section>
-        <SectionHeading>🕊 Open & Free</SectionHeading>
-        <SectionParagraph>
-          Want to take a peak at how Rhythmisch works? Check out the code
-          on&nbsp;
-          <Link href="https://github.com/chadian/rhythmisch">Github</Link>.
-          Because the app is entirely ran on your device there are no costs or
-          overhead which means the app can be offered for free.
+          Learn more about the app on the{" "}
+          <Link href="https://github.com/chadian/rhythmisch">FAQ page</Link>.
+          Send any questions or comments to me on {" "}
+          <Link href="https://twitter.com/chadian">twitter</Link>.
         </SectionParagraph>
       </section>
     </main>
