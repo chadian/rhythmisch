@@ -1,19 +1,22 @@
-import RhythmischApp from "../pages/index";
+import RhythmischApp from "../pages/app";
 import { RhythmsProvider } from "../hooks/rhythms";
+import { ThemeProvider } from "../hooks/theme";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
 
 beforeEach(() => {
   render(
-    <RhythmsProvider>
-      <RhythmischApp />
-    </RhythmsProvider>
+    <ThemeProvider>
+      <RhythmsProvider>
+        <RhythmischApp />
+      </RhythmsProvider>
+    </ThemeProvider>
   );
 });
 
 it("can delete an existing rhythm", () => {
-  const action = screen.getByText("Use Rhythmisch");
+  const action = screen.getByText("Use Rhythmisch on this device");
   const frequency = screen.getByText("once every day");
   const reason = screen.getByText("because I want to get into the rhythm");
 

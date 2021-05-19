@@ -1,8 +1,9 @@
 import { render } from "@testing-library/react";
 import { parseISO, subHours } from "date-fns";
-import Rhythm from "./rhythm";
 import MockDate from "mockdate";
 import userEvent from "@testing-library/user-event";
+import Rhythm from "./rhythm";
+import { ThemeProvider } from "../../hooks/theme";
 
 let mockNow;
 let rhythmModel;
@@ -33,7 +34,11 @@ it("renders", () => {
     parseISO("2021-01-05T16:20:00")
   );
 
-  const rendered = render(<Rhythm rhythm={rhythmModel} />);
+  const rendered = render(
+    <ThemeProvider>
+      <Rhythm rhythm={rhythmModel} />
+    </ThemeProvider>
+  );
 
   const actionText = rendered.getByText("I want to run");
   const frequencyText = rendered.getByText("twice every three days");
@@ -69,10 +74,12 @@ describe("todays occurrence", () => {
     const toggleTodaysOccurrence = jest.fn();
 
     const rendered = render(
-      <Rhythm
-        rhythm={rhythmModel}
-        onTodaysOccurrenceToggle={toggleTodaysOccurrence}
-      />
+      <ThemeProvider>
+        <Rhythm
+          rhythm={rhythmModel}
+          onTodaysOccurrenceToggle={toggleTodaysOccurrence}
+        />
+      </ThemeProvider>
     );
 
     const todaysOccurrenceButton = rendered.getByRole("button", {
@@ -87,9 +94,9 @@ describe("todays occurrence", () => {
     rhythmModel.hits = [];
 
     const rendered = render(
-      <Rhythm
-        rhythm={rhythmModel}
-      />
+      <ThemeProvider>
+        <Rhythm rhythm={rhythmModel} />
+      </ThemeProvider>
     );
 
     expect(
@@ -102,9 +109,9 @@ describe("todays occurrence", () => {
     rhythmModel.hits = [hitFromTwoHoursAgo];
 
     const rendered = render(
-      <Rhythm
-        rhythm={rhythmModel}
-      />
+      <ThemeProvider>
+        <Rhythm rhythm={rhythmModel} />
+      </ThemeProvider>
     );
 
     expect(

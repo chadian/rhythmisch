@@ -5,7 +5,7 @@ import chroma from "chroma-js";
 function pullBackgroundColor(backgroundClassName) {
   const cssVariableName = backgroundClassName.replace('bg-', '--color-');
   const backgroundColor = getComputedStyle(document.body).getPropertyValue(cssVariableName);
-  return backgroundColor.trim();
+  return backgroundColor.trim() || "#000";
 }
 
 function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
@@ -17,6 +17,7 @@ function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
 
 export default function Occurrence({ cooldown, onClick, open, date }) {
   const [theme] = useTheme();
+
   const {
     occurrenceOpenBgColor,
     occurrenceClosedHitBgColor,

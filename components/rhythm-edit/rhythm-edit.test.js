@@ -2,6 +2,7 @@ import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RhythmEdit from "./rhythm-edit";
 import "@testing-library/jest-dom/extend-expect";
+import { ThemeProvider } from "../../hooks/theme";
 
 let actionInput;
 let numeratorSelect;
@@ -23,7 +24,11 @@ function setup({rhythm} = {}) {
 
   onSubmitCallback = jest.fn();
 
-  render(<RhythmEdit rhythm={rhythm} onSubmit={onSubmitCallback} />);
+  render(
+    <ThemeProvider>
+      <RhythmEdit rhythm={rhythm} onSubmit={onSubmitCallback} />
+    </ThemeProvider>
+  );
 
   actionInput = screen.getByDisplayValue("I want to run");
   numeratorSelect = screen.getByLabelText("Rhythm action count");
@@ -103,7 +108,7 @@ describe('validation', () => {
   test('it does not call onSubmit callback when an error exists', () => {
     userEvent.clear(actionInput);
     expect(actionInput).toHaveValue('');
-    expect(actionInput).toHaveAttribute(ariaInvalidLabel, 'false');
+    expect(actionInput).not.toHaveAttribute(ariaInvalidLabel);
     userEvent.click(submitButton);
     expect(onSubmitCallback).not.toHaveBeenCalledWith();
   });
@@ -113,7 +118,7 @@ describe('validation', () => {
     expect(actionInput).toHaveValue('');
     expect(actionInput).not.toHaveAttribute(ariaDescribedByAttrLabel);
 
-    expect(actionInput).toHaveAttribute(ariaInvalidLabel, 'false');
+    expect(actionInput).not.toHaveAttribute(ariaInvalidLabel);
     expect(actionInput).not.toHaveAttribute(ariaDescribedByAttrLabel);
     userEvent.click(submitButton);
 
@@ -127,7 +132,7 @@ describe('validation', () => {
   test("it shows an error for an empty rhythm reason", () => {
     userEvent.clear(reasonInput);
     expect(reasonInput).toHaveValue("");
-    expect(reasonInput).toHaveAttribute(ariaInvalidLabel, 'false');
+    expect(reasonInput).not.toHaveAttribute(ariaInvalidLabel);
     expect(reasonInput).not.toHaveAttribute(ariaDescribedByAttrLabel);
     userEvent.click(submitButton);
 
@@ -143,9 +148,9 @@ describe('validation', () => {
     userEvent.selectOptions(numeratorSelect, "five times");
     userEvent.selectOptions(denominatorSelect, "three days");
 
-    expect(numeratorSelect).toHaveAttribute(ariaInvalidLabel, 'false');
+    expect(numeratorSelect).not.toHaveAttribute(ariaInvalidLabel);
     expect(numeratorSelect).not.toHaveAttribute("aria-describedby");
-    expect(denominatorSelect).toHaveAttribute(ariaInvalidLabel, 'false');
+    expect(denominatorSelect).not.toHaveAttribute(ariaInvalidLabel);
     expect(denominatorSelect).not.toHaveAttribute("aria-describedby");
     userEvent.click(submitButton);
 

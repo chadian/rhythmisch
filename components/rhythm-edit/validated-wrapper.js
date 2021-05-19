@@ -14,8 +14,6 @@ export function ValidationWrapper({ hasSubmitted, error, children }) {
       return child;
     }
 
-    console.log(child.props.className);
-
     const classNames = child.props.className
       .split(' ')
       .filter((className) => !className.match(/border-.+-[0-9]+/))

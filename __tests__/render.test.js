@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
-import RhythmischApp from "../pages/index";
+import RhythmischApp from "../pages/app";
 import { RhythmsProvider } from '../hooks/rhythms';
+import { ThemeProvider } from '../hooks/theme';
 import { setLocalStorageRhythms } from '../hooks/rhythms/local-storage';
 import "@testing-library/jest-dom/extend-expect";
 
@@ -8,9 +9,11 @@ let rendered;
 
 function setup() {
   rendered = render(
-    <RhythmsProvider>
-      <RhythmischApp />
-    </RhythmsProvider>
+    <ThemeProvider>
+      <RhythmsProvider>
+        <RhythmischApp />
+      </RhythmsProvider>
+    </ThemeProvider>
   );
 };
 
@@ -19,18 +22,13 @@ describe('render' , () => {
     setup();
   });
 
-  it("renders the Rhythmisch header text", () => {
-    const headerText = rendered.getByText('Rhythmisch', { exact: true , selector: 'header > *' });
-    expect(headerText).toBeInTheDocument();
-  });
-
   it("renders an Add button", () => {
     const addButton = rendered.getByRole('button', { name: 'Add' });
     expect(addButton).toBeInTheDocument();
   });
 
   it("renders the default Rhythm", () => {
-    const action = rendered.getByText('Use Rhythmisch');
+    const action = rendered.getByText('Use Rhythmisch on this device');
     expect(action).toBeInTheDocument();
 
     const frequency = rendered.getByText('once every day');

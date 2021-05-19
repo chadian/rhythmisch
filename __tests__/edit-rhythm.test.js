@@ -1,14 +1,17 @@
-import RhythmischApp from "../pages/index";
+import RhythmischApp from "../pages/app";
 import { RhythmsProvider } from "../hooks/rhythms";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
+import { ThemeProvider } from "../hooks/theme";
 
 beforeEach(() => {
   render(
-    <RhythmsProvider>
-      <RhythmischApp />
-    </RhythmsProvider>
+    <ThemeProvider>
+      <RhythmsProvider>
+        <RhythmischApp />
+      </RhythmsProvider>
+    </ThemeProvider>
   );
 });
 
