@@ -45,7 +45,7 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
       };
 
       return (
-        <li key={daysAgo} className="mr-auto">
+        <li key={daysAgo} className="flex mr-auto">
           <Occurrence
             open={false}
             onClick={toggleHit}
@@ -68,8 +68,10 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
           because {rhythm.reason}
         </div>
       </div>
-      <ul className="flex mt-3 md:mt-5 md:mr-4">{occurrences}</ul>
-      <div className="absolute z-20 right-2 -mt-6 md:right-3 md:-mt-8">
+      <ul className="flex mt-3 md:mt-5 md:mr-4 mr-2">
+        {occurrences}
+      </ul>
+      <div className="absolute z-20 right-2 -mt-4 md:right-3 md:-mt-6">
         <Occurrence
           cooldown={hitToday ? 1 : 0}
           open={true}
