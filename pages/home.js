@@ -112,7 +112,7 @@ export function Home() {
         <SectionHeading>Thoughts?</SectionHeading>
         <SectionParagraph>
           Learn more about the app on the{" "}
-          <Link href="https://github.com/chadian/rhythmisch">FAQ page</Link>.
+          <Link href="/faq">FAQ page</Link>.
           Send any questions or comments to me on{" "}
           <Link href="https://twitter.com/chadian">twitter</Link>.
         </SectionParagraph>
