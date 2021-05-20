@@ -196,7 +196,7 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
               aria-label="Rhythm reason description"
               aria-required="true"
               placeholder="it will bring positive change"
-              autocapitalize="none"
+              autoCapitalize="none"
               value={rhythmReason}
               onChange={(event) => setRhythmReason(event.target.value)}
             />
