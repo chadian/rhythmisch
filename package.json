@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@rehooks/local-storage": "^2.4.0",
@@ -30,7 +32,14 @@
     "tailwindcss": "^2.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/react": "6.2.9",
     "@testing-library/user-event": "^13.1.2",
+    "babel-loader": "^8.2.2",
     "jest-localstorage-mock": "^2.4.9"
   }
 }
