@@ -42,42 +42,6 @@ export function Home() {
       </section>
 
       <section>
-        <SectionHeading>Focus on today</SectionHeading>
-        <SectionParagraph>
-          Rhythmisch gives you{" "}
-          <Highlight>
-            <strong>one</strong> daily focus
-          </Highlight>{" "}
-          to track a completed habit.
-        </SectionParagraph>
-        <div className="relative flex h-24">
-          <p className="my-auto text-lg text-gray-500 mr-16">
-            <span className="font-bold">
-              For example, go ahead give the circle in the stripe a click! 👉
-            </span>
-            <br />
-            Current status:{" "}
-            {cooldown === 1 ? (
-              <span className={theme.buttonTextColor}>
-                <strong>You've done it</strong>
-              </span>
-            ) : (
-              "Not yet done for today"
-            )}
-          </p>
-          <div className="z-30 absolute right-2 md:right-3 top-9">
-            <Occurrence
-              cooldown={cooldown}
-              onClick={() => setCooldown(cooldown === 0 ? 1 : 0)}
-              open={true}
-              date={new Date()}
-            />
-          </div>
-          <Stripe />
-        </div>
-      </section>
-
-      <section>
         <SectionHeading>Habits built on Rhythms</SectionHeading>
         <SectionParagraph>
           A <em>rhythm</em> represents the habit you are trying to build.{" "}
@@ -101,6 +65,41 @@ export function Home() {
       </section>
 
       <section>
+        <SectionHeading>Focus on today</SectionHeading>
+        <SectionParagraph>
+          Rhythmisch gives you{" "}
+          <Highlight>
+            <strong>one</strong> daily target
+          </Highlight>{" "}
+          to track per rhythm. Each rhythm has a circle in a stripe,
+          solid when it's completed and blurry when it isn't.
+        </SectionParagraph>
+        <div className="relative flex h-24">
+          <p className="my-auto text-lg text-gray-500 mr-16">
+            <strong>Go ahead give the test target a click! 👉</strong>
+            <br />
+            Current status:{" "}
+            {cooldown === 1 ? (
+              <span className={theme.buttonTextColor}>
+                <strong>You've done it</strong>
+              </span>
+            ) : (
+              "Not yet done for today"
+            )}
+          </p>
+          <div className="z-30 absolute right-2 md:right-3 top-9">
+            <Occurrence
+              cooldown={cooldown}
+              onClick={() => setCooldown(cooldown === 0 ? 1 : 0)}
+              open={true}
+              date={new Date()}
+            />
+          </div>
+          <Stripe />
+        </div>
+      </section>
+
+      <section>
         <SectionHeading>Open & Free</SectionHeading>
         <SectionParagraph>
           Rhythmisch doesn't cost anything and the code is open source on{" "}
@@ -111,8 +110,7 @@ export function Home() {
       <section>
         <SectionHeading>Thoughts?</SectionHeading>
         <SectionParagraph>
-          Learn more about the app on the{" "}
-          <Link href="/faq">FAQ page</Link>.
+          Learn more about the app on the <Link href="/faq">FAQ page</Link>.
           Send any questions or comments to me on{" "}
           <Link href="https://twitter.com/chadian">twitter</Link>.
         </SectionParagraph>
