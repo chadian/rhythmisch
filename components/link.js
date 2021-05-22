@@ -26,10 +26,10 @@ export default function Link({
   const className = classNames.join(" ");
 
   return (
-    <NextLink href={href}>
-      <span {...attrs} className={className}>
+    <NextLink passHref={true} href={href}>
+      <a {...attrs} className={className}>
         {children}
-      </span>
+      </a>
     </NextLink>
   );
 }
