@@ -27,7 +27,9 @@ export function Home() {
         <h2 className="text-5xl text-gray-800">Let's get rhythmical</h2>
         <p className="text-3xl text-gray-700 mt-5">
           Rhythmisch is an app to help you build habits.{" "}
-          <Link href="/app">Check out the app.</Link>
+          <Link attrs={{className: "whitespace-nowrap"}} href="/app">
+            Check out the app.
+          </Link>
         </p>
       </section>
 
