@@ -5,9 +5,9 @@ export { themeKeys, themeDefinitions };
 
 const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeProvider = ({ value, children }) => {
   const { theme: localStorageTheme } = getLocalStorageTheme() ?? {};
-  const initialThemeName = localStorageTheme ?? DEFAULT_THEME;
+  const initialThemeName = value ?? localStorageTheme ?? DEFAULT_THEME;
   const [themeName, setThemeName] = useState(initialThemeName);
 
   const saveTheme = (theme) => {
@@ -18,6 +18,13 @@ export const ThemeProvider = ({ children }) => {
   };
 
   const themeDefinition = themeDefinitions.find(themeDefinition => themeDefinition.themeName === themeName);
+
+  if (!themeDefinition) {
+    const possibleThemes = themeDefinitions.map(def => def.themeName).join(', ');
+    throw new Error(
+      `No theme definition found for theme ${themeName}. Possible themes are ${possibleThemes}}`
+    );
+  }
 
   return (
     <ThemeContext.Provider value={[themeDefinition, saveTheme]}>

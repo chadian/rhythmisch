@@ -43,6 +43,7 @@ module.exports = {
   purge: [
     "./pages/**/*.js",
     "./components/**/*.js",
+    "./components/**/*.mdx",
     "./hooks/**/*.js",
     "./utils/**/*.js",
   ],

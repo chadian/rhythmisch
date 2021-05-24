@@ -1,0 +1,96 @@
+import { ThemeProvider } from '../hooks/theme';
+import Link from './link';
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+
+<Meta
+  title="Components/Link"
+  component={Link}
+  argTypes={{
+    href: { control: "text" },
+  }}
+  args={{
+    href: 'https://rhythmisch.com'
+  }}
+/>
+
+# Link
+
+The `Link` component wraps a `@next/link` component with the global theme applied
+and provides some extra options. This component requires a `ThemeProvider` somewhere in the parent render tree.
+
+👋🏽 `ThemeProvider` is likely already included in the app and doesn't need to be included when copying these examples.
+
+<Canvas>
+  <Story name="Basic">
+    {args =>
+      <ThemeProvider>
+        <Link {...args}>Check out the app</Link>
+      </ThemeProvider>
+    }
+  </Story>
+</Canvas>
+
+The `underline` prop can control whether an underline is displayed, defaults to `true`.
+
+<Canvas>
+  <Story name="Without Underline" args={{ underline: false }}>
+    {args =>
+      <ThemeProvider>
+        <Link {...args}>Check out the app</Link>
+      </ThemeProvider>
+    }
+  </Story>
+</Canvas>
+
+There are two underline offset options, `sm` and `md` to control how close the underline is set below
+the link.
+
+<Canvas>
+  <Story name="Underline Offset" args={{ underlineOffset: "sm" }} argTypes={{ underlineOffset: { control: { type: 'inline-radio', options: ['sm', 'md'] }}}}>
+    {args =>
+      <ThemeProvider>
+        <Link {...args}>Check out the app</Link>
+      </ThemeProvider>
+    }
+  </Story>
+</Canvas>
+
+Any additional attributes can be spread on to the anchor link by using the `attrs` prop.
+The attribute names should be camelcased as expected by React and JSX. For example,
+including `target: '_blank'` on the `attrs` prop adds the `target` attribute to the anchor.
+
+<Canvas>
+  <Story name="Custom Attributes" args={{ attrs: { target: '_blank' } }}>
+    {args =>
+      <ThemeProvider>
+        <Link {...args}>Check out the app</Link>
+      </ThemeProvider>
+    }
+  </Story>
+</Canvas>
+
+
+Also, `className` can be applied via the `attrs` hash.
+
+<Canvas>
+  <Story name="Custom Class Name" args={{ attrs: { className: 'font-extrabold' } }}>
+    {args =>
+      <ThemeProvider>
+        <Link {...args}>Check out the app</Link>
+      </ThemeProvider>
+    }
+  </Story>
+</Canvas>
+
+Lastly, the link can be themed by the `ThemeProvider`. This is not something that
+can be controlled via the `Link` props.
+
+<Canvas>
+  <Story name="Themed by ThemeProvider">
+    {args =>
+      <ThemeProvider value="heroku">
+        <Link {...args}>Check out the app</Link>
+      </ThemeProvider>
+    }
+  </Story>
+</Canvas>
