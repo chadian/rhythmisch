@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../hooks/theme/index';
 
 export default function Stripe() {

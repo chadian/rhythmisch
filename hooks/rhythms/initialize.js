@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { getLocalStorageRhythms, setLocalStorageRhythms } from './local-storage';
+import { getLocalStorageRhythms } from './local-storage';
 
 export function initializeRhythms() {
   let rhythms = [];

@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from "next/head";
 import { useState } from "react";
 import { useRhythms } from "../hooks/rhythms/index";

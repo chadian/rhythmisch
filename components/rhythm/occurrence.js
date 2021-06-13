@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../hooks/theme/index';
 import { format } from 'date-fns';
 import chroma from "chroma-js";

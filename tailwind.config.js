@@ -25,7 +25,7 @@ function addColorCssProperties({ addComponents, config }) {
   for (const color in colors) {
     const colorObj = colors[color];
 
-    for (colorKey in colorObj) {
+    for (const colorKey in colorObj) {
       const hexValue = colorObj[colorKey].toString();
       const cssPropertyName = `--color-${color}-${colorKey}`.replace(
         /-default$/,

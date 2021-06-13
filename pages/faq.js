@@ -1,4 +1,4 @@
-import { useTheme } from "../hooks/theme/index";
+import React from "react";
 import {
   SectionHeading,
   SectionParagraph,
@@ -6,8 +6,6 @@ import {
 import Link from "../components/link";
 
 export default function Home() {
-  const [theme] = useTheme();
-
   return (
     <>
       <main className="flex flex-col space-y-16">
@@ -33,8 +31,8 @@ export default function Home() {
               local storage
             </Link>
             . Each browser, on <em>each device</em>, has its own local storage.
-            You can use Rhythmisch on different browsers and different devices but
-            the data won't be synced or shared.
+            You can use Rhythmisch on different browsers and different devices
+            but the data won't be synced or shared.
           </SectionParagraph>
         </section>
 

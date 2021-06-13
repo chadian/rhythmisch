@@ -1,3 +1,4 @@
+import React from 'react';
 import FocusLock from "react-focus-lock";
 
 export default function Modal({ children }) {

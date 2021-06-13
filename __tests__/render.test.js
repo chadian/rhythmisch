@@ -1,3 +1,4 @@
+import React from 'react';
 import { render } from "@testing-library/react";
 import RhythmischApp from "../pages/app";
 import { RhythmsProvider } from '../hooks/rhythms';

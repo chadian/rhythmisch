@@ -1,3 +1,4 @@
+import React from 'react';
 import Rhythm from "./rhythm/rhythm";
 import Button from './button';
 import { useRhythms } from '../hooks/rhythms';

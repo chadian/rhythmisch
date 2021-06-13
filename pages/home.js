@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { useState } from "react";
 import { useTheme } from "../hooks/theme/index";
 import Link from "../components/link";
 import Occurrence from "../components/rhythm/occurrence";

@@ -1,3 +1,4 @@
+import React from "react";
 import { default as NextLink } from "next/link";
 import { useTheme } from "../hooks/theme/index";
 
@@ -16,7 +17,7 @@ export default function Link({
   href = href ?? attrs.href;
 
   const classNames = (attrs.className ?? "").split(" ");
-  classNames.push('cursor-pointer', theme.linkColor);
+  classNames.push("cursor-pointer", theme.linkColor);
 
   if (underline) {
     classNames.push("underline");

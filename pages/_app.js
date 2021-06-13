@@ -1,3 +1,4 @@
+import React from 'react';
 import "../styles/globals.css";
 import dynamic from "next/dynamic";
 import { RhythmsProvider } from "../hooks/rhythms/index";

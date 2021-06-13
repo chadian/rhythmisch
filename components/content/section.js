@@ -1,3 +1,5 @@
+import React from "react";
+
 export function SectionHeading({ children }) {
   return <h3 className="text-3xl text-gray-800 font-bold mb-4">{children}</h3>;
 }

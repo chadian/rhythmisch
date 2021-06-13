@@ -1,10 +1,13 @@
-import { useTheme, themeKeys, themeDefinitions } from '../hooks/theme/index';
+import React from "react";
+import { useTheme, themeKeys, themeDefinitions } from "../hooks/theme/index";
 
 export default function ThemeSelector() {
-  const [ currentThemeDefinition, saveTheme ] = useTheme();
+  const [currentThemeDefinition, saveTheme] = useTheme();
 
-  const themeSelectors = themeKeys.map(key => {
-    const themeDefinition = themeDefinitions.find(themeDefinition => themeDefinition.themeName === key);
+  const themeSelectors = themeKeys.map((key) => {
+    const themeDefinition = themeDefinitions.find(
+      (themeDefinition) => themeDefinition.themeName === key
+    );
     const selectorColor = themeDefinition.stripeBgClass;
     const saveSelectedTheme = () => saveTheme(key);
     const classNames = [
@@ -24,7 +27,7 @@ export default function ThemeSelector() {
       classNames.push("scale-150");
     }
 
-    const className = classNames.join(' ');
+    const className = classNames.join(" ");
     return (
       <button key={key} onClick={saveSelectedTheme}>
         <div className="p-3 -m-3">
@@ -34,5 +37,7 @@ export default function ThemeSelector() {
     );
   });
 
-  return <div className="ml-1 flex space-x-7 items-center">{themeSelectors}</div>;
+  return (
+    <div className="ml-1 flex space-x-7 items-center">{themeSelectors}</div>
+  );
 }

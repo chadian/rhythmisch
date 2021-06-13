@@ -1,14 +1,16 @@
-import { useTheme } from '../hooks/theme/index';
+import React from "react";
+import { useTheme } from "../hooks/theme/index";
 
-export default function Button({ children, onClick = () => {} , attrs = {}, size = "large" }) {
-  const [ theme ] = useTheme();
+export default function Button({
+  children,
+  onClick = () => {},
+  attrs = {},
+  size = "large",
+}) {
+  const [theme] = useTheme();
   const { buttonTextColor, buttonBgColor } = theme;
 
-  const {
-    className = '',
-    type: buttonType,
-    ...buttonAttrs
-  } = attrs;
+  const { className = "", type: buttonType, ...buttonAttrs } = attrs;
 
   const largeButtonClassNames = [
     buttonTextColor,

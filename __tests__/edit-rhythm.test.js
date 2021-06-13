@@ -1,3 +1,4 @@
+import React from 'react';
 import RhythmischApp from "../pages/app";
 import { RhythmsProvider } from "../hooks/rhythms";
 import { render, screen } from "@testing-library/react";
