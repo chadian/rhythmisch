@@ -42,7 +42,7 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
       if (lastHitDate) {
         const daysSinceLastHit = differenceInDays(date, lastHitDate);
         cooldown = calculateCooldown(frequencyDenominator, daysSinceLastHit);
-      };
+      }
 
       return (
         <li key={daysAgo} className="flex mr-auto">

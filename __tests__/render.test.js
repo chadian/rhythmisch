@@ -15,7 +15,7 @@ function setup() {
       </RhythmsProvider>
     </ThemeProvider>
   );
-};
+}
 
 describe('render' , () => {
   beforeEach(() => {
