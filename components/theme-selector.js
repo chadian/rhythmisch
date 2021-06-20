@@ -3,13 +3,31 @@ import { useTheme, themeKeys, themeDefinitions } from "../hooks/theme/index";
 
 export default function ThemeSelector() {
   const [currentThemeDefinition, saveTheme] = useTheme();
+  const saveSelectedTheme = (key) => saveTheme(key);
+  const currentThemeIndex = themeKeys.indexOf(currentThemeDefinition.themeName);
+
+  const onKeyDown = (e) => {
+    const RIGHT = 39;
+    const LEFT = 37;
+
+    const previousThemeKey = themeKeys[currentThemeIndex - 1];
+    const nextThemeKey = themeKeys[currentThemeIndex + 1];
+
+    if (e.keyCode === LEFT && previousThemeKey) {
+      saveSelectedTheme(previousThemeKey);
+    }
+
+    if (e.keyCode === RIGHT && nextThemeKey) {
+      saveSelectedTheme(nextThemeKey);
+    }
+  };
 
   const themeSelectors = themeKeys.map((key) => {
     const themeDefinition = themeDefinitions.find(
       (themeDefinition) => themeDefinition.themeName === key
     );
+    const isActiveTheme = currentThemeDefinition.themeName === key;
     const selectorColor = themeDefinition.stripeBgClass;
-    const saveSelectedTheme = () => saveTheme(key);
     const classNames = [
       selectorColor,
       "rounded-full",
@@ -21,23 +39,43 @@ export default function ThemeSelector() {
       "h-4",
       "md:w-6",
       "md:h-6",
+      "cursor-pointer",
     ];
 
-    if (currentThemeDefinition.themeName === key) {
+    if (isActiveTheme) {
       classNames.push("scale-150");
     }
 
+    const onClick = () => {
+      saveSelectedTheme(key);
+    };
+
     const className = classNames.join(" ");
     return (
-      <button key={key} onClick={saveSelectedTheme}>
+      <div
+        role="radio"
+        aria-checked={isActiveTheme}
+        aria-label={themeDefinition.themeName}
+        tabIndex={isActiveTheme ? "0" : "-1"}
+        key={key}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+      >
         <div className="p-3 -m-3">
           <div className={className}></div>
         </div>
-      </button>
+      </div>
     );
   });
 
   return (
-    <div className="ml-1 flex space-x-7 items-center">{themeSelectors}</div>
+    <div
+      className="ml-1 flex space-x-7 items-center"
+      role="radiogroup"
+      aria-label="Theme Options"
+      onKeyDown={onKeyDown}
+    >
+      {themeSelectors}
+    </div>
   );
 }
