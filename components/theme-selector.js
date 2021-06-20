@@ -61,7 +61,7 @@ export default function ThemeSelector() {
         onClick={onClick}
         onKeyDown={onKeyDown}
       >
-        <div className="p-3 -m-3">
+        <div className="p-4 -m-4">
           <div className={className}></div>
         </div>
       </div>
