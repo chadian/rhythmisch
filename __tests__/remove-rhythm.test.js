@@ -5,8 +5,24 @@ import { ThemeProvider } from "../hooks/theme";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
+import { setLocalStorageRhythms } from "../hooks/rhythms/local-storage";
+
+const getLocalStorageRhythms = () => {
+  const localStorageRhythms = JSON.parse(
+    window.localStorage.getItem("app.rhythms")
+  );
+  return localStorageRhythms;
+};
 
 beforeEach(() => {
+  setLocalStorageRhythms([{
+    id: 'local-storage-rhythm',
+    action: 'pass this test',
+    reason: 'tests should pass',
+    frequency: [1, 1],
+    hits: [],
+  }]);
+
   render(
     <ThemeProvider>
       <RhythmsProvider>
@@ -17,9 +33,11 @@ beforeEach(() => {
 });
 
 it("can delete an existing rhythm", () => {
-  const action = screen.getByText("Use Rhythmisch on this device");
+  expect(getLocalStorageRhythms()).toHaveLength(1);
+
+  const action = screen.getByText("Pass this test");
   const frequency = screen.getByText("once every day");
-  const reason = screen.getByText("because I want to get into the rhythm");
+  const reason = screen.getByText("because tests should pass");
 
   expect(action).toBeInTheDocument();
   expect(frequency).toBeInTheDocument();
@@ -31,4 +49,6 @@ it("can delete an existing rhythm", () => {
   expect(action).not.toBeInTheDocument();
   expect(frequency).not.toBeInTheDocument();
   expect(reason).not.toBeInTheDocument();
+
+  expect(getLocalStorageRhythms()).toHaveLength(0);
 });
