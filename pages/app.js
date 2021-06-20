@@ -36,7 +36,7 @@ function RhythmischApp() {
       </Head>
 
       {modalIsOpen ? (
-        <Modal>
+        <Modal onClose={() => setModal(false)}>
           <div
             className="max-w-full container mx-4 md:mx-3"
             style={{ marginTop: "-15%" }}
