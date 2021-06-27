@@ -6,15 +6,15 @@ import Occurrence from "../components/rhythm/occurrence";
 import Rhythm from "../components/rhythm/rhythm";
 import Stripe from "../components/stripe";
 import { subDays } from "date-fns";
-import { SectionHeading, SectionParagraph } from '../components/content/section';
-
+import {
+  SectionHeading,
+  SectionParagraph,
+} from "../components/content/section";
 
 function Highlight({ children }) {
   const [theme] = useTheme();
 
-  return <span className={`${theme.linkColor} text-bold`}>
-    {children}
-  </span>;
+  return <span className={`${theme.linkColor} text-bold`}>{children}</span>;
 }
 
 export function Home() {
@@ -27,7 +27,7 @@ export function Home() {
         <h2 className="text-5xl text-gray-800">Let's get rhythmical</h2>
         <p className="text-3xl text-gray-700 mt-5">
           Rhythmisch is an app to help you build habits.{" "}
-          <Link attrs={{className: "whitespace-nowrap"}} href="/app">
+          <Link attrs={{ className: "whitespace-nowrap" }} href="/app">
             Check out the app.
           </Link>
         </p>
@@ -73,8 +73,8 @@ export function Home() {
           <Highlight>
             <strong>one</strong> daily target
           </Highlight>{" "}
-          to track per rhythm. Each rhythm has a circle in a stripe,
-          solid when it's completed and blurry when it isn't.
+          to track per rhythm. Each rhythm has a circle in a stripe, solid when
+          it's completed and blurry when it isn't.
         </SectionParagraph>
         <div className="relative flex h-24">
           <p className="my-auto text-lg text-gray-500 mr-16">
@@ -102,9 +102,9 @@ export function Home() {
       </section>
 
       <section>
-        <SectionHeading>Open & Free</SectionHeading>
+        <SectionHeading>Open and Free</SectionHeading>
         <SectionParagraph>
-          Rhythmisch doesn't cost anything and the code is open source on{" "}
+          Rhythmisch does not cost anything and the code is open source on{" "}
           <Link href="https://github.com/chadian/rhythmisch">GitHub</Link>.
         </SectionParagraph>
       </section>
