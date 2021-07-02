@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { useTheme } from "../hooks/theme/index";
-import Link from "../components/link";
-import Occurrence from "../components/rhythm/occurrence";
-import Rhythm from "../components/rhythm/rhythm";
-import Stripe from "../components/stripe";
-import { subDays } from "date-fns";
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useTheme } from '../hooks/theme/index';
+import Link from '../components/link';
+import Occurrence from '../components/rhythm/occurrence';
+import Rhythm from '../components/rhythm/rhythm';
+import Stripe from '../components/stripe';
+import { subDays } from 'date-fns';
 import {
   SectionHeading,
   SectionParagraph,
-} from "../components/content/section";
+} from '../components/content/section';
 
 function Highlight({ children }) {
   const [theme] = useTheme();
@@ -26,8 +26,8 @@ export function Home() {
       <section>
         <h2 className="text-5xl text-gray-800">Let's get rhythmical</h2>
         <p className="text-3xl text-gray-700 mt-5">
-          Rhythmisch is an app to help you build habits.{" "}
-          <Link attrs={{ className: "whitespace-nowrap" }} href="/app">
+          Rhythmisch is an app to help you build habits.{' '}
+          <Link attrs={{ className: 'whitespace-nowrap' }} href="/app">
             Check out the app.
           </Link>
         </p>
@@ -37,7 +37,7 @@ export function Home() {
         <SectionHeading>Keep it simple</SectionHeading>
         <SectionParagraph>
           No accounts, streaks, leaderboards, metrics or anything else to get in
-          the way. It's ready for you to{" "}
+          the way. It's ready for you to{' '}
           <Link href="/app">get started now</Link>. Your data is stored on your
           device and is never sent anywhere.
         </SectionParagraph>
@@ -46,15 +46,15 @@ export function Home() {
       <section>
         <SectionHeading>Habits built on Rhythms</SectionHeading>
         <SectionParagraph>
-          A <em>rhythm</em> represents the habit you are trying to build.{" "}
+          A <em>rhythm</em> represents the habit you are trying to build.{' '}
           <Highlight>What, how often, and why.</Highlight>
         </SectionParagraph>
         <div className="transform scale-50 px-2 my-2">
           <Rhythm
             rhythm={{
               frequency: [1, 4],
-              action: "Run",
-              reason: "I want to run a marathon this year",
+              action: 'Run',
+              reason: 'I want to run a marathon this year',
               hits: [subDays(new Date(), 2), subDays(new Date(), 11)],
             }}
           />
@@ -69,10 +69,10 @@ export function Home() {
       <section>
         <SectionHeading>Focus on today</SectionHeading>
         <SectionParagraph>
-          Rhythmisch gives you{" "}
+          Rhythmisch gives you{' '}
           <Highlight>
             <strong>one</strong> daily target
-          </Highlight>{" "}
+          </Highlight>{' '}
           to track per rhythm. Each rhythm has a circle in a stripe, solid when
           it's completed and blurry when it isn't.
         </SectionParagraph>
@@ -80,13 +80,13 @@ export function Home() {
           <p className="my-auto text-lg text-gray-500 mr-16">
             <strong>Go ahead give the test target a click! 👉</strong>
             <br />
-            Current status:{" "}
+            Current status:{' '}
             {cooldown === 1 ? (
               <span className={theme.buttonTextColor}>
                 <strong>You've done it</strong>
               </span>
             ) : (
-              "Not yet done for today"
+              'Not yet done for today'
             )}
           </p>
           <div className="z-30 absolute right-2 md:right-3 top-9">
@@ -104,7 +104,7 @@ export function Home() {
       <section>
         <SectionHeading>Open and Free</SectionHeading>
         <SectionParagraph>
-          Rhythmisch does not cost anything and the code is open source on{" "}
+          Rhythmisch does not cost anything and the code is open source on{' '}
           <Link href="https://github.com/chadian/rhythmisch">GitHub</Link>.
         </SectionParagraph>
       </section>
@@ -113,7 +113,7 @@ export function Home() {
         <SectionHeading>Thoughts?</SectionHeading>
         <SectionParagraph>
           Learn more about the app on the <Link href="/faq">FAQ page</Link>.
-          Send any questions or comments to me on{" "}
+          Send any questions or comments to me on{' '}
           <Link href="https://twitter.com/chadian">twitter</Link>.
         </SectionParagraph>
       </section>

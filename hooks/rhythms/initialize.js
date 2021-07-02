@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from 'nanoid';
 import { getLocalStorageRhythms } from './local-storage';
 
 export function initializeRhythms() {
@@ -8,7 +8,7 @@ export function initializeRhythms() {
   // otherwise we're it's being SSR'd
   // TODO: Turn off SSR for what ends up being the
   // app route
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     const localStorageRhythms = getLocalStorageRhythms();
 
     if (localStorageRhythms) {
@@ -16,9 +16,9 @@ export function initializeRhythms() {
     } else {
       const defaultRhythm = {
         id: nanoid(),
-        action: "Use Rhythmisch on this device",
+        action: 'Use Rhythmisch on this device',
         frequency: [1, 1],
-        reason: "I want to get into the rhythm",
+        reason: 'I want to get into the rhythm',
         hits: [],
       };
 

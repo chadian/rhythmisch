@@ -1,4 +1,4 @@
-const THEME_LOCAL_STORAGE_KEY = "app.theme";
+const THEME_LOCAL_STORAGE_KEY = 'app.theme';
 
 export function getLocalStorageTheme() {
   try {
@@ -11,5 +11,8 @@ export function getLocalStorageTheme() {
 }
 
 export function setLocalStorageTheme(themeData) {
-  window.localStorage.setItem(THEME_LOCAL_STORAGE_KEY, JSON.stringify(themeData));
+  window.localStorage.setItem(
+    THEME_LOCAL_STORAGE_KEY,
+    JSON.stringify(themeData)
+  );
 }

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {
   SectionHeading,
   SectionParagraph,
-} from "../components/content/section";
-import Link from "../components/link";
+} from '../components/content/section';
+import Link from '../components/link';
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
           </SectionHeading>
           <SectionParagraph>
             A: Rhythmisch data is stored locally on your device using a browser
-            technology called{" "}
+            technology called{' '}
             <Link href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">
               local storage
             </Link>
@@ -43,7 +43,7 @@ export default function Home() {
             distractions and that you're able to easily kickstart the habit into
             action. Once you're rolling there are plenty of other apps, tools,
             techniques to upgrade to that provide more advanced features. That
-            said, feel free to reach out on{" "}
+            said, feel free to reach out on{' '}
             <Link href="https://twitter.com/chadian">twitter</Link> with any
             ideas, I would still love to hear them.
           </SectionParagraph>
@@ -54,7 +54,7 @@ export default function Home() {
             Q: My question wasn't answered, can I get some help?
           </SectionHeading>
           <SectionParagraph>
-            A: Sure, send me a question or feedback on{" "}
+            A: Sure, send me a question or feedback on{' '}
             <Link href="https://twitter.com/chadian">twitter</Link>.
           </SectionParagraph>
         </section>

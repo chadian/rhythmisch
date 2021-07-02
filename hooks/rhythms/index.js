@@ -1,14 +1,14 @@
-import React, { createContext, useContext, useReducer } from "react";
-import { nanoid } from "nanoid";
+import React, { createContext, useContext, useReducer } from 'react';
+import { nanoid } from 'nanoid';
 import produce from 'immer';
 import { setLocalStorageRhythms } from './local-storage';
 import { initializeRhythms } from './initialize';
-import { startOfDay, endOfDay, isWithinInterval } from "date-fns";
+import { startOfDay, endOfDay, isWithinInterval } from 'date-fns';
 
 const RhythmsContext = createContext();
 
 function rhythmsReducer(rhythms, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'CREATE': {
       const { rhythm } = action.payload;
 
@@ -68,7 +68,7 @@ function rhythmsReducer(rhythms, action) {
             start: startOfDay(new Date()),
             end: endOfDay(new Date()),
           });
-        }
+        };
 
         // filter out all hits that did not happen today ...
         const filteredHits = foundRhythm.hits.filter(

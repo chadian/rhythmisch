@@ -8,7 +8,7 @@ export function ValidationWrapper({ hasSubmitted, error, children }) {
   const errorId = `vw-error-${getErrorIdCount()}`;
   const showError = hasSubmitted && error;
 
-  const wrappedChildren = React.Children.map(children, child => {
+  const wrappedChildren = React.Children.map(children, (child) => {
     const isFormElement = ['select', 'input'].includes(child.type);
     if (!showError || !isFormElement) {
       return child;
@@ -21,19 +21,18 @@ export function ValidationWrapper({ hasSubmitted, error, children }) {
 
     const updatedClassName = [
       classNames,
-      showError ? "border-red-700" : "",
-    ].join(" ");
+      showError ? 'border-red-700' : '',
+    ].join(' ');
 
     return React.cloneElement(child, {
       className: updatedClassName,
-      ["aria-invalid"]: true,
+      ['aria-invalid']: true,
       ['aria-describedby']: errorId,
     });
   });
 
   return (
-    <div
-      className="inline-block">
+    <div className="inline-block">
       {wrappedChildren}
       {showError ? (
         <div id={errorId} className="text-base mt-1 text-red-700">

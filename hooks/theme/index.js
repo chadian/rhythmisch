@@ -1,6 +1,10 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from 'react';
 import { getLocalStorageTheme, setLocalStorageTheme } from './local-storage';
-import { themeDefinitions, DEFAULT_THEME, themeKeys } from './theme-definitions';
+import {
+  themeDefinitions,
+  DEFAULT_THEME,
+  themeKeys,
+} from './theme-definitions';
 export { themeKeys, themeDefinitions };
 
 const ThemeContext = createContext();
@@ -17,10 +21,14 @@ export const ThemeProvider = ({ value, children }) => {
     }
   };
 
-  const themeDefinition = themeDefinitions.find(themeDefinition => themeDefinition.themeName === themeName);
+  const themeDefinition = themeDefinitions.find(
+    (themeDefinition) => themeDefinition.themeName === themeName
+  );
 
   if (!themeDefinition) {
-    const possibleThemes = themeDefinitions.map(def => def.themeName).join(', ');
+    const possibleThemes = themeDefinitions
+      .map((def) => def.themeName)
+      .join(', ');
     throw new Error(
       `No theme definition found for theme ${themeName}. Possible themes are ${possibleThemes}}`
     );

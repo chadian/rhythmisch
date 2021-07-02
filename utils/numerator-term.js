@@ -1,19 +1,19 @@
 export function numeratorTerm(number) {
   switch (number) {
     case 1:
-      return 'once'
+      return 'once';
     case 2:
-      return 'twice'
+      return 'twice';
     case 3:
-      return 'thrice'
+      return 'thrice';
     case 4:
-      return 'four times'
+      return 'four times';
     case 5:
-      return 'five times'
+      return 'five times';
     case 6:
-      return 'six times'
+      return 'six times';
     case 7:
-      return 'seven times'
+      return 'seven times';
   }
 
   throw new Error(`${number} is outside the range for a numerator term`);

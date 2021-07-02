@@ -1,5 +1,5 @@
 import React from 'react';
-import Rhythm from "./rhythm/rhythm";
+import Rhythm from './rhythm/rhythm';
 import Button from './button';
 import { useRhythms } from '../hooks/rhythms';
 
@@ -8,10 +8,10 @@ export default function RhythmList({ onEdit }) {
 
   const onTodayToggle = (rhythm, wasHit) => {
     return rhythmsDispatch({
-      type: "HIT_TODAY",
+      type: 'HIT_TODAY',
       payload: { id: rhythm.id, hitToday: wasHit },
     });
-  }
+  };
 
   const rhythmsList = rhythms.map((rhythm) => {
     return (
@@ -21,17 +21,14 @@ export default function RhythmList({ onEdit }) {
           onTodaysOccurrenceToggle={(wasHit) => onTodayToggle(rhythm, wasHit)}
         />
         <div className="mt-1 md:mt-3 space-x-5">
-          <Button
-            size="small"
-            onClick={() => onEdit(rhythm)}
-          >
+          <Button size="small" onClick={() => onEdit(rhythm)}>
             Edit
           </Button>
           <Button
             size="small"
             onClick={() =>
               rhythmsDispatch({
-                type: "DELETE",
+                type: 'DELETE',
                 payload: { id: rhythm.id },
               })
             }

@@ -1,5 +1,5 @@
-import React from "react";
-import { useTheme, themeKeys, themeDefinitions } from "../hooks/theme/index";
+import React from 'react';
+import { useTheme, themeKeys, themeDefinitions } from '../hooks/theme/index';
 
 export default function ThemeSelector() {
   const [currentThemeDefinition, saveTheme] = useTheme();
@@ -30,33 +30,33 @@ export default function ThemeSelector() {
     const selectorColor = themeDefinition.stripeBgClass;
     const classNames = [
       selectorColor,
-      "rounded-full",
-      "transform",
-      "transition-all",
-      "duration-75",
-      "ease-in",
-      "w-4",
-      "h-4",
-      "md:w-6",
-      "md:h-6",
-      "cursor-pointer",
+      'rounded-full',
+      'transform',
+      'transition-all',
+      'duration-75',
+      'ease-in',
+      'w-4',
+      'h-4',
+      'md:w-6',
+      'md:h-6',
+      'cursor-pointer',
     ];
 
     if (isActiveTheme) {
-      classNames.push("scale-150");
+      classNames.push('scale-150');
     }
 
     const onClick = () => {
       saveSelectedTheme(key);
     };
 
-    const className = classNames.join(" ");
+    const className = classNames.join(' ');
     return (
       <div
         role="radio"
         aria-checked={isActiveTheme}
         aria-label={themeDefinition.themeName}
-        tabIndex={isActiveTheme ? "0" : "-1"}
+        tabIndex={isActiveTheme ? '0' : '-1'}
         key={key}
         onClick={onClick}
         onKeyDown={onKeyDown}

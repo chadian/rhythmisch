@@ -1,26 +1,30 @@
-import React, { useState } from "react";
-import Button from "../button";
-import { denominatorTerm } from "../../utils/denominator-term";
-import { numeratorTerm } from "../../utils/numerator-term";
+import React, { useState } from 'react';
+import Button from '../button';
+import { denominatorTerm } from '../../utils/denominator-term';
+import { numeratorTerm } from '../../utils/numerator-term';
 import { ValidationWrapper } from './validated-wrapper';
 
 const sharedSelectAndInputClassNames = [
-  "text-gray-800",
-  "text-xl",
-  "md:text-3xl",
-  "border-2",
-  "border-gray-300",
-  "w-full"
+  'text-gray-800',
+  'text-xl',
+  'md:text-3xl',
+  'border-2',
+  'border-gray-300',
+  'w-full',
 ];
 
 const inputClassNames = [
   ...sharedSelectAndInputClassNames,
-  "py-1",
-  "px-2",
-  "placeholder-gray-300",
-].join(" ");
+  'py-1',
+  'px-2',
+  'placeholder-gray-300',
+].join(' ');
 
-const selectClassNames = [...sharedSelectAndInputClassNames, "p-1", "w-48"].join(' ');
+const selectClassNames = [
+  ...sharedSelectAndInputClassNames,
+  'p-1',
+  'w-48',
+].join(' ');
 
 const generateNumeratorSelect = (selected, onChange) => {
   const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
@@ -76,20 +80,18 @@ function validate(rhythm) {
 
     get isValid() {
       return (
-        !this.errors.action &&
-        !this.errors.frequency &&
-        !this.errors.reason
+        !this.errors.action && !this.errors.frequency && !this.errors.reason
       );
-    }
+    },
   };
 
   const requiredError = 'This is a required field';
 
-  if (typeof rhythm.action !== "string" || rhythm.action.length === 0) {
+  if (typeof rhythm.action !== 'string' || rhythm.action.length === 0) {
     result.errors.action = requiredError;
   }
 
-  if (typeof rhythm.reason !== "string" || rhythm.reason.length === 0) {
+  if (typeof rhythm.reason !== 'string' || rhythm.reason.length === 0) {
     result.errors.reason = requiredError;
   }
 
@@ -137,23 +139,26 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
     setRhythmFrequency([numeratorValue, denominatorValue]);
   });
 
-  const denominatorSelect = generateDenominatorSelect(rhythmDenominator, (e) => {
-    let numeratorValue = rhythmNumerator;
-    let denominatorValue = Number(e.target.value);
+  const denominatorSelect = generateDenominatorSelect(
+    rhythmDenominator,
+    (e) => {
+      let numeratorValue = rhythmNumerator;
+      let denominatorValue = Number(e.target.value);
 
-    if (numeratorValue === denominatorValue) {
-      numeratorValue = 1;
-      denominatorValue = 1;
+      if (numeratorValue === denominatorValue) {
+        numeratorValue = 1;
+        denominatorValue = 1;
+      }
+
+      setRhythmFrequency([numeratorValue, denominatorValue]);
     }
-
-    setRhythmFrequency([numeratorValue, denominatorValue]);
-  });
+  );
 
   return (
     <form onSubmit={submitHandler}>
       <Button
         onClick={() => onClose()}
-        attrs={{ className: "absolute top-8 right-8" }}
+        attrs={{ className: 'absolute top-8 right-8' }}
       >
         Close
       </Button>
@@ -202,8 +207,8 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
             />
           </ValidationWrapper>
         </div>
-        <Button attrs={{ type: "submit", className: "" }}>
-          {rhythm.id ? "Update" : "Create"}
+        <Button attrs={{ type: 'submit', className: '' }}>
+          {rhythm.id ? 'Update' : 'Create'}
         </Button>
       </div>
     </form>

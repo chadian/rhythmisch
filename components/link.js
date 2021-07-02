@@ -1,6 +1,6 @@
-import React from "react";
-import { default as NextLink } from "next/link";
-import { useTheme } from "../hooks/theme/index";
+import React from 'react';
+import { default as NextLink } from 'next/link';
+import { useTheme } from '../hooks/theme/index';
 
 export default function Link({
   attrs,
@@ -13,18 +13,18 @@ export default function Link({
 
   attrs = attrs ?? {};
   underline = underline ?? true;
-  underlineOffset = underlineOffset ?? "sm";
+  underlineOffset = underlineOffset ?? 'sm';
   href = href ?? attrs.href;
 
-  const classNames = (attrs.className ?? "").split(" ");
-  classNames.push("cursor-pointer", theme.linkColor);
+  const classNames = (attrs.className ?? '').split(' ');
+  classNames.push('cursor-pointer', theme.linkColor);
 
   if (underline) {
-    classNames.push("underline");
+    classNames.push('underline');
     classNames.push(`underline-offset-${underlineOffset}`);
   }
 
-  const className = classNames.join(" ");
+  const className = classNames.join(' ');
 
   return (
     <NextLink passHref={true} href={href}>

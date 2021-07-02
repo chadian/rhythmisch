@@ -1,7 +1,7 @@
 import produce from 'immer';
-import { formatISO, parseISO } from "date-fns";
+import { formatISO, parseISO } from 'date-fns';
 
-const RHYTHMS_LOCAL_STORAGE_KEY = "app.rhythms";
+const RHYTHMS_LOCAL_STORAGE_KEY = 'app.rhythms';
 
 export function getLocalStorageRhythms() {
   try {
@@ -26,7 +26,7 @@ export function getLocalStorageRhythms() {
 export function setLocalStorageRhythms(rhythms) {
   const updated = produce(rhythms, (draft) => {
     for (const rhythm of draft) {
-      rhythm.hits = rhythm.hits.map(date => {
+      rhythm.hits = rhythm.hits.map((date) => {
         return formatISO(date);
       });
     }

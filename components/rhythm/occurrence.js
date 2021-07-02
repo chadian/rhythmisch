@@ -1,18 +1,23 @@
 import React from 'react';
 import { useTheme } from '../../hooks/theme/index';
 import { format } from 'date-fns';
-import chroma from "chroma-js";
+import chroma from 'chroma-js';
 
 function pullBackgroundColor(backgroundClassName) {
   const cssVariableName = backgroundClassName.replace('bg-', '--color-');
-  const backgroundColor = getComputedStyle(document.body).getPropertyValue(cssVariableName);
-  return backgroundColor.trim() || "#000";
+  const backgroundColor = getComputedStyle(document.body).getPropertyValue(
+    cssVariableName
+  );
+  return backgroundColor.trim() || '#000';
 }
 
 function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
   const colorScaleStart = pullBackgroundColor(themeMissClass);
   const colorScaleEnd = pullBackgroundColor(themeHitClass);
-  const scale = chroma.scale([colorScaleStart, colorScaleEnd]).gamma(1.25).mode("lab");
+  const scale = chroma
+    .scale([colorScaleStart, colorScaleEnd])
+    .gamma(1.25)
+    .mode('lab');
   return { backgroundColor: scale(cooldown).hex() };
 }
 
@@ -27,14 +32,14 @@ export default function Occurrence({ cooldown, onClick, open, date }) {
 
   const occurrenceHit = cooldown === 1;
   const classNames = [
-    "w-4",
-    "h-4",
-    "md:w-6",
-    "md:h-6",
-    "rounded-full",
-    "inline-block",
+    'w-4',
+    'h-4',
+    'md:w-6',
+    'md:h-6',
+    'rounded-full',
+    'inline-block',
   ];
-  const formattedDate = format(date, "MMMM do, yyyy");
+  const formattedDate = format(date, 'MMMM do, yyyy');
 
   if (open) {
     const ariaLabel = occurrenceHit
@@ -43,16 +48,25 @@ export default function Occurrence({ cooldown, onClick, open, date }) {
     classNames.push(occurrenceOpenBgColor);
 
     if (!occurrenceHit) {
-      classNames.push("filter-blur-occurrence-miss");
+      classNames.push('filter-blur-occurrence-miss');
     }
 
     return (
-      <button role="button" aria-label={ariaLabel} onClick={onClick} className="flex p-4 -m-4">
-        <div className={classNames.join(" ")}></div>
+      <button
+        role="button"
+        aria-label={ariaLabel}
+        onClick={onClick}
+        className="flex p-4 -m-4"
+      >
+        <div className={classNames.join(' ')}></div>
       </button>
     );
   } else {
-    const style = createCooldownStyle(cooldown, occurrenceClosedMissBgColor, occurrenceClosedHitBgColor);
+    const style = createCooldownStyle(
+      cooldown,
+      occurrenceClosedMissBgColor,
+      occurrenceClosedHitBgColor
+    );
 
     const ariaLabel = occurrenceHit
       ? `Hit target on ${formattedDate}`
@@ -63,7 +77,7 @@ export default function Occurrence({ cooldown, onClick, open, date }) {
         role="img"
         aria-label={ariaLabel}
         style={style}
-        className={classNames.join(" ")}
+        className={classNames.join(' ')}
       ></div>
     );
   }

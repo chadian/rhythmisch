@@ -1,18 +1,18 @@
-const colors = require("tailwindcss/colors");
+const colors = require('tailwindcss/colors');
 
 function customContainer({ addComponents, theme }) {
   addComponents({
-    ".container": {
-      marginInline: "auto",
-      maxWidth: theme("screens.sm"),
+    '.container': {
+      marginInline: 'auto',
+      maxWidth: theme('screens.sm'),
 
       // Breakpoints
-      "@screen sm": {
-        maxWidth: theme("screens.sm"),
+      '@screen sm': {
+        maxWidth: theme('screens.sm'),
       },
 
-      "@screen md": {
-        maxWidth: theme("screens.md"),
+      '@screen md': {
+        maxWidth: theme('screens.md'),
       },
     },
   });
@@ -29,23 +29,23 @@ function addColorCssProperties({ addComponents, config }) {
       const hexValue = colorObj[colorKey].toString();
       const cssPropertyName = `--color-${color}-${colorKey}`.replace(
         /-default$/,
-        ""
+        ''
       );
 
       cssProperties[cssPropertyName] = hexValue;
     }
   }
 
-  addComponents({ ":root": cssProperties });
+  addComponents({ ':root': cssProperties });
 }
 
 module.exports = {
   purge: [
-    "./pages/**/*.js",
-    "./components/**/*.js",
-    "./components/**/*.mdx",
-    "./hooks/**/*.js",
-    "./utils/**/*.js",
+    './pages/**/*.js',
+    './components/**/*.js',
+    './components/**/*.mdx',
+    './hooks/**/*.js',
+    './utils/**/*.js',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -53,22 +53,22 @@ module.exports = {
       ...colors,
     },
     fontFamily: {
-      sans: ["Helvetica", "Arial", "sans-serif"],
+      sans: ['Helvetica', 'Arial', 'sans-serif'],
     },
     underlineOffset: {
-      sm: "1px",
-      md: "2px",
+      sm: '1px',
+      md: '2px',
     },
     extend: {
       transitionProperty: {
-        width: "width",
-        height: "height",
+        width: 'width',
+        height: 'height',
       },
     },
   },
   plugins: [
     customContainer,
     addColorCssProperties,
-    require("tailwind-underline-utils"),
+    require('tailwind-underline-utils'),
   ],
 };
