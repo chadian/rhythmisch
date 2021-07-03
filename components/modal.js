@@ -1,6 +1,7 @@
 import React from 'react';
 import FocusLock from 'react-focus-lock';
 
+// eslint-disable-next-line react/prop-types
 export default function Modal({ children, onClose }) {
   const classNames = [
     'fixed',

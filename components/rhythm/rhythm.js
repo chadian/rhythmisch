@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Occurrence from './occurrence';
 import { numeratorTerm } from '../../utils/numerator-term';

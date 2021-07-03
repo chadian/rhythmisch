@@ -9,6 +9,7 @@ export { themeKeys, themeDefinitions };
 
 const ThemeContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const ThemeProvider = ({ value, children }) => {
   const { theme: localStorageTheme } = getLocalStorageTheme() ?? {};
   const initialThemeName = value ?? localStorageTheme ?? DEFAULT_THEME;

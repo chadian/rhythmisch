@@ -16,6 +16,7 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
+    'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
   },
   settings: {
     react: {

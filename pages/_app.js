@@ -6,6 +6,7 @@ import { ThemeProvider } from '../hooks/theme/index';
 import Link from '../components/link';
 import { useEffect } from 'react';
 
+// eslint-disable-next-line react/prop-types
 function NextApp({ Component, pageProps }) {
   useEffect(() => {
     // This prevents a vertical shift of content when navigating

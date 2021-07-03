@@ -4,6 +4,7 @@ let errorIdCount = 0;
 
 const getErrorIdCount = () => errorIdCount;
 
+// eslint-disable-next-line react/prop-types
 export function ValidationWrapper({ hasSubmitted, error, children }) {
   const errorId = `vw-error-${getErrorIdCount()}`;
   const showError = hasSubmitted && error;

@@ -11,6 +11,7 @@ import {
   SectionParagraph,
 } from '../components/content/section';
 
+// eslint-disable-next-line react/prop-types
 function Highlight({ children }) {
   const [theme] = useTheme();
 

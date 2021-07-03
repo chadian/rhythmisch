@@ -89,6 +89,7 @@ function rhythmsReducer(rhythms, action) {
   }
 }
 
+// eslint-disable-next-line react/prop-types
 export const RhythmsProvider = ({ children }) => {
   const initialRhythms = initializeRhythms();
   const [rhythms, dispatch] = useReducer(rhythmsReducer, initialRhythms);
