@@ -11,7 +11,7 @@ function NextApp({ Component, pageProps }) {
     // This prevents a vertical shift of content when navigating
     // between pages that show/hide the scrollbar
     // https://css-tricks.com/elegant-fix-jumping-scrollbar-issue/
-    document.body.style.marginLeft = 'calc(100vw - 100%)';
+    document.body.style.paddingLeft = 'calc(100vw - 100%)';
   });
 
   const HARDCODED_FIXED_FOOTER_PADDING = 'pb-32';
@@ -21,13 +21,13 @@ function NextApp({ Component, pageProps }) {
       <RhythmsProvider>
         <div className="container m-auto">
           <div
-            className={`mx-4 md:mx-3 pr-6 min-h-screen relative ${HARDCODED_FIXED_FOOTER_PADDING}`}
+            className={`flex flex-col mx-4 md:mx-3 pr-6 min-h-screen relative ${HARDCODED_FIXED_FOOTER_PADDING}`}
           >
             <header className="pt-12 mb-8">
               <div className="text-5xl md:text-7xl font-bold">Rhythmisch</div>
             </header>
             <Component {...pageProps} />
-            <footer className="h-24 fixed -inset-x-0 flex flex-col items-baseline justify-between z-20 container bottom-0 px-3 py-4 border-t-4 bg-white">
+            <footer className="fixed h-24 flex flex-col items-baseline justify-between z-20 container bottom-0 py-4 border-t-4 bg-white ">
               <div className="flex space-x-5">
                 <Link
                   href="/home"
