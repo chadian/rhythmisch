@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import dynamic from 'next/dynamic';
 import { RhythmsProvider } from '../hooks/rhythms/index';
 import { ThemeProvider } from '../hooks/theme/index';
+import Wordmark from '../components/wordmark';
 import Link from '../components/link';
 import { useEffect } from 'react';
 
@@ -25,7 +26,9 @@ function NextApp({ Component, pageProps }) {
             className={`flex flex-col mx-4 md:mx-3 pr-6 min-h-screen relative ${HARDCODED_FIXED_FOOTER_PADDING}`}
           >
             <header className="pt-12 mb-8">
-              <div className="text-5xl md:text-7xl font-bold">Rhythmisch</div>
+              <div className="text-5xl md:text-7xl font-bold">
+                <Wordmark />
+              </div>
             </header>
             <Component {...pageProps} />
             <footer className="fixed h-24 flex flex-col items-baseline justify-between z-20 container bottom-0 py-4 border-t-4 bg-white ">
