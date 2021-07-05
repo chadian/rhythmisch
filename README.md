@@ -14,10 +14,10 @@ It uses:
 1. Clone this repo
 2. Run `yarn`
 
-Local development: `yarn dev` and a local server will run on port 3000
-Run tests: `yarn test` (`--watch` flag to add file watcher)
-Storybook: `yarn storybook`
-Lint: `yarn lint`
+* Local development: `yarn dev` and a local server will run on port 3000
+* Run tests: `yarn test` (`--watch` flag to add file watcher)
+* Storybook: `yarn storybook`
+* Lint: `yarn lint`
 
 ## Contributions
 
