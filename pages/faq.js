@@ -37,6 +37,38 @@ export default function Home() {
         </section>
 
         <section>
+          <SectionHeading>
+            Q: How do I remember to check Rhythmisch?
+          </SectionHeading>
+          <SectionParagraph>
+            A: This is sort of the first habit, isn't it? While Rhythmisch does
+            not have any settings for notifications what does work well is
+            adding a reminder on your phone. For example, reminders can be
+            created on{' '}
+            <Link href="https://www.howtogeek.com/681620/how-to-set-up-recurring-reminders-on-iphone-and-ipad/">
+              iOS
+            </Link>{' '}
+            or{' '}
+            <Link href="https://support.google.com/calendar/answer/6285327">
+              android with Google Calendar
+            </Link>
+            .
+          </SectionParagraph>
+        </section>
+
+        <section>
+          <SectionHeading>Q: Is my data safe?</SectionHeading>
+          <SectionParagraph>
+            A: Data is stored in the browser on your device via{' '}
+            <Link href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">
+              local storage
+            </Link>{' '}
+            and never sent over the web. If someone were able to access your
+            device they would be able to access Rhythmisch.
+          </SectionParagraph>
+        </section>
+
+        <section>
           <SectionHeading>Q: Why is the app so limited?</SectionHeading>
           <SectionParagraph>
             A: The hope is that with these limitations that there is less
