@@ -1,10 +1,12 @@
 import React, { createContext, useState, useContext } from 'react';
 import { getLocalStorageTheme, setLocalStorageTheme } from './local-storage';
+import { setFavicon } from './set-favicon';
 import {
   themeDefinitions,
   DEFAULT_THEME,
   themeKeys,
 } from './theme-definitions';
+
 export { themeKeys, themeDefinitions };
 
 const ThemeContext = createContext();
@@ -13,17 +15,19 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ value, children }) => {
   const { theme: localStorageTheme } = getLocalStorageTheme() ?? {};
   const initialThemeName = value ?? localStorageTheme ?? DEFAULT_THEME;
-  const [themeName, setThemeName] = useState(initialThemeName);
+  const [themeKey, setThemeName] = useState(initialThemeName);
+  setFavicon(themeKey);
 
-  const saveTheme = (theme) => {
-    if (themeKeys.includes(theme)) {
-      setLocalStorageTheme({ theme });
-      setThemeName(theme);
+  const saveTheme = (themeKey) => {
+    if (themeKeys.includes(themeKey)) {
+      setLocalStorageTheme({ theme: themeKey });
+      setThemeName(themeKey);
+      setFavicon(themeKey);
     }
   };
 
   const themeDefinition = themeDefinitions.find(
-    (themeDefinition) => themeDefinition.themeName === themeName
+    (themeDefinition) => themeDefinition.themeName === themeKey
   );
 
   if (!themeDefinition) {
@@ -31,7 +35,7 @@ export const ThemeProvider = ({ value, children }) => {
       .map((def) => def.themeName)
       .join(', ');
     throw new Error(
-      `No theme definition found for theme ${themeName}. Possible themes are ${possibleThemes}}`
+      `No theme definition found for theme ${themeKey}. Possible themes are ${possibleThemes}}`
     );
   }
 

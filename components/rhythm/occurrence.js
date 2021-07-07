@@ -1,19 +1,14 @@
 import React from 'react';
-import { useTheme } from '../../hooks/theme/index';
 import { format } from 'date-fns';
 import chroma from 'chroma-js';
-
-function pullBackgroundColor(backgroundClassName) {
-  const cssVariableName = backgroundClassName.replace('bg-', '--color-');
-  const backgroundColor = getComputedStyle(document.body).getPropertyValue(
-    cssVariableName
-  );
-  return backgroundColor.trim() || '#000';
-}
+import { useTheme } from '../../hooks/theme/index';
+import { pullBackgroundColor } from '../../utils/pull-background-color';
 
 function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
-  const colorScaleStart = pullBackgroundColor(themeMissClass);
-  const colorScaleEnd = pullBackgroundColor(themeHitClass);
+  // The fallbacks to #000 are for tests running in jest and jsdom
+  // These fallbacks shouldn't be needed in browser environments
+  const colorScaleStart = pullBackgroundColor(themeMissClass) || '#000';
+  const colorScaleEnd = pullBackgroundColor(themeHitClass) || '#000';
   const scale = chroma
     .scale([colorScaleStart, colorScaleEnd])
     .gamma(1.25)
