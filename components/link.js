@@ -3,6 +3,11 @@ import React from 'react';
 import { default as NextLink } from 'next/link';
 import { useTheme } from '../hooks/theme/index';
 
+const underlineClassNames = {
+  sm: 'underline-offset-sm',
+  md: 'underline-offset-md',
+};
+
 export default function Link({
   attrs,
   href,
@@ -14,7 +19,6 @@ export default function Link({
 
   attrs = attrs ?? {};
   underline = underline ?? true;
-  underlineOffset = underlineOffset ?? 'sm';
   href = href ?? attrs.href;
 
   const classNames = (attrs.className ?? '').split(' ');
@@ -27,7 +31,9 @@ export default function Link({
 
   if (underline) {
     classNames.push('underline');
-    classNames.push(`underline-offset-${underlineOffset}`);
+    const underlineOffsetClassName =
+      underlineClassNames[underlineOffset] ?? underlineClassNames.sm;
+    classNames.push(underlineOffsetClassName);
   }
 
   const className = classNames.join(' ');
