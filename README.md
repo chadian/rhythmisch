@@ -1,6 +1,6 @@
 # [Rhythmisch](https://rhythmisch.com)
 
-The app to help you to get into the rhythm and build habits.
+Rhythmisch is a simple app to help you build habits.
 ![App screenshot](./.github/static/app-screenshot.png)
 
 ## Development
