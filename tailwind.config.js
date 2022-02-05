@@ -56,8 +56,11 @@ module.exports = {
       sans: ['Helvetica', 'Arial', 'sans-serif'],
     },
     underlineOffset: {
-      sm: '1px',
-      md: '2px',
+      sm: '0.08em',
+      md: '0.12em',
+    },
+    underlineThickness: {
+      thin: '2px',
     },
     extend: {
       transitionProperty: {

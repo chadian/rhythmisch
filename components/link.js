@@ -18,7 +18,12 @@ export default function Link({
   href = href ?? attrs.href;
 
   const classNames = (attrs.className ?? '').split(' ');
-  classNames.push('cursor-pointer', theme.linkColor);
+
+  classNames.push(
+    'cursor-pointer',
+    'underline-thickness-thin',
+    theme.linkColor
+  );
 
   if (underline) {
     classNames.push('underline');
