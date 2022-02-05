@@ -1,16 +1,18 @@
-# Rhythmisch
+# [Rhythmisch](https://rhythmisch.com)
 
-This is the source code for a react next.js app [available online](https://www.rhythmisch.com/) for all.
+The app to help you to get into the rhythm and build habits.
+![App screenshot](./.github/static/app-screenshot.png)
 
-It uses:
+## Development
+
+This app is built using:
 * React
 * Next.js
 * Tailwind
 * Storybook
 * ESLint & Prettier
 
-## Getting Started
-
+To get started:
 1. Clone this repo
 2. Run `yarn`
 
