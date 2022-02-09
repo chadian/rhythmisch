@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import {
   SectionHeading,
   SectionParagraph,
@@ -8,6 +9,9 @@ import Link from '../components/link';
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Rhythmisch · FAQ</title>
+      </Head>
       <main className="flex flex-col space-y-16">
         <section>
           <h2 className="text-5xl text-gray-800">FAQ</h2>
