@@ -6,9 +6,9 @@ import { ThemeProvider } from '../hooks/theme/index';
 import Wordmark from '../components/wordmark';
 import Link from '../components/link';
 import { useEffect } from 'react';
+import type { AppProps } from 'next/app';
 
-// eslint-disable-next-line react/prop-types
-function NextApp({ Component, pageProps }) {
+function NextApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // This prevents a vertical shift of content when navigating
     // between pages that show/hide the scrollbar
