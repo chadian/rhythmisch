@@ -1,4 +1,5 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     es2021: true,
@@ -10,6 +11,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'prettier',
+    'plugin:@typescript-eslint/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -18,11 +20,12 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', '@typescript-eslint'],
   rules: {
     'prettier/prettier': 'error',
     'react/no-unescaped-entities': ['error', { forbid: ['>', '}'] }],
     'react/prop-types': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
   },
   settings: {
     react: {
