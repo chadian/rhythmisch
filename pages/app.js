@@ -31,7 +31,7 @@ function RhythmischApp() {
   return (
     <>
       <Head>
-        <title>Rhythmisch</title>
+        <title>Rhythmisch · App</title>
       </Head>
 
       {modalIsOpen ? (
