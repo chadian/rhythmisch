@@ -1,21 +1,23 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, FunctionComponent } from 'react';
 import { getLocalStorageTheme, setLocalStorageTheme } from './local-storage';
 import { setFavicon } from './set-favicon';
 import {
   themeDefinitions,
   DEFAULT_THEME,
   themeKeys,
+  ThemeDefinition,
 } from './theme-definitions';
 
 export { themeKeys, themeDefinitions };
 
-const ThemeContext = createContext();
+type SaveTheme = (string) => void;
 
-// eslint-disable-next-line react/prop-types
-export const ThemeProvider = ({ value, children }) => {
-  const { theme: localStorageTheme } = getLocalStorageTheme() ?? {};
-  const initialThemeName = value ?? localStorageTheme ?? DEFAULT_THEME;
-  const [themeKey, setThemeName] = useState(initialThemeName);
+const ThemeContext = createContext<[ThemeDefinition, SaveTheme]>([themeDefinitions[DEFAULT_THEME], () => {}]);
+
+export const ThemeProvider:FunctionComponent<{initialThemeKey?: string}>  = ({ initialThemeKey, children }) => {
+  const { theme: localStorageThemeKey } = getLocalStorageTheme() ?? {};
+  const initialThemeName = initialThemeKey ?? localStorageThemeKey ?? DEFAULT_THEME;
+  const [themeKey, setThemeName] = useState<string>(initialThemeName);
   setFavicon(themeKey);
 
   const saveTheme = (themeKey) => {
@@ -34,8 +36,9 @@ export const ThemeProvider = ({ value, children }) => {
     const possibleThemes = themeDefinitions
       .map((def) => def.themeName)
       .join(', ');
+
     throw new Error(
-      `No theme definition found for theme ${themeKey}. Possible themes are ${possibleThemes}}`
+      `No theme definition found for theme key ${themeKey}. Possible theme keys are ${possibleThemes}}`
     );
   }
 

@@ -1,4 +1,15 @@
-export const themeDefinitions = [
+export type ThemeDefinition = {
+  themeName: string;
+  stripeBgClass: string;
+  occurrenceClosedHitBgColor: string;
+  occurrenceClosedMissBgColor: string;
+  occurrenceOpenBgColor: string;
+  buttonTextColor: string;
+  buttonBgColor: string;
+  linkColor: string;
+};
+
+export const themeDefinitions: ThemeDefinition[] = [
   {
     themeName: 'webog',
     stripeBgClass: 'bg-blue-700',
@@ -66,5 +77,5 @@ export const themeDefinitions = [
   },
 ];
 
-export const DEFAULT_THEME = 'webog';
-export const themeKeys = themeDefinitions.map(({ themeName }) => themeName);
+export const DEFAULT_THEME: ThemeDefinition['themeName'] = 'webog';
+export const themeKeys: ThemeDefinition['themeName'][] = themeDefinitions.map(({ themeName }) => themeName);
