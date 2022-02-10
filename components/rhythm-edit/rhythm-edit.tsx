@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-
-import React, { useState } from 'react';
+import React, { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import Button from '../button';
 import { denominatorTerm } from '../../utils/denominator-term';
 import { numeratorTerm } from '../../utils/numerator-term';
 import { ValidationWrapper } from './validated-wrapper';
+import { Rhythm } from '../../types';
 
 const sharedSelectAndInputClassNames = [
   'text-gray-800',
@@ -28,7 +27,10 @@ const selectClassNames = [
   'w-48',
 ].join(' ');
 
-const generateNumeratorSelect = (selected, onChange) => {
+const generateNumeratorSelect = (
+  selected: string,
+  onChange: ChangeEventHandler<HTMLSelectElement>
+) => {
   const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
     return (
       <option key={number} value={number}>
@@ -49,7 +51,10 @@ const generateNumeratorSelect = (selected, onChange) => {
   );
 };
 
-const generateDenominatorSelect = (selected, onChange) => {
+const generateDenominatorSelect = (
+  selected: string,
+  onChange: ChangeEventHandler<HTMLSelectElement>
+) => {
   const options = [1, 2, 3, 4, 5, 6, 7].map((number) => {
     return (
       <option key={number} value={number}>
@@ -70,7 +75,7 @@ const generateDenominatorSelect = (selected, onChange) => {
   );
 };
 
-function validate(rhythm) {
+function validate(rhythm: Rhythm) {
   const [numerator, denominator] = rhythm.frequency;
 
   const result = {
@@ -104,7 +109,15 @@ function validate(rhythm) {
   return result;
 }
 
-export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
+export default function RhythmEdit({
+  rhythm,
+  onClose,
+  onSubmit,
+}: {
+  rhythm: Rhythm;
+  onClose: () => void;
+  onSubmit: (rhythm: Rhythm) => void;
+}) {
   const [rhythmAction, setRhythmAction] = useState(rhythm.action);
   const [rhythmFrequency, setRhythmFrequency] = useState(rhythm.frequency);
   const [rhythmNumerator, rhythmDenominator] = rhythmFrequency;
@@ -120,7 +133,7 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
 
   const validationResult = validate(editedRhythm);
 
-  const submitHandler = (e) => {
+  const submitHandler: FormEventHandler = (e) => {
     e.preventDefault();
     setHasSubmitted(true);
 
@@ -129,20 +142,23 @@ export default function RhythmEdit({ rhythm, onClose, onSubmit }) {
     }
   };
 
-  const numeratorSelect = generateNumeratorSelect(rhythmNumerator, (e) => {
-    let numeratorValue = Number(e.target.value);
-    let denominatorValue = rhythmDenominator;
+  const numeratorSelect = generateNumeratorSelect(
+    rhythmNumerator.toString(),
+    (e) => {
+      let numeratorValue = Number(e.target.value);
+      let denominatorValue = rhythmDenominator;
 
-    if (numeratorValue === denominatorValue) {
-      numeratorValue = 1;
-      denominatorValue = 1;
+      if (numeratorValue === denominatorValue) {
+        numeratorValue = 1;
+        denominatorValue = 1;
+      }
+
+      setRhythmFrequency([numeratorValue, denominatorValue]);
     }
-
-    setRhythmFrequency([numeratorValue, denominatorValue]);
-  });
+  );
 
   const denominatorSelect = generateDenominatorSelect(
-    rhythmDenominator,
+    rhythmDenominator.toString(),
     (e) => {
       let numeratorValue = rhythmNumerator;
       let denominatorValue = Number(e.target.value);
