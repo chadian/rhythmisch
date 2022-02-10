@@ -1,36 +1,43 @@
-import React from 'react';
+import React, { JSXElementConstructor, ReactElement } from 'react';
+import { ReactChildrenProps } from '../../types';
 
 let errorIdCount = 0;
-
-const getErrorIdCount = () => errorIdCount;
+const getErrorIdCount = () => errorIdCount++;
 
 // eslint-disable-next-line react/prop-types
-export function ValidationWrapper({ hasSubmitted, error, children }) {
+export function ValidationWrapper({
+  hasSubmitted,
+  error,
+  children,
+}: { hasSubmitted: boolean; error: string } & ReactChildrenProps) {
   const errorId = `vw-error-${getErrorIdCount()}`;
   const showError = hasSubmitted && error;
 
-  const wrappedChildren = React.Children.map(children, (child) => {
-    const isFormElement = ['select', 'input'].includes(child.type);
-    if (!showError || !isFormElement) {
-      return child;
+  const wrappedChildren = React.Children.map(
+    children,
+    (child: ReactElement<any, any>) => {
+      const isFormElement = ['select', 'input'].includes(child?.type);
+      if (!showError || !isFormElement) {
+        return child;
+      }
+
+      const classNames = child.props.className
+        .split(' ')
+        .filter((className) => !className.match(/border-.+-[0-9]+/))
+        .join(' ');
+
+      const updatedClassName = [
+        classNames,
+        showError ? 'border-red-700' : '',
+      ].join(' ');
+
+      return React.cloneElement(child, {
+        className: updatedClassName,
+        ['aria-invalid']: true,
+        ['aria-describedby']: errorId,
+      });
     }
-
-    const classNames = child.props.className
-      .split(' ')
-      .filter((className) => !className.match(/border-.+-[0-9]+/))
-      .join(' ');
-
-    const updatedClassName = [
-      classNames,
-      showError ? 'border-red-700' : '',
-    ].join(' ');
-
-    return React.cloneElement(child, {
-      className: updatedClassName,
-      ['aria-invalid']: true,
-      ['aria-describedby']: errorId,
-    });
-  });
+  );
 
   return (
     <div className="inline-block">

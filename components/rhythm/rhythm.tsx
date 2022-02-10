@@ -10,8 +10,9 @@ import {
   isWithinInterval,
   differenceInDays,
 } from 'date-fns';
+import { Hit, Rhythm as RhythmType } from '../../types';
 
-function wasDateHit(hits, dateToCheck) {
+function wasDateHit(hits: Hit[], dateToCheck: Date) {
   return Boolean(
     hits.find((hit) => {
       return isWithinInterval(hit, {
@@ -22,12 +23,23 @@ function wasDateHit(hits, dateToCheck) {
   );
 }
 
-export function calculateCooldown(hitGoalInDays, daysSinceLastHit) {
+export function calculateCooldown(
+  hitGoalInDays: number,
+  daysSinceLastHit: number
+) {
   const cooldown = (hitGoalInDays - daysSinceLastHit) / hitGoalInDays;
   return cooldown >= 0 ? cooldown : 0;
 }
 
-function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
+type ToggleHit = (newValue: boolean) => boolean;
+
+function Rhythm({
+  rhythm,
+  onTodaysOccurrenceToggle,
+}: {
+  rhythm: RhythmType;
+  onTodaysOccurrenceToggle: ToggleHit;
+}) {
   const [frequencyNumerator, frequencyDenominator] = rhythm.frequency;
   const [actionFirstLetter, ...actionRest] = rhythm.action.split('');
   const action = [actionFirstLetter.toUpperCase(), ...actionRest].join('');
@@ -37,8 +49,9 @@ function Rhythm({ rhythm, onTodaysOccurrenceToggle }) {
 
   let lastHitDate = null;
   const numberOfDays = 13;
+
   const occurrences = new Array(numberOfDays)
-    .fill()
+    .fill(null)
     .map((_, i) => {
       return numberOfDays - i;
     })
