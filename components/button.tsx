@@ -5,7 +5,7 @@ import { ReactChildrenProps } from '../types';
 
 type ButtonProps = {
   onClick: MouseEventHandler;
-  attrs: Record<string, string> & { type?: 'button' | 'submit' };
+  attrs?: Record<string, string> & { type?: 'button' | 'submit' };
   size: 'small' | 'large';
 };
 
