@@ -1,13 +1,20 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { useTheme } from '../hooks/theme/index';
+import { ReactChildrenProps } from '../types';
+
+type ButtonProps = {
+  onClick: MouseEventHandler;
+  attrs: Record<string, string> & { type?: 'button' | 'submit' };
+  size: 'small' | 'large';
+};
 
 export default function Button({
   children,
   onClick = () => {},
   attrs = {},
   size = 'large',
-}) {
+}: ReactChildrenProps & ButtonProps) {
   const [theme] = useTheme();
   const { buttonTextColor, buttonBgColor } = theme;
 
