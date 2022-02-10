@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { KeyboardEventHandler, MouseEventHandler } from 'react';
 import { useTheme, themeKeys, themeDefinitions } from '../hooks/theme/index';
 
 export default function ThemeSelector() {
   const [currentThemeDefinition, saveTheme] = useTheme();
-  const saveSelectedTheme = (key) => saveTheme(key);
   const currentThemeIndex = themeKeys.indexOf(currentThemeDefinition.themeName);
 
-  const onKeyDown = (e) => {
+  const onKeyDown: KeyboardEventHandler = (e) => {
     const RIGHT = 39;
     const LEFT = 37;
 
@@ -14,11 +13,11 @@ export default function ThemeSelector() {
     const nextThemeKey = themeKeys[currentThemeIndex + 1];
 
     if (e.keyCode === LEFT && previousThemeKey) {
-      saveSelectedTheme(previousThemeKey);
+      saveTheme(previousThemeKey);
     }
 
     if (e.keyCode === RIGHT && nextThemeKey) {
-      saveSelectedTheme(nextThemeKey);
+      saveTheme(nextThemeKey);
     }
   };
 
@@ -46,17 +45,18 @@ export default function ThemeSelector() {
       classNames.push('scale-150');
     }
 
-    const onClick = () => {
-      saveSelectedTheme(key);
+    const onClick: MouseEventHandler = () => {
+      saveTheme(key);
     };
 
     const className = classNames.join(' ');
+
     return (
       <div
         role="radio"
         aria-checked={isActiveTheme}
         aria-label={themeDefinition.themeName}
-        tabIndex={isActiveTheme ? '0' : '-1'}
+        tabIndex={isActiveTheme ? 0 : -1}
         key={key}
         onClick={onClick}
         onKeyDown={onKeyDown}
