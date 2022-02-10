@@ -42,11 +42,11 @@ function addColorCssProperties({ addComponents, config }) {
 
 module.exports = {
   purge: [
-    './pages/**/*.js',
-    './components/**/*.js',
+    './pages/**/*.{js,jsx,ts,tsx}',
+    './components/**/*.{js,jsx,ts,tsx}',
     './components/**/*.mdx',
-    './hooks/**/*.js',
-    './utils/**/*.js',
+    './hooks/**/*.{js,jsx,ts,tsx}',
+    './utils/**/*.{js,jsx,ts,tsx}',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
