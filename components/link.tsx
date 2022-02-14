@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { default as NextLink } from 'next/link';
 import { useTheme } from '../hooks/theme/index';
 
@@ -8,18 +8,27 @@ const underlineClassNames = {
   md: 'underline-offset-md',
 };
 
-export default function Link({
+type LinkProps = {
+  attrs?: { [attrName: string]: string };
+  href: string;
+  underline?: boolean;
+  underlineOffset?: keyof typeof underlineClassNames;
+};
+
+const Link: FunctionComponent<LinkProps> = ({
   attrs,
   href,
   underline,
   underlineOffset,
   children,
-}) {
+}) => {
   const [theme] = useTheme();
 
   attrs = attrs ?? {};
   underline = underline ?? true;
   href = href ?? attrs.href;
+  const underlineOffsetClassName =
+    underlineClassNames[underlineOffset] ?? underlineClassNames.sm;
 
   const classNames = (attrs.className ?? '').split(' ');
 
@@ -31,8 +40,6 @@ export default function Link({
 
   if (underline) {
     classNames.push('underline');
-    const underlineOffsetClassName =
-      underlineClassNames[underlineOffset] ?? underlineClassNames.sm;
     classNames.push(underlineOffsetClassName);
   }
 
@@ -45,4 +52,6 @@ export default function Link({
       </a>
     </NextLink>
   );
-}
+};
+
+export default Link;

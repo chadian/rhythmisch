@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { KeyboardEventHandler } from 'react';
 import FocusLock from 'react-focus-lock';
+import { ReactChildrenProps } from '../types';
 
-// eslint-disable-next-line react/prop-types
-export default function Modal({ children, onClose }) {
+type ModalProps = {
+  onClose: () => void;
+};
+
+export default function Modal({
+  children,
+  onClose,
+}: ReactChildrenProps & ModalProps) {
   const classNames = [
     'fixed',
     'top-0',
@@ -17,7 +24,7 @@ export default function Modal({ children, onClose }) {
     'bg-filter-blur-modal',
   ];
 
-  const onKeyDown = (e) => {
+  const onKeyDown: KeyboardEventHandler = (e) => {
     const ESCAPE = 27;
 
     if (e.keyCode === ESCAPE) {

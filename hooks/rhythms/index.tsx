@@ -4,10 +4,15 @@ import produce from 'immer';
 import { setLocalStorageRhythms } from './local-storage';
 import { initializeRhythms } from './initialize';
 import { startOfDay, endOfDay, isWithinInterval } from 'date-fns';
+import { ReactChildrenProps, Rhythm } from '../../types';
 
-const RhythmsContext = createContext();
+const RhythmsContext = createContext([]);
 
-function rhythmsReducer(rhythms, action) {
+function rhythmsReducer(
+  rhythms: Rhythm[],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  action: { type: string; payload: any }
+) {
   switch (action.type) {
     case 'CREATE': {
       const { rhythm } = action.payload;
@@ -90,7 +95,7 @@ function rhythmsReducer(rhythms, action) {
 }
 
 // eslint-disable-next-line react/prop-types
-export const RhythmsProvider = ({ children }) => {
+export const RhythmsProvider = ({ children }: ReactChildrenProps) => {
   const initialRhythms = initializeRhythms();
   const [rhythms, dispatch] = useReducer(rhythmsReducer, initialRhythms);
 
@@ -101,4 +106,4 @@ export const RhythmsProvider = ({ children }) => {
   );
 };
 
-export const useRhythms = () => useContext(RhythmsContext);
+export const useRhythms = () => useContext<Rhythm[]>(RhythmsContext);
