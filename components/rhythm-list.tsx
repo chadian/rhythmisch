@@ -7,7 +7,7 @@ export default function RhythmList({ onEdit }) {
   const [rhythms, rhythmsDispatch] = useRhythms();
 
   const onTodayToggle = (rhythm, wasHit) => {
-    return rhythmsDispatch({
+    rhythmsDispatch({
       type: 'HIT_TODAY',
       payload: { id: rhythm.id, hitToday: wasHit },
     });
