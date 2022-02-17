@@ -4,9 +4,9 @@ import { useTheme } from '../hooks/theme/index';
 import { ReactChildrenProps } from '../types';
 
 type ButtonProps = {
-  onClick: MouseEventHandler;
+  onClick?: MouseEventHandler;
   attrs?: Record<string, string> & { type?: 'button' | 'submit' };
-  size: 'small' | 'large';
+  size?: 'small' | 'large';
 };
 
 export default function Button({

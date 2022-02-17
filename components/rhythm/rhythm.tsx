@@ -31,7 +31,7 @@ export function calculateCooldown(
   return cooldown >= 0 ? cooldown : 0;
 }
 
-type ToggleHit = (newValue: boolean) => boolean;
+type ToggleHit = (newValue: boolean) => void;
 
 function Rhythm({
   rhythm,

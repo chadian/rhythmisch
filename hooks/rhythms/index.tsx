@@ -6,12 +6,18 @@ import { initializeRhythms } from './initialize';
 import { startOfDay, endOfDay, isWithinInterval } from 'date-fns';
 import { ReactChildrenProps, Rhythm } from '../../types';
 
-const RhythmsContext = createContext([]);
+type RhythmsReducerAction = { type: string; payload: any };
+type RhythmsContextValue = [Rhythm[], React.Dispatch<RhythmsReducerAction>];
+
+const RhythmsContext = createContext([
+  [],
+  (_a: any) => {},
+] as RhythmsContextValue);
 
 function rhythmsReducer(
   rhythms: Rhythm[],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  action: { type: string; payload: any }
+  action: RhythmsReducerAction
 ) {
   switch (action.type) {
     case 'CREATE': {
@@ -94,7 +100,6 @@ function rhythmsReducer(
   }
 }
 
-// eslint-disable-next-line react/prop-types
 export const RhythmsProvider = ({ children }: ReactChildrenProps) => {
   const initialRhythms = initializeRhythms();
   const [rhythms, dispatch] = useReducer(rhythmsReducer, initialRhythms);
@@ -106,4 +111,4 @@ export const RhythmsProvider = ({ children }: ReactChildrenProps) => {
   );
 };
 
-export const useRhythms = () => useContext<Rhythm[]>(RhythmsContext);
+export const useRhythms = () => useContext<RhythmsContextValue>(RhythmsContext);
