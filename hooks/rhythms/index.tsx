@@ -6,17 +6,36 @@ import { initializeRhythms } from './initialize';
 import { startOfDay, endOfDay, isWithinInterval } from 'date-fns';
 import { ReactChildrenProps, Rhythm } from '../../types';
 
-type RhythmsReducerAction = { type: string; payload: any };
+type CREATE_ACTION = {
+  type: 'CREATE';
+  payload: { rhythm: Rhythm };
+};
+
+type UPDATE_ACTION = {
+  type: 'UPDATE';
+  payload: { id: string; partial: Partial<Rhythm> }
+}
+
+type DELETE_ACTION = {
+  type: 'DELETE';
+  payload: { id: string };
+}
+
+type HIT_TODAY_ACTION = {
+  type: 'HIT_TODAY';
+  payload: { id: string, hitToday: boolean };
+}
+
+type RhythmsReducerAction = CREATE_ACTION | UPDATE_ACTION | DELETE_ACTION | HIT_TODAY_ACTION;
 type RhythmsContextValue = [Rhythm[], React.Dispatch<RhythmsReducerAction>];
 
 const RhythmsContext = createContext([
   [],
-  (_a: any) => {},
+  (payload: RhythmsReducerAction) => {},
 ] as RhythmsContextValue);
 
 function rhythmsReducer(
   rhythms: Rhythm[],
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   action: RhythmsReducerAction
 ) {
   switch (action.type) {
