@@ -4,11 +4,11 @@ import produce from 'immer';
 import { setLocalStorageRhythms } from './local-storage';
 import { initializeRhythms } from './initialize';
 import { startOfDay, endOfDay, isWithinInterval } from 'date-fns';
-import { ReactChildrenProps, Rhythm } from '../../types';
+import { ReactChildrenProps, Rhythm, UnsavedRhythm } from '../../types';
 
 type CREATE_ACTION = {
   type: 'CREATE';
-  payload: { rhythm: Rhythm };
+  payload: { rhythm: UnsavedRhythm };
 };
 
 type UPDATE_ACTION = {

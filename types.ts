@@ -11,3 +11,5 @@ export type Rhythm = {
   frequency: [number, number];
   hits: Hit[];
 };
+
+export type UnsavedRhythm = Omit<Rhythm, 'id'>;

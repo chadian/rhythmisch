@@ -3,7 +3,7 @@ import Button from '../button';
 import { denominatorTerm } from '../../utils/denominator-term';
 import { numeratorTerm } from '../../utils/numerator-term';
 import { ValidationWrapper } from './validated-wrapper';
-import { Rhythm } from '../../types';
+import { Rhythm, UnsavedRhythm } from '../../types';
 
 const sharedSelectAndInputClassNames = [
   'text-gray-800',
@@ -75,7 +75,7 @@ const generateDenominatorSelect = (
   );
 };
 
-function validate(rhythm: Rhythm) {
+function validate(rhythm: Rhythm | UnsavedRhythm) {
   const [numerator, denominator] = rhythm.frequency;
 
   const result = {
@@ -114,9 +114,9 @@ export default function RhythmEdit({
   onClose,
   onSubmit,
 }: {
-  rhythm: Rhythm;
+  rhythm: Rhythm | UnsavedRhythm;
   onClose: () => void;
-  onSubmit: (rhythm: Rhythm) => void;
+  onSubmit: (rhythm: Rhythm | UnsavedRhythm) => void;
 }) {
   const [rhythmAction, setRhythmAction] = useState(rhythm.action);
   const [rhythmFrequency, setRhythmFrequency] = useState(rhythm.frequency);
@@ -226,7 +226,7 @@ export default function RhythmEdit({
           </ValidationWrapper>
         </div>
         <Button attrs={{ type: 'submit', className: '' }}>
-          {rhythm.id ? 'Update' : 'Create'}
+          {'id' in rhythm && rhythm ? 'Update' : 'Create'}
         </Button>
       </div>
     </form>

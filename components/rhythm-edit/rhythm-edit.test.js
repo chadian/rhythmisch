@@ -16,7 +16,6 @@ function setup({ rhythm } = {}) {
   cleanup();
 
   rhythm = {
-    id: 'some-rhythm-id',
     action: 'I want to run',
     frequency: [2, 3],
     reason: 'I want to train for a marathon',
@@ -36,13 +35,14 @@ function setup({ rhythm } = {}) {
   denominatorSelect = screen.getByLabelText('Rhythm action count time span');
   reasonInput = screen.getByDisplayValue('I want to train for a marathon');
 
-  submitButton = rhythm.id
-    ? screen.getByRole('button', { name: 'Update' })
-    : screen.getByRole('button', { name: 'Create' });
+  submitButton =
+    'id' in rhythm
+      ? screen.getByRole('button', { name: 'Update' })
+      : screen.getByRole('button', { name: 'Create' });
 }
 
 beforeEach(() => {
-  setup();
+  setup({ rhythm: { id: 'some-rhythm-id' } });
 });
 
 test("it renders the rhythm's editable properties", () => {
@@ -90,7 +90,7 @@ test('it evens out equal numerator and denominator values to once every day', ()
 
 describe('submit button label', () => {
   it('shows a button with a label of "Create" when the rhythm model ** does not ** have an id', () => {
-    setup({ rhythm: { id: undefined } });
+    setup({ rhythm: {} });
     expect(submitButton).toHaveTextContent('Create');
     expect(submitButton).toBeInTheDocument();
   });

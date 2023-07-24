@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "test": "jest",
+    "test": "jest && tsc",
     "lint": "eslint \"**/*.js\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
