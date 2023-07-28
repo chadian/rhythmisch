@@ -2,6 +2,7 @@
 import React, { FunctionComponent } from 'react';
 import { default as NextLink } from 'next/link';
 import { useTheme } from '../hooks/theme/index';
+import cc from 'classcat';
 
 const underlineClassNames = {
   sm: 'underline-offset-sm',
@@ -43,11 +44,9 @@ const Link: FunctionComponent<LinkProps> = ({
     classNames.push(underlineOffsetClassName);
   }
 
-  const className = classNames.join(' ');
-
   return (
     <NextLink passHref={true} href={href}>
-      <a {...attrs} className={className}>
+      <a {...attrs} className={cc(classNames)}>
         {children}
       </a>
     </NextLink>
