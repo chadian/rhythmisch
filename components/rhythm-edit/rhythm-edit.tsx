@@ -4,6 +4,7 @@ import { denominatorTerm } from '../../utils/denominator-term';
 import { numeratorTerm } from '../../utils/numerator-term';
 import { ValidationWrapper } from './validated-wrapper';
 import { Rhythm, UnsavedRhythm } from '../../types';
+import cc from 'classcat';
 
 const sharedSelectAndInputClassNames = [
   'text-gray-800',
@@ -19,13 +20,13 @@ const inputClassNames = [
   'py-1',
   'px-2',
   'placeholder-gray-300',
-].join(' ');
+];
 
 const selectClassNames = [
   ...sharedSelectAndInputClassNames,
   'p-1',
   'w-48',
-].join(' ');
+];
 
 const generateNumeratorSelect = (
   selected: string,
@@ -41,7 +42,7 @@ const generateNumeratorSelect = (
 
   return (
     <select
-      className={selectClassNames}
+      className={cc(selectClassNames)}
       onChange={onChange}
       aria-label="Rhythm action count"
       value={selected}
@@ -65,7 +66,7 @@ const generateDenominatorSelect = (
 
   return (
     <select
-      className={selectClassNames}
+      className={cc(selectClassNames)}
       onChange={onChange}
       aria-label="Rhythm action count time span"
       value={selected}
@@ -188,7 +189,7 @@ export default function RhythmEdit({
             error={validationResult.errors.action}
           >
             <input
-              className={inputClassNames}
+              className={cc(inputClassNames)}
               aria-label="Rhythm action description"
               aria-required="true"
               placeholder="get into a rhythm"
@@ -215,7 +216,7 @@ export default function RhythmEdit({
             error={validationResult.errors.reason}
           >
             <input
-              className={inputClassNames}
+              className={cc(inputClassNames)}
               aria-label="Rhythm reason description"
               aria-required="true"
               placeholder="it will bring positive change"

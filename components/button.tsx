@@ -2,6 +2,7 @@
 import React, { MouseEventHandler } from 'react';
 import { useTheme } from '../hooks/theme/index';
 import { ReactChildrenProps } from '../types';
+import cc from 'classcat';
 
 type ButtonProps = {
   onClick?: MouseEventHandler;
@@ -48,7 +49,7 @@ export default function Button({
       {...buttonAttrs}
       type={buttonType || 'button'}
       onClick={onClick}
-      className={`${className} ${sizeClassName}`}
+      className={cc([className, sizeClassName])}
     >
       {children}
     </button>

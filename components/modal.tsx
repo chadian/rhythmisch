@@ -1,6 +1,7 @@
 import React, { KeyboardEventHandler } from 'react';
 import FocusLock from 'react-focus-lock';
 import { ReactChildrenProps } from '../types';
+import cc from 'classcat';
 
 type ModalProps = {
   onClose: () => void;
@@ -37,7 +38,7 @@ export default function Modal({
       <div
         role="dialog"
         aria-modal="true"
-        className={classNames.join(' ')}
+        className={cc(classNames)}
         onKeyDown={onKeyDown}
       >
         {children}

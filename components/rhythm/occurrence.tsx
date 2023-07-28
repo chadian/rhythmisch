@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import chroma from 'chroma-js';
 import { useTheme } from '../../hooks/theme/index';
 import { pullBackgroundColor } from '../../utils/pull-background-color';
+import cc from 'classcat';
 
 function createCooldownStyle(
   cooldown: number,
@@ -67,7 +68,7 @@ export default function Occurrence({
         onClick={onClick}
         className="flex p-4 -m-4"
       >
-        <div className={classNames.join(' ')}></div>
+        <div className={cc(classNames)}></div>
       </button>
     );
   } else {
@@ -86,7 +87,7 @@ export default function Occurrence({
         role="img"
         aria-label={ariaLabel}
         style={style}
-        className={classNames.join(' ')}
+        className={cc(classNames)}
       ></div>
     );
   }
