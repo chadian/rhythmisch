@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "test": "jest",
+    "test": "jest && tsc",
     "lint": "eslint \"**/*.js\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -32,6 +32,8 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
     "autoprefixer": "^10.4.2",
     "babel-jest": "^27.5.0",
     "babel-loader": "^8.2.3",
@@ -49,6 +51,7 @@
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",
     "tailwind-underline-utils": "^1.1.3",
-    "tailwindcss": "^2.2.4"
+    "tailwindcss": "^2.2.4",
+    "typescript": "^4.5.5"
   }
 }

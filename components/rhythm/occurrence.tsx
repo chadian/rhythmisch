@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { format } from 'date-fns';
 import chroma from 'chroma-js';
 import { useTheme } from '../../hooks/theme/index';
 import { pullBackgroundColor } from '../../utils/pull-background-color';
 
-function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
+function createCooldownStyle(
+  cooldown: number,
+  themeMissClass: string,
+  themeHitClass: string
+) {
   // The fallbacks to #000 are for tests running in jest and jsdom
   // These fallbacks shouldn't be needed in browser environments
   const colorScaleStart = pullBackgroundColor(themeMissClass) || '#000';
@@ -16,7 +20,17 @@ function createCooldownStyle(cooldown, themeMissClass, themeHitClass) {
   return { backgroundColor: scale(cooldown).hex() };
 }
 
-export default function Occurrence({ cooldown, onClick, open, date }) {
+export default function Occurrence({
+  cooldown,
+  onClick,
+  open,
+  date,
+}: {
+  cooldown: number;
+  onClick: MouseEventHandler;
+  open: boolean;
+  date: Date;
+}) {
   const [theme] = useTheme();
 
   const {

@@ -8,8 +8,9 @@ import Modal from '../components/modal';
 import Button from '../components/button';
 import RhythmsList from '../components/rhythm-list';
 import ThemeSelector from '../components/theme-selector';
+import { Rhythm, UnsavedRhythm } from '../types';
 
-function createNewRhythm() {
+function createNewRhythm(): UnsavedRhythm {
   return {
     action: '',
     frequency: [1, 1],
@@ -20,7 +21,7 @@ function createNewRhythm() {
 
 function RhythmischApp() {
   const [modalIsOpen, setModal] = useState(false);
-  const [rhythmToEdit, setRhythmToEdit] = useState();
+  const [rhythmToEdit, setRhythmToEdit] = useState<Rhythm | UnsavedRhythm>();
   const [, rhythmsDispatch] = useRhythms();
 
   const onRhythmEdit = (rhythm) => {
@@ -47,7 +48,7 @@ function RhythmischApp() {
                 setModal(false);
                 setRhythmToEdit(null);
 
-                if (!rhythm.id) {
+                if (!('id' in rhythm)) {
                   rhythmsDispatch({ type: 'CREATE', payload: { rhythm } });
                 } else {
                   rhythmsDispatch({

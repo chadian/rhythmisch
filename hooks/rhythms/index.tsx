@@ -4,10 +4,40 @@ import produce from 'immer';
 import { setLocalStorageRhythms } from './local-storage';
 import { initializeRhythms } from './initialize';
 import { startOfDay, endOfDay, isWithinInterval } from 'date-fns';
+import { ReactChildrenProps, Rhythm, UnsavedRhythm } from '../../types';
 
-const RhythmsContext = createContext();
+type CREATE_ACTION = {
+  type: 'CREATE';
+  payload: { rhythm: UnsavedRhythm };
+};
 
-function rhythmsReducer(rhythms, action) {
+type UPDATE_ACTION = {
+  type: 'UPDATE';
+  payload: { id: string; partial: Partial<Rhythm> }
+}
+
+type DELETE_ACTION = {
+  type: 'DELETE';
+  payload: { id: string };
+}
+
+type HIT_TODAY_ACTION = {
+  type: 'HIT_TODAY';
+  payload: { id: string, hitToday: boolean };
+}
+
+type RhythmsReducerAction = CREATE_ACTION | UPDATE_ACTION | DELETE_ACTION | HIT_TODAY_ACTION;
+type RhythmsContextValue = [Rhythm[], React.Dispatch<RhythmsReducerAction>];
+
+const RhythmsContext = createContext([
+  [],
+  (payload: RhythmsReducerAction) => {},
+] as RhythmsContextValue);
+
+function rhythmsReducer(
+  rhythms: Rhythm[],
+  action: RhythmsReducerAction
+) {
   switch (action.type) {
     case 'CREATE': {
       const { rhythm } = action.payload;
@@ -89,8 +119,7 @@ function rhythmsReducer(rhythms, action) {
   }
 }
 
-// eslint-disable-next-line react/prop-types
-export const RhythmsProvider = ({ children }) => {
+export const RhythmsProvider = ({ children }: ReactChildrenProps) => {
   const initialRhythms = initializeRhythms();
   const [rhythms, dispatch] = useReducer(rhythmsReducer, initialRhythms);
 
@@ -101,4 +130,4 @@ export const RhythmsProvider = ({ children }) => {
   );
 };
 
-export const useRhythms = () => useContext(RhythmsContext);
+export const useRhythms = () => useContext<RhythmsContextValue>(RhythmsContext);

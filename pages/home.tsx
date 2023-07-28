@@ -12,10 +12,8 @@ import {
   SectionParagraph,
 } from '../components/content/section';
 
-// eslint-disable-next-line react/prop-types
 function Highlight({ children }) {
   const [theme] = useTheme();
-
   return <span className={`${theme.linkColor} text-bold`}>{children}</span>;
 }
 
@@ -57,7 +55,9 @@ export function Home() {
           </SectionParagraph>
           <div className="transform scale-50 px-2 my-2">
             <Rhythm
+              onTodaysOccurrenceToggle={() => {}}
               rhythm={{
+                id: 'demo-id',
                 frequency: [1, 4],
                 action: 'Run',
                 reason: 'I want to run a marathon this year',
