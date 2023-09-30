@@ -80,7 +80,7 @@ export default function Home() {
             action. Once you're rolling there are plenty of other apps, tools,
             techniques to upgrade to that provide more advanced features. That
             said, feel free to reach out on{' '}
-            <Link href="https://twitter.com/chadian">twitter</Link> with any
+            <Link href="https://twitter.com/theladdoo">twitter</Link> with any
             ideas, I would still love to hear them.
           </SectionParagraph>
         </section>
@@ -91,7 +91,7 @@ export default function Home() {
           </SectionHeading>
           <SectionParagraph>
             A: Sure, send me a question or feedback on{' '}
-            <Link href="https://twitter.com/chadian">twitter</Link>.
+            <Link href="https://twitter.com/theladdoo">twitter</Link>.
           </SectionParagraph>
         </section>
       </main>

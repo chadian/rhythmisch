@@ -121,7 +121,7 @@ export function Home() {
           <SectionParagraph>
             Learn more about the app on the <Link href="/faq">FAQ page</Link>.
             Send any questions or comments to me on{' '}
-            <Link href="https://twitter.com/chadian">twitter</Link>.
+            <Link href="https://twitter.com/theladdoo">twitter</Link>.
           </SectionParagraph>
         </section>
       </main>
