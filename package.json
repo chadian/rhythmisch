@@ -49,7 +49,7 @@
     "jest-localstorage-mock": "^2.4.18",
     "jest-transform-css": "^3.0.0",
     "next": "12.1.0",
-    "postcss": "^8.4.6",
+    "postcss": "^8.4.31",
     "prettier": "^2.5.1",
     "tailwind-underline-utils": "^1.1.3",
     "tailwindcss": "^2.2.4",
