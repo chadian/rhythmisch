@@ -17,9 +17,5 @@ export default function Stripe() {
     'z-20',
   ]);
 
-  return (
-    <div
-      className={className}
-    ></div>
-  );
+  return <div className={className}></div>;
 }
