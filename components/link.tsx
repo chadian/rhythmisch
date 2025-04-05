@@ -45,10 +45,8 @@ const Link = ({
   }
 
   return (
-    <NextLink passHref={true} href={href}>
-      <a {...attrs} className={cc(classNames)}>
-        {children}
-      </a>
+    <NextLink {...attrs} className={cc(classNames)} passHref={true} href={href}>
+      {children}
     </NextLink>
   );
 };
