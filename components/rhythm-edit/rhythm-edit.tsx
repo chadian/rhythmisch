@@ -22,11 +22,7 @@ const inputClassNames = [
   'placeholder-gray-300',
 ];
 
-const selectClassNames = [
-  ...sharedSelectAndInputClassNames,
-  'p-1',
-  'w-48',
-];
+const selectClassNames = [...sharedSelectAndInputClassNames, 'p-1', 'w-48'];
 
 const generateNumeratorSelect = (
   selected: string,

@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const colors = require('tailwindcss/colors');
 
 function customContainer({ addComponents, theme }) {
@@ -73,6 +73,7 @@ module.exports = {
   plugins: [
     customContainer,
     addColorCssProperties,
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require('tailwind-underline-utils'),
   ],
 };

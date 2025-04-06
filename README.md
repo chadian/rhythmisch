@@ -6,20 +6,22 @@ Rhythmisch is a simple app to help you build habits.
 ## Development
 
 This app is built using:
-* React
-* Next.js
-* Tailwind
-* Storybook
-* ESLint & Prettier
+
+- React
+- Next.js
+- Tailwind
+- Storybook
+- ESLint & Prettier
 
 To get started:
-1. Clone this repo
-2. Run `yarn`
 
-* Local development: `yarn dev`  (local server will run on port 3000)
-* Run tests: `yarn test` (add `--watch` flag for file watcher)
-* Storybook: `yarn storybook`
-* Lint: `yarn lint`
+1. Clone this repo
+2. Run `pnpm install`
+
+- Local development: `pnpm dev` (local server will run on port 3000)
+- Run tests: `pnpm test` (add `--watch` flag for file watcher)
+- Storybook: `pnpm storybook`
+- Lint: `pnpm lint`
 
 ## Contributions
 

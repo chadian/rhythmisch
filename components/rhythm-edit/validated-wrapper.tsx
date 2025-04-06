@@ -1,4 +1,4 @@
-import React, { JSXElementConstructor, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { ReactChildrenProps } from '../../types';
 
 let errorIdCount = 0;
@@ -15,6 +15,7 @@ export function ValidationWrapper({
 
   const wrappedChildren = React.Children.map(
     children,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (child: ReactElement<any, any>) => {
       const isFormElement = ['select', 'input'].includes(child?.type);
       if (!showError || !isFormElement) {

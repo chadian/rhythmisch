@@ -4,7 +4,7 @@ import { RhythmsProvider } from '../hooks/rhythms';
 import { ThemeProvider } from '../hooks/theme';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { setLocalStorageRhythms } from '../hooks/rhythms/local-storage';
 
 const getLocalStorageRhythms = () => {
@@ -34,7 +34,7 @@ beforeEach(() => {
   );
 });
 
-it('can delete an existing rhythm', () => {
+it('can delete an existing rhythm', async () => {
   expect(getLocalStorageRhythms()).toHaveLength(1);
 
   const action = screen.getByText('Pass this test');
@@ -46,7 +46,7 @@ it('can delete an existing rhythm', () => {
   expect(reason).toBeInTheDocument();
 
   const deleteButton = screen.getByRole('button', { name: 'Remove' });
-  userEvent.click(deleteButton);
+  await userEvent.click(deleteButton);
 
   expect(action).not.toBeInTheDocument();
   expect(frequency).not.toBeInTheDocument();

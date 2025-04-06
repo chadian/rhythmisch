@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { FunctionComponent } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { default as NextLink } from 'next/link';
 import { useTheme } from '../hooks/theme/index';
 import cc from 'classcat';
@@ -16,13 +16,13 @@ type LinkProps = {
   underlineOffset?: keyof typeof underlineClassNames;
 };
 
-const Link: FunctionComponent<LinkProps> = ({
+const Link = ({
   attrs,
   href,
   underline,
   underlineOffset,
   children,
-}) => {
+}: PropsWithChildren<LinkProps>) => {
   const [theme] = useTheme();
 
   attrs = attrs ?? {};
@@ -45,10 +45,8 @@ const Link: FunctionComponent<LinkProps> = ({
   }
 
   return (
-    <NextLink passHref={true} href={href}>
-      <a {...attrs} className={cc(classNames)}>
-        {children}
-      </a>
+    <NextLink {...attrs} className={cc(classNames)} passHref={true} href={href}>
+      {children}
     </NextLink>
   );
 };

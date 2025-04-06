@@ -1,4 +1,9 @@
-import React, { createContext, useState, useContext, FunctionComponent } from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  PropsWithChildren,
+} from 'react';
 import { getLocalStorageTheme, setLocalStorageTheme } from './local-storage';
 import { setFavicon } from './set-favicon';
 import {
@@ -12,11 +17,20 @@ export { themeKeys, themeDefinitions };
 
 type SaveTheme = (string) => void;
 
-const ThemeContext = createContext<[ThemeDefinition, SaveTheme]>([themeDefinitions[DEFAULT_THEME], () => {}]);
+const ThemeContext = createContext<[ThemeDefinition, SaveTheme]>([
+  themeDefinitions[DEFAULT_THEME],
+  () => {},
+]);
 
-export const ThemeProvider:FunctionComponent<{initialThemeKey?: string}>  = ({ initialThemeKey, children }) => {
+type ThemeProviderProps = { initialThemeKey?: string };
+
+export const ThemeProvider = ({
+  initialThemeKey,
+  children,
+}: PropsWithChildren<ThemeProviderProps>) => {
   const { theme: localStorageThemeKey } = getLocalStorageTheme() ?? {};
-  const initialThemeName = initialThemeKey ?? localStorageThemeKey ?? DEFAULT_THEME;
+  const initialThemeName =
+    initialThemeKey ?? localStorageThemeKey ?? DEFAULT_THEME;
   const [themeKey, setThemeName] = useState<string>(initialThemeName);
   setFavicon(themeKey);
 

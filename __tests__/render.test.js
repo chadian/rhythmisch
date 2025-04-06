@@ -4,7 +4,7 @@ import RhythmischApp from '../pages/app';
 import { RhythmsProvider } from '../hooks/rhythms';
 import { ThemeProvider } from '../hooks/theme';
 import { setLocalStorageRhythms } from '../hooks/rhythms/local-storage';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 let rendered;
 
@@ -46,7 +46,7 @@ describe('render', () => {
     expect(todaysOccurrence).toBeInTheDocument();
 
     // the default rhythm is not stored in local storage
-    expect(JSON.parse(window.localStorage.getItem('app.rhythms'))).toBeNull;
+    expect(JSON.parse(window.localStorage.getItem('app.rhythms'))).toBeNull();
   });
 
   describe('with an empty list of rhythms', () => {
