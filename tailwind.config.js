@@ -55,12 +55,9 @@ module.exports = {
     fontFamily: {
       sans: ['Helvetica', 'Arial', 'sans-serif'],
     },
-    underlineOffset: {
+    textUnderlineOffset: {
       sm: '0.08em',
       md: '0.12em',
-    },
-    underlineThickness: {
-      thin: '2px',
     },
     extend: {
       transitionProperty: {
@@ -69,10 +66,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    customContainer,
-    addColorCssProperties,
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    require('tailwind-underline-utils'),
-  ],
+  plugins: [customContainer, addColorCssProperties],
 };
