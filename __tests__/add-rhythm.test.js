@@ -52,7 +52,7 @@ it('can add a new rhythm', () => {
   );
   expect(localStorageRhythms).toHaveLength(1);
   const addedRhythm = localStorageRhythms[0];
-  expect(addedRhythm.id).toBeTruthy;
+  expect(addedRhythm.id).toBeTruthy();
   expect(addedRhythm.action).toBe('read every day');
   expect(addedRhythm.reason).toBe('there is much I would like to learn');
   expect(addedRhythm.frequency).toMatchObject([3, 7]);

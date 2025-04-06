@@ -46,7 +46,7 @@ describe('render', () => {
     expect(todaysOccurrence).toBeInTheDocument();
 
     // the default rhythm is not stored in local storage
-    expect(JSON.parse(window.localStorage.getItem('app.rhythms'))).toBeNull;
+    expect(JSON.parse(window.localStorage.getItem('app.rhythms'))).toBeNull();
   });
 
   describe('with an empty list of rhythms', () => {

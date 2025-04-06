@@ -19,12 +19,12 @@ test('it renders', () => {
   setup({ theme: 'webog' });
   const themeButtons = screen.getAllByRole('radio');
   expect(themeButtons).toHaveLength(6);
-  expect(screen.getByLabelText('webog')).toBeInTheDocument;
-  expect(screen.getByLabelText('swiss')).toBeInTheDocument;
-  expect(screen.getByLabelText('edmonton')).toBeInTheDocument;
-  expect(screen.getByLabelText('portland')).toBeInTheDocument;
-  expect(screen.getByLabelText('ubahn')).toBeInTheDocument;
-  expect(screen.getByLabelText('heroku')).toBeInTheDocument;
+  expect(screen.getByLabelText('webog')).toBeInTheDocument();
+  expect(screen.getByLabelText('swiss')).toBeInTheDocument();
+  expect(screen.getByLabelText('edmonton')).toBeInTheDocument();
+  expect(screen.getByLabelText('portland')).toBeInTheDocument();
+  expect(screen.getByLabelText('ubahn')).toBeInTheDocument();
+  expect(screen.getByLabelText('heroku')).toBeInTheDocument();
 });
 
 test('it loads the default theme when a theme has not been saved', () => {
