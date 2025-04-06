@@ -6,10 +6,10 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
   title="Components/Link"
   component={Link}
   argTypes={{
-    href: { control: "text" },
+    href: { control: 'text' },
   }}
   args={{
-    href: 'https://rhythmisch.com'
+    href: 'https://rhythmisch.com',
   }}
 />
 
@@ -22,11 +22,11 @@ and provides some extra options. This component requires a `ThemeProvider` somew
 
 <Canvas>
   <Story name="Basic">
-    {args =>
+    {(args) => (
       <ThemeProvider>
         <Link {...args}>Check out the app</Link>
       </ThemeProvider>
-    }
+    )}
   </Story>
 </Canvas>
 
@@ -34,11 +34,11 @@ The `underline` prop can control whether an underline is displayed, defaults to 
 
 <Canvas>
   <Story name="Without Underline" args={{ underline: false }}>
-    {args =>
+    {(args) => (
       <ThemeProvider>
         <Link {...args}>Check out the app</Link>
       </ThemeProvider>
-    }
+    )}
   </Story>
 </Canvas>
 
@@ -46,12 +46,20 @@ There are two underline offset options, `sm` and `md` to control how close the u
 the link.
 
 <Canvas>
-  <Story name="Underline Offset" args={{ underlineOffset: "sm" }} argTypes={{ underlineOffset: { control: { type: 'inline-radio', options: ['sm', 'md'] }}}}>
-    {args =>
+  <Story
+    name="Underline Offset"
+    args={{ underlineOffset: 'sm' }}
+    argTypes={{
+      underlineOffset: {
+        control: { type: 'inline-radio', options: ['sm', 'md'] },
+      },
+    }}
+  >
+    {(args) => (
       <ThemeProvider>
         <Link {...args}>Check out the app</Link>
       </ThemeProvider>
-    }
+    )}
   </Story>
 </Canvas>
 
@@ -61,24 +69,26 @@ including `target: '_blank'` on the `attrs` prop adds the `target` attribute to 
 
 <Canvas>
   <Story name="Custom Attributes" args={{ attrs: { target: '_blank' } }}>
-    {args =>
+    {(args) => (
       <ThemeProvider>
         <Link {...args}>Check out the app</Link>
       </ThemeProvider>
-    }
+    )}
   </Story>
 </Canvas>
-
 
 Also, `className` can be applied via the `attrs` hash.
 
 <Canvas>
-  <Story name="Custom Class Name" args={{ attrs: { className: 'font-extrabold' } }}>
-    {args =>
+  <Story
+    name="Custom Class Name"
+    args={{ attrs: { className: 'font-extrabold' } }}
+  >
+    {(args) => (
       <ThemeProvider>
         <Link {...args}>Check out the app</Link>
       </ThemeProvider>
-    }
+    )}
   </Story>
 </Canvas>
 
@@ -87,10 +97,10 @@ can be controlled via the `Link` props.
 
 <Canvas>
   <Story name="Themed by ThemeProvider">
-    {args =>
+    {(args) => (
       <ThemeProvider value="heroku">
         <Link {...args}>Check out the app</Link>
       </ThemeProvider>
-    }
+    )}
   </Story>
 </Canvas>
