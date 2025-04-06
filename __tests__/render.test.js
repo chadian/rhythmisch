@@ -4,7 +4,7 @@ import RhythmischApp from '../pages/app';
 import { RhythmsProvider } from '../hooks/rhythms';
 import { ThemeProvider } from '../hooks/theme';
 import { setLocalStorageRhythms } from '../hooks/rhythms/local-storage';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 let rendered;
 

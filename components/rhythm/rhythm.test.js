@@ -71,7 +71,7 @@ it('renders', () => {
 });
 
 describe('todays occurrence', () => {
-  it('receives toggled todays occurrence', () => {
+  it('receives toggled todays occurrence', async () => {
     const toggleTodaysOccurrence = jest.fn();
 
     const rendered = render(
@@ -87,7 +87,7 @@ describe('todays occurrence', () => {
       name: /Mark as/,
     });
 
-    userEvent.click(todaysOccurrenceButton);
+    await userEvent.click(todaysOccurrenceButton);
     expect(toggleTodaysOccurrence).toHaveBeenCalledWith(true);
   });
 

@@ -3,7 +3,7 @@ import RhythmischApp from '../pages/app';
 import { RhythmsProvider } from '../hooks/rhythms';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { ThemeProvider } from '../hooks/theme';
 import { setLocalStorageRhythms } from '../hooks/rhythms/local-storage';
 
@@ -19,9 +19,9 @@ beforeEach(() => {
   );
 });
 
-it('can add a new rhythm', () => {
+it('can add a new rhythm', async () => {
   const addButton = screen.getByRole('button', { name: 'Add' });
-  userEvent.click(addButton);
+  await userEvent.click(addButton);
   const modal = screen.getByRole('dialog');
   expect(modal).toBeInTheDocument();
 
@@ -33,11 +33,11 @@ it('can add a new rhythm', () => {
   const reason = screen.getByLabelText('Rhythm reason description');
   const submit = screen.getByRole('button', { name: 'Create' });
 
-  userEvent.type(action, 'read every day');
-  userEvent.selectOptions(numeratorFrequency, 'thrice');
-  userEvent.selectOptions(denomenatorFrequency, 'week');
-  userEvent.type(reason, 'there is much I would like to learn');
-  userEvent.click(submit);
+  await userEvent.type(action, 'read every day');
+  await userEvent.selectOptions(numeratorFrequency, 'thrice');
+  await userEvent.selectOptions(denomenatorFrequency, 'week');
+  await userEvent.type(reason, 'there is much I would like to learn');
+  await userEvent.click(submit);
 
   expect(modal).not.toBeInTheDocument();
 

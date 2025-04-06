@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import RhythmEdit from './rhythm-edit';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { ThemeProvider } from '../../hooks/theme';
 
 let actionInput;
@@ -53,16 +53,16 @@ test("it renders the rhythm's editable properties", () => {
 });
 
 test('it can submit changes', async () => {
-  userEvent.clear(actionInput);
-  userEvent.type(actionInput, 'I want to swim');
+  await userEvent.clear(actionInput);
+  await userEvent.type(actionInput, 'I want to swim');
 
-  userEvent.selectOptions(numeratorSelect, 'four times');
-  userEvent.selectOptions(denominatorSelect, 'five days');
+  await userEvent.selectOptions(numeratorSelect, 'four times');
+  await userEvent.selectOptions(denominatorSelect, 'five days');
 
-  userEvent.clear(reasonInput);
-  userEvent.type(reasonInput, 'I want to do a triathlon');
+  await userEvent.clear(reasonInput);
+  await userEvent.type(reasonInput, 'I want to do a triathlon');
 
-  userEvent.click(submitButton);
+  await userEvent.click(submitButton);
 
   expect(onSubmitCallback).toHaveBeenCalledTimes(1);
   expect(onSubmitCallback).toHaveBeenCalledWith({
@@ -73,15 +73,15 @@ test('it can submit changes', async () => {
   });
 });
 
-test('it evens out equal numerator and denominator values to once every day', () => {
-  userEvent.selectOptions(numeratorSelect, 'four times');
+test('it evens out equal numerator and denominator values to once every day', async () => {
+  await userEvent.selectOptions(numeratorSelect, 'four times');
   expect(numeratorSelect).toHaveValue('4');
 
-  userEvent.selectOptions(denominatorSelect, 'five days');
+  await userEvent.selectOptions(denominatorSelect, 'five days');
   expect(denominatorSelect).toHaveValue('5');
 
   // push to times to match days
-  userEvent.selectOptions(numeratorSelect, 'five times');
+  await userEvent.selectOptions(numeratorSelect, 'five times');
 
   // resets to once every day
   expect(numeratorSelect).toHaveValue('1');
@@ -106,22 +106,22 @@ describe('validation', () => {
   const ariaDescribedByAttrLabel = 'aria-describedby';
   const ariaInvalidLabel = 'aria-invalid';
 
-  test('it does not call onSubmit callback when an error exists', () => {
-    userEvent.clear(actionInput);
+  test('it does not call onSubmit callback when an error exists', async () => {
+    await userEvent.clear(actionInput);
     expect(actionInput).toHaveValue('');
     expect(actionInput).not.toHaveAttribute(ariaInvalidLabel);
-    userEvent.click(submitButton);
+    await userEvent.click(submitButton);
     expect(onSubmitCallback).not.toHaveBeenCalledWith();
   });
 
-  test('it shows an error for an empty rhythm action', () => {
-    userEvent.clear(actionInput);
+  test('it shows an error for an empty rhythm action', async () => {
+    await userEvent.clear(actionInput);
     expect(actionInput).toHaveValue('');
     expect(actionInput).not.toHaveAttribute(ariaDescribedByAttrLabel);
 
     expect(actionInput).not.toHaveAttribute(ariaInvalidLabel);
     expect(actionInput).not.toHaveAttribute(ariaDescribedByAttrLabel);
-    userEvent.click(submitButton);
+    await userEvent.click(submitButton);
 
     expect(actionInput).toHaveAttribute(ariaInvalidLabel, 'true');
     expect(actionInput).toHaveAttribute(ariaDescribedByAttrLabel);
@@ -130,12 +130,12 @@ describe('validation', () => {
     expect(errorElement).toHaveAttribute('id', errorElementId);
   });
 
-  test('it shows an error for an empty rhythm reason', () => {
-    userEvent.clear(reasonInput);
+  test('it shows an error for an empty rhythm reason', async () => {
+    await userEvent.clear(reasonInput);
     expect(reasonInput).toHaveValue('');
     expect(reasonInput).not.toHaveAttribute(ariaInvalidLabel);
     expect(reasonInput).not.toHaveAttribute(ariaDescribedByAttrLabel);
-    userEvent.click(submitButton);
+    await userEvent.click(submitButton);
 
     expect(reasonInput).toHaveAttribute(ariaInvalidLabel, 'true');
     expect(reasonInput).toHaveAttribute(ariaDescribedByAttrLabel);
@@ -146,14 +146,14 @@ describe('validation', () => {
 
   test('it shows an error when the frequency numerator is greater than the denominator', async () => {
     const ariaDescribedByAttrLabel = 'aria-describedby';
-    userEvent.selectOptions(numeratorSelect, 'five times');
-    userEvent.selectOptions(denominatorSelect, 'three days');
+    await userEvent.selectOptions(numeratorSelect, 'five times');
+    await userEvent.selectOptions(denominatorSelect, 'three days');
 
     expect(numeratorSelect).not.toHaveAttribute(ariaInvalidLabel);
     expect(numeratorSelect).not.toHaveAttribute('aria-describedby');
     expect(denominatorSelect).not.toHaveAttribute(ariaInvalidLabel);
     expect(denominatorSelect).not.toHaveAttribute('aria-describedby');
-    userEvent.click(submitButton);
+    await userEvent.click(submitButton);
 
     expect(numeratorSelect).toHaveAttribute(ariaInvalidLabel, 'true');
     expect(numeratorSelect).toHaveAttribute(ariaDescribedByAttrLabel);

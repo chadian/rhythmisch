@@ -4,7 +4,7 @@ import { ThemeProvider } from '../hooks/theme';
 import { setLocalStorageTheme } from '../hooks/theme/local-storage';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 function setup(themeData) {
   setLocalStorageTheme(themeData);
@@ -51,7 +51,7 @@ test('it loads a saved theme', () => {
   );
 });
 
-test('it saves a selected theme', () => {
+test('it saves a selected theme', async () => {
   setup({ theme: 'webog' });
   expect(screen.getByLabelText('webog')).toHaveAttribute(
     'aria-checked',
@@ -63,7 +63,7 @@ test('it saves a selected theme', () => {
     'false'
   );
 
-  userEvent.click(screen.getByLabelText('portland'));
+  await userEvent.click(screen.getByLabelText('portland'));
 
   expect(screen.getByLabelText('webog')).toHaveAttribute(
     'aria-checked',

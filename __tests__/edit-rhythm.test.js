@@ -3,7 +3,7 @@ import RhythmischApp from '../pages/app';
 import { RhythmsProvider } from '../hooks/rhythms';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { ThemeProvider } from '../hooks/theme';
 import { setLocalStorageRhythms } from '../hooks/rhythms/local-storage';
 
@@ -36,7 +36,7 @@ beforeEach(() => {
   );
 });
 
-it('can edit an existing rhythm', () => {
+it('can edit an existing rhythm', async () => {
   let localStorageRhythms = getLocalStorageRhythms();
   expect(localStorageRhythms).toHaveLength(1);
   const localStorageRhythm = localStorageRhythms[0];
@@ -47,7 +47,7 @@ it('can edit an existing rhythm', () => {
   expect(localStorageRhythm.hits).toMatchObject(rhythm.hits);
 
   const editButton = screen.getByRole('button', { name: 'Edit' });
-  userEvent.click(editButton);
+  await userEvent.click(editButton);
 
   const modal = screen.getByRole('dialog');
   expect(modal).toBeInTheDocument();
@@ -60,13 +60,13 @@ it('can edit an existing rhythm', () => {
   const reason = screen.getByLabelText('Rhythm reason description');
   const submit = screen.getByRole('button', { name: 'Update' });
 
-  userEvent.clear(action);
-  userEvent.type(action, 'read every day');
-  userEvent.selectOptions(numeratorFrequency, 'thrice');
-  userEvent.selectOptions(denomenatorFrequency, 'week');
-  userEvent.clear(reason);
-  userEvent.type(reason, 'there is much I would like to learn');
-  userEvent.click(submit);
+  await userEvent.clear(action);
+  await userEvent.type(action, 'read every day');
+  await userEvent.selectOptions(numeratorFrequency, 'thrice');
+  await userEvent.selectOptions(denomenatorFrequency, 'week');
+  await userEvent.clear(reason);
+  await userEvent.type(reason, 'there is much I would like to learn');
+  await userEvent.click(submit);
 
   expect(modal).not.toBeInTheDocument();
 
