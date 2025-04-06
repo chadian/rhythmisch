@@ -2,6 +2,7 @@
   "name": "rhythmisch",
   "version": "0.1.0",
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -33,7 +34,6 @@
     "@storybook/addon-links": "^8.6.12",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/react": "8.6.12",
-    "@tailwindcss/postcss": "^4.1.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -57,10 +57,10 @@
     "jest-localstorage-mock": "^2.4.26",
     "jest-transform-css": "^6.0.2",
     "next": "15.2.4",
-    "postcss": "^8.5.3",
+    "postcss": "^8.4.6",
     "prettier": "^3.5.3",
     "tailwind-underline-utils": "^1.1.3",
-    "tailwindcss": "^4.1.3",
+    "tailwindcss": "^2.2.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.0"
   }
