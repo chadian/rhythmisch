@@ -33,11 +33,7 @@ const Link = ({
 
   const classNames = (attrs.className ?? '').split(' ');
 
-  classNames.push(
-    'cursor-pointer',
-    'underline-thickness-thin',
-    theme.linkColor
-  );
+  classNames.push('cursor-pointer', 'decoration-2', theme.linkColor);
 
   if (underline) {
     classNames.push('underline');

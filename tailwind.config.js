@@ -41,14 +41,13 @@ function addColorCssProperties({ addComponents, config }) {
 }
 
 module.exports = {
-  purge: [
+  content: [
     './pages/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
     './components/**/*.mdx',
     './hooks/**/*.{js,jsx,ts,tsx}',
     './utils/**/*.{js,jsx,ts,tsx}',
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
       ...colors,
@@ -56,12 +55,9 @@ module.exports = {
     fontFamily: {
       sans: ['Helvetica', 'Arial', 'sans-serif'],
     },
-    underlineOffset: {
+    textUnderlineOffset: {
       sm: '0.08em',
       md: '0.12em',
-    },
-    underlineThickness: {
-      thin: '2px',
     },
     extend: {
       transitionProperty: {
@@ -70,10 +66,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    customContainer,
-    addColorCssProperties,
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    require('tailwind-underline-utils'),
-  ],
+  plugins: [customContainer, addColorCssProperties],
 };
