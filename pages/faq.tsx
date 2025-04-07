@@ -78,10 +78,7 @@ export default function Home() {
             A: The hope is that with these limitations that there is less
             distractions and that you're able to easily kickstart the habit into
             action. Once you're rolling there are plenty of other apps, tools,
-            techniques to upgrade to that provide more advanced features. That
-            said, feel free to reach out on{' '}
-            <Link href="https://twitter.com/theladdoo">twitter</Link> with any
-            ideas, I would still love to hear them.
+            techniques to upgrade to that provide more advanced features.
           </SectionParagraph>
         </section>
 
@@ -90,8 +87,7 @@ export default function Home() {
             Q: My question wasn't answered, can I get some help?
           </SectionHeading>
           <SectionParagraph>
-            A: Sure, send me a question or feedback on{' '}
-            <Link href="https://twitter.com/theladdoo">twitter</Link>.
+            A: Feel free to open an issue on github.
           </SectionParagraph>
         </section>
       </main>
