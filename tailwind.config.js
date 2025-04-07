@@ -19,7 +19,7 @@ function customContainer({ addComponents, theme }) {
   });
 }
 
-function addColorCssProperties({ addComponents, config }) {
+function addColorCssProperties({ addBase, config }) {
   const colors = config(`theme.colors`, []);
   const cssProperties = {};
 
@@ -37,7 +37,7 @@ function addColorCssProperties({ addComponents, config }) {
     }
   }
 
-  addComponents({ ':root': cssProperties });
+  addBase({ ':root': cssProperties });
 }
 
 module.exports = {
