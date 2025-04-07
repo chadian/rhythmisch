@@ -177,7 +177,7 @@ export default function RhythmEdit({
       >
         Close
       </Button>
-      <div className="flex flex-col space-y-10 text-gray-500 md:text-2xl max-w-screen-md m-auto">
+      <div className="flex flex-col space-y-10 text-gray-500 md:text-2xl max-w-(--breakpoint-md) m-auto">
         <div className="flex flex-col">
           <label>I want to</label>
           <ValidationWrapper
